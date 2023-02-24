@@ -1,0 +1,28 @@
+// place your custom styles here
+.hero-info-wrapper h1 {
+  font-size: 1.6rem;
+  font-family: var(--font-family-fancy);
+  }
+  
+  
+  .hero-info-wrapper img {
+	display: flex;
+	margin-left: -60px;
+	height: 164px;
+	width: 164px;
+	min-width: 164px;
+	border-radius: 82px;
+	border-color: rgba(0, 0, 0, 0.06);
+	border-width: 2px;
+	border-style: solid;
+}
+  
+  
+  
+  .hero-info-wrapper .description {
+  max-width: 35rem;
+  color: var(--text-color-bright);
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  }

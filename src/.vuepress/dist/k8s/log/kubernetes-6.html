@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-beta.60" />
+    <meta name="theme" content="VuePress Theme Hope" />
+    <meta property="og:url" content="https://vuepress-theme-hope-docs-demo.netlify.app/k8s/log/kubernetes-6.html"><meta property="og:site_name" content="知识库"><meta property="og:description" content="rbd结合k8s提供存储卷及动态存储卷使用案例 目的： 让k8s 中的 pod 可以访问 ceph中rbd 提供的镜像作为存储设备。 需要在 ceph 创建rbd并且让 k8s node 节点能够通过 ceph 的认证k8s在使用 ceph 作为动态存储卷的时候，需要 kube-controller-manager 组件能够访问ceph，因此需要在包括..."><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"","image":[""],"dateModified":null,"author":[]}</script><title>知识库</title><meta name="description" content="rbd结合k8s提供存储卷及动态存储卷使用案例 目的： 让k8s 中的 pod 可以访问 ceph中rbd 提供的镜像作为存储设备。 需要在 ceph 创建rbd并且让 k8s node 节点能够通过 ceph 的认证k8s在使用 ceph 作为动态存储卷的时候，需要 kube-controller-manager 组件能够访问ceph，因此需要在包括...">
+    <style>
+      :root {
+        --bg-color: #fff;
+      }
+
+      html[data-theme="dark"] {
+        --bg-color: #1d1e1f;
+      }
+
+      html,
+      body {
+        background: var(--bg-color);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <link rel="preload" href="/assets/style-14a3e14f.css" as="style"><link rel="stylesheet" href="/assets/style-14a3e14f.css">
+    <link rel="modulepreload" href="/assets/app-7222e3ed.js"><link rel="modulepreload" href="/assets/framework-7e159c24.js"><link rel="modulepreload" href="/assets/kubernetes-6.html-b0c6a2e4.js"><link rel="modulepreload" href="/assets/kubernetes-6.html-441b57d6.js">
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="skip-link sr-only">跳至主要內容</a><!--]--><div class="theme-container has-toc"><!--[--><header class="navbar" id="navbar"><div class="navbar-start"><button class="toggle-sidebar-button" title="Toggle Sidebar"><span class="icon"></span></button><!--[--><!----><!--]--><a href="/" class="brand"><img class="logo" src="/logo.svg" alt="知识库"><!----><span class="site-name hide-in-pad">知识库</span></a><!--[--><!----><!--]--></div><div class="navbar-center"><!--[--><!----><!--]--><nav class="nav-links"><div class="nav-item hide-in-mobile"><a href="/" class="nav-link" aria-label="Ryan的知识库"><span class="font-icon icon iconfont icon-home" style=""></span>Ryan的知识库<!----></a></div><div class="nav-item hide-in-mobile"><a href="/demo/" class="nav-link" aria-label="Demo"><span class="font-icon icon iconfont icon-discover" style=""></span>Demo<!----></a></div><div class="nav-item hide-in-mobile"><div class="dropdown-wrapper"><button class="dropdown-title" type="button" aria-label="Guide"><span class="title"><span class="font-icon icon iconfont icon-creative" style=""></span>Guide</span><span class="arrow"></span><ul class="nav-dropdown"><li class="dropdown-item"><h4 class="dropdown-subtitle"><span>Bar</span></h4><ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/guide/bar/baz.html" class="nav-link" aria-label="Baz"><span class="font-icon icon iconfont icon-info" style=""></span>Baz<!----></a></li><li class="dropdown-subitem"><a href="/guide/bar/" class="nav-link" aria-label="..."><span class="font-icon icon iconfont icon-more" style=""></span>...<!----></a></li></ul></li><li class="dropdown-item"><h4 class="dropdown-subtitle"><span>Foo</span></h4><ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/guide/foo/ray.html" class="nav-link" aria-label="Ray"><span class="font-icon icon iconfont icon-config" style=""></span>Ray<!----></a></li><li class="dropdown-subitem"><a href="/guide/foo/" class="nav-link" aria-label="..."><span class="font-icon icon iconfont icon-more" style=""></span>...<!----></a></li></ul></li></ul></button></div></div><div class="nav-item hide-in-mobile"><a href="https://theme-hope.vuejs.press/" rel="noopener noreferrer" target="_blank" aria-label="V2 Docs" class="nav-link"><span class="font-icon icon iconfont icon-note" style=""></span>V2 Docs<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></div></nav><!--[--><!----><!--]--></div><div class="navbar-end"><!--[--><!----><!--]--><!----><div class="nav-item"><a class="repo-link" href="https://github.com/vuepress-theme-hope/vuepress-theme-hope" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" class="icon github-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="github icon" style="width:1.25rem;height:1.25rem;vertical-align:middle;"><path d="M511.957 21.333C241.024 21.333 21.333 240.981 21.333 512c0 216.832 140.544 400.725 335.574 465.664 24.49 4.395 32.256-10.07 32.256-23.083 0-11.69.256-44.245 0-85.205-136.448 29.61-164.736-64.64-164.736-64.64-22.315-56.704-54.4-71.765-54.4-71.765-44.587-30.464 3.285-29.824 3.285-29.824 49.195 3.413 75.179 50.517 75.179 50.517 43.776 75.008 114.816 53.333 142.762 40.79 4.523-31.66 17.152-53.377 31.19-65.537-108.971-12.458-223.488-54.485-223.488-242.602 0-53.547 19.114-97.323 50.517-131.67-5.035-12.33-21.93-62.293 4.779-129.834 0 0 41.258-13.184 134.912 50.346a469.803 469.803 0 0 1 122.88-16.554c41.642.213 83.626 5.632 122.88 16.554 93.653-63.488 134.784-50.346 134.784-50.346 26.752 67.541 9.898 117.504 4.864 129.834 31.402 34.347 50.474 78.123 50.474 131.67 0 188.586-114.73 230.016-224.042 242.09 17.578 15.232 33.578 44.672 33.578 90.454v135.85c0 13.142 7.936 27.606 32.854 22.87C862.25 912.597 1002.667 728.747 1002.667 512c0-271.019-219.648-490.667-490.71-490.667z"></path></svg></a></div><div class="nav-item hide-in-mobile"><button id="appearance-switch"><svg xmlns="http://www.w3.org/2000/svg" class="icon auto-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="auto icon" style="display:block;"><path d="M512 992C246.92 992 32 777.08 32 512S246.92 32 512 32s480 214.92 480 480-214.92 480-480 480zm0-840c-198.78 0-360 161.22-360 360 0 198.84 161.22 360 360 360s360-161.16 360-360c0-198.78-161.22-360-360-360zm0 660V212c165.72 0 300 134.34 300 300 0 165.72-134.28 300-300 300z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon dark-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="dark icon" style="display:none;"><path d="M524.8 938.667h-4.267a439.893 439.893 0 0 1-313.173-134.4 446.293 446.293 0 0 1-11.093-597.334A432.213 432.213 0 0 1 366.933 90.027a42.667 42.667 0 0 1 45.227 9.386 42.667 42.667 0 0 1 10.24 42.667 358.4 358.4 0 0 0 82.773 375.893 361.387 361.387 0 0 0 376.747 82.774 42.667 42.667 0 0 1 54.187 55.04 433.493 433.493 0 0 1-99.84 154.88 438.613 438.613 0 0 1-311.467 128z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon light-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="light icon" style="display:none;"><path d="M952 552h-80a40 40 0 0 1 0-80h80a40 40 0 0 1 0 80zM801.88 280.08a41 41 0 0 1-57.96-57.96l57.96-58a41.04 41.04 0 0 1 58 58l-58 57.96zM512 752a240 240 0 1 1 0-480 240 240 0 0 1 0 480zm0-560a40 40 0 0 1-40-40V72a40 40 0 0 1 80 0v80a40 40 0 0 1-40 40zm-289.88 88.08-58-57.96a41.04 41.04 0 0 1 58-58l57.96 58a41 41 0 0 1-57.96 57.96zM192 512a40 40 0 0 1-40 40H72a40 40 0 0 1 0-80h80a40 40 0 0 1 40 40zm30.12 231.92a41 41 0 0 1 57.96 57.96l-57.96 58a41.04 41.04 0 0 1-58-58l58-57.96zM512 832a40 40 0 0 1 40 40v80a40 40 0 0 1-80 0v-80a40 40 0 0 1 40-40zm289.88-88.08 58 57.96a41.04 41.04 0 0 1-58 58l-57.96-58a41 41 0 0 1 57.96-57.96z"></path></svg></button></div><!--[--><button class="search-pro-button" role="search" aria-label="搜索"><svg xmlns="http://www.w3.org/2000/svg" class="icon search-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="search icon"><path d="M192 480a256 256 0 1 1 512 0 256 256 0 0 1-512 0m631.776 362.496-143.2-143.168A318.464 318.464 0 0 0 768 480c0-176.736-143.264-320-320-320S128 303.264 128 480s143.264 320 320 320a318.016 318.016 0 0 0 184.16-58.592l146.336 146.368c12.512 12.48 32.768 12.48 45.28 0 12.48-12.512 12.48-32.768 0-45.28"></path></svg><div class="placeholder">搜索</div><div class="key-hints"><kbd class="key">Ctrl</kbd><kbd class="key">K</kbd></div></button><!--]--><!--[--><!----><!--]--><button class="toggle-navbar-button" aria-label="Toggle Navbar" aria-expanded="false" aria-controls="nav-screen"><span class="button-container"><span class="button-top"></span><span class="button-middle"></span><span class="button-bottom"></span></span></button></div></header><!----><!--]--><!----><div class="toggle-sidebar-wrapper"><span class="arrow start"></span></div><aside class="sidebar" id="sidebar"><!--[--><!----><!--]--><ul class="sidebar-links"><li><!--[--><a href="/" class="nav-link sidebar-link sidebar-page" aria-label="Ryan的知识库"><span class="font-icon icon iconfont icon-home" style=""></span>Ryan的知识库<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><section class="sidebar-group"><p class="sidebar-heading clickable"><span class="font-icon icon iconfont icon-discover" style=""></span><a href="/demo/" class="title">Demo</a><!----></p><ul class="sidebar-links"><li><!--[--><a href="/demo/page.html" class="nav-link sidebar-link sidebar-page" aria-label="Page Config"><span class="font-icon icon iconfont icon-page" style=""></span>Page Config<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/demo/markdown.html" class="nav-link sidebar-link sidebar-page" aria-label="Markdown Enhance"><span class="font-icon icon iconfont icon-markdown" style=""></span>Markdown Enhance<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/demo/disable.html" class="nav-link sidebar-link sidebar-page" aria-label="Disabling layout and features"><span class="font-icon icon iconfont icon-config" style=""></span>Disabling layout and features<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/demo/encrypt.html" class="nav-link sidebar-link sidebar-page" aria-label="Encryption Article"><span class="font-icon icon iconfont icon-lock" style=""></span>Encryption Article<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li></ul></section></li><li><section class="sidebar-group"><p class="sidebar-heading"><span class="font-icon icon iconfont icon-note" style=""></span><span class="title">Docs</span><!----></p><ul class="sidebar-links"><li><!--[--><a href="/guide/" class="nav-link sidebar-link sidebar-page" aria-label="Guide"><span class="font-icon icon iconfont icon-creative" style=""></span>Guide<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><section class="sidebar-group"><button class="sidebar-heading clickable"><span class="font-icon icon iconfont icon-creative" style=""></span><span class="title">Bar feature</span><span class="arrow end"></span></button><!----></section></li><li><section class="sidebar-group"><button class="sidebar-heading clickable"><span class="font-icon icon iconfont icon-config" style=""></span><span class="title">Foo feature</span><span class="arrow end"></span></button><!----></section></li></ul></section></li><li><!--[--><a href="/slides.html" class="nav-link sidebar-link sidebar-page" aria-label="Slide page"><span class="font-icon icon iconfont icon-slides" style=""></span>Slide page<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li></ul><!--[--><!----><!--]--></aside><!--[--><main class="page" id="main-content"><!--[--><!----><nav class="breadcrumb disable"></nav><div class="page-title"><h1><!----></h1><div class="page-info"><span class="page-author-info" aria-label="作者🖊" data-balloon-pos="down"><svg xmlns="http://www.w3.org/2000/svg" class="icon author-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="author icon"><path d="M649.6 633.6c86.4-48 147.2-144 147.2-249.6 0-160-128-288-288-288s-288 128-288 288c0 108.8 57.6 201.6 147.2 249.6-121.6 48-214.4 153.6-240 288-3.2 9.6 0 19.2 6.4 25.6 3.2 9.6 12.8 12.8 22.4 12.8h704c9.6 0 19.2-3.2 25.6-12.8 6.4-6.4 9.6-16 6.4-25.6-25.6-134.4-121.6-240-243.2-288z"></path></svg><span><a class="page-author-item" href="http://ryanxin.live" target="_blank" rel="noopener noreferrer">Ryan</a></span><span property="author" content="Ryan"></span></span><!----><!----><!----><span class="page-reading-time-info" aria-label="阅读时间⌛" data-balloon-pos="down"><svg xmlns="http://www.w3.org/2000/svg" class="icon timer-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="timer icon"><path d="M799.387 122.15c4.402-2.978 7.38-7.897 7.38-13.463v-1.165c0-8.933-7.38-16.312-16.312-16.312H256.33c-8.933 0-16.311 7.38-16.311 16.312v1.165c0 5.825 2.977 10.874 7.637 13.592 4.143 194.44 97.22 354.963 220.201 392.763-122.204 37.542-214.893 196.511-220.2 389.397-4.661 5.049-7.638 11.651-7.638 19.03v5.825h566.49v-5.825c0-7.379-2.849-13.981-7.509-18.9-5.049-193.016-97.867-351.985-220.2-389.527 123.24-37.67 216.446-198.453 220.588-392.892zM531.16 450.445v352.632c117.674 1.553 211.787 40.778 211.787 88.676H304.097c0-48.286 95.149-87.382 213.728-88.676V450.445c-93.077-3.107-167.901-81.297-167.901-177.093 0-8.803 6.99-15.793 15.793-15.793 8.803 0 15.794 6.99 15.794 15.793 0 80.261 63.69 145.635 142.01 145.635s142.011-65.374 142.011-145.635c0-8.803 6.99-15.793 15.794-15.793s15.793 6.99 15.793 15.793c0 95.019-73.789 172.82-165.96 177.093z"></path></svg><span>大约 6 分钟</span><meta property="timeRequired" content="PT6M"></span><!----><!----></div><hr></div><div class="toc-place-holder"><aside id="toc"><!--[--><!----><!--]--><div class="toc-header">此页内容<button class="print-button" title="print"><svg xmlns="http://www.w3.org/2000/svg" class="icon print-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="print icon"><path d="M819.2 364.8h-44.8V128c0-17.067-14.933-32-32-32H281.6c-17.067 0-32 14.933-32 32v236.8h-44.8C145.067 364.8 96 413.867 96 473.6v192c0 59.733 49.067 108.8 108.8 108.8h44.8V896c0 17.067 14.933 32 32 32h460.8c17.067 0 32-14.933 32-32V774.4h44.8c59.733 0 108.8-49.067 108.8-108.8v-192c0-59.733-49.067-108.8-108.8-108.8zM313.6 160h396.8v204.8H313.6V160zm396.8 704H313.6V620.8h396.8V864zM864 665.6c0 25.6-19.2 44.8-44.8 44.8h-44.8V588.8c0-17.067-14.933-32-32-32H281.6c-17.067 0-32 14.933-32 32v121.6h-44.8c-25.6 0-44.8-19.2-44.8-44.8v-192c0-25.6 19.2-44.8 44.8-44.8h614.4c25.6 0 44.8 19.2 44.8 44.8v192z"></path></svg></button></div><div class="toc-wrapper"><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#rbd结合k8s提供存储卷及动态存储卷使用案例" class="router-link-active router-link-exact-active toc-link level2">rbd结合k8s提供存储卷及动态存储卷使用案例</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#_1-创建初始化rbd" class="router-link-active router-link-exact-active toc-link level2">1.创建初始化RBD</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#_2-创建image" class="router-link-active router-link-exact-active toc-link level2">2 创建image</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#客户端安装ceph-common" class="router-link-active router-link-exact-active toc-link level2">客户端安装ceph-common</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#创建ceph-用户与授权" class="router-link-active router-link-exact-active toc-link level2">创建ceph 用户与授权</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#通过-keyring-文件挂载-rbd" class="router-link-active router-link-exact-active toc-link level2">通过 keyring 文件挂载 rbd</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#通过-keyring-文件直接挂载-busybox" class="router-link-active router-link-exact-active toc-link level3">通过 keyring 文件直接挂载-busybox</a></li><!----><!--]--></ul><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#通过secret-挂载rbd" class="router-link-active router-link-exact-active toc-link level2">通过secret 挂载rbd</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#创建secret" class="router-link-active router-link-exact-active toc-link level3">创建secret</a></li><!----><!--]--></ul><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#ceph-持久化存储" class="router-link-active router-link-exact-active toc-link level2">ceph 持久化存储</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#创建存储类" class="router-link-active router-link-exact-active toc-link level3">创建存储类</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#创建-secret" class="router-link-active router-link-exact-active toc-link level3">创建 secret</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#创建pvc" class="router-link-active router-link-exact-active toc-link level3">创建pvc</a></li><!----><!--]--></ul><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#cephfs" class="router-link-active router-link-exact-active toc-link level2">cephFs</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#配置cephfs" class="router-link-active router-link-exact-active toc-link level3">配置cephfs</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/k8s/log/kubernetes-6.html#创建nginx-pod同时挂载cephfs" class="router-link-active router-link-exact-active toc-link level3">创建nginx pod同时挂载cephfs</a></li><!----><!--]--></ul><!--]--></ul></div><!--[--><!----><!--]--></aside></div><!----><div class="theme-hope-content"><p><a name="nlbOU"></a></p><h2 id="rbd结合k8s提供存储卷及动态存储卷使用案例" tabindex="-1"><a class="header-anchor" href="#rbd结合k8s提供存储卷及动态存储卷使用案例" aria-hidden="true">#</a> rbd结合k8s提供存储卷及动态存储卷使用案例</h2><blockquote><p><strong>目的：</strong> 让k8s 中的 pod 可以访问 ceph中rbd 提供的镜像作为存储设备。</p></blockquote><p>需要在 ceph 创建rbd并且让 k8s node 节点能够通过 ceph 的认证k8s在使用 ceph 作为动态存储卷的时候，需要 **kube-controller-manager **组件能够访问ceph，因此需要在包括k8s master及 node节点在内的每一个node 同步认证文件。</p><p><a name="eTh1Y"></a></p><h2 id="_1-创建初始化rbd" tabindex="-1"><a class="header-anchor" href="#_1-创建初始化rbd" aria-hidden="true">#</a> 1.创建初始化RBD</h2><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code><span class="token comment">#创建新的rbd</span>
+<span class="token punctuation">[</span>ceph@ceph-deploy ~<span class="token punctuation">]</span>$ ceph osd pool create shijie-rbd-pool1 <span class="token number">32</span> <span class="token number">32</span>
+pool<span class="token string">&#39;xin-rbd-pool1&#39;</span> created
+
+<span class="token comment">#验证存储池:</span>
+<span class="token punctuation">[</span>ceph@ceph-deploy ~<span class="token punctuation">]</span>$ ceph osd pool <span class="token function">ls</span>
+mypool
+myrdb1
+.rgw.root
+default.rgw.controldefault.rgw.meta
+default.rgw.log
+cephfs-metadata
+cephfs-datarbd-data1
+xin-rbd-pool1 
+
+<span class="token comment">#确认存储池已经存在</span>
+
+<span class="token comment">#存储池启用rbd</span>
+ceph@ceph-deploy ~<span class="token punctuation">]</span>$ ceph osd pool application <span class="token builtin class-name">enable</span> xin-rbd-pool1 
+rbd enabled application <span class="token string">&#39;rbd&#39;</span> on pool &#39;xin-rbd-pool1
+<span class="token comment">#初始化</span>
+rbdceph@ceph-deploy ~<span class="token punctuation">]</span>$ rbd pool init <span class="token parameter variable">-p</span> xin-rbd-pool1
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a name="cyD3t"></a></p><h2 id="_2-创建image" tabindex="-1"><a class="header-anchor" href="#_2-创建image" aria-hidden="true">#</a> 2 创建image</h2><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code><span class="token comment">#创建镜像</span>
+<span class="token punctuation">[</span>ceph@ceph-deploy -<span class="token punctuation">]</span>$ rbd create xin-img-img1 <span class="token parameter variable">--size</span> 3G <span class="token parameter variable">--pool</span> xin-rbd-pool1 --image-format <span class="token number">2</span> --image-feature layering
+
+<span class="token comment">#验证镜像</span>
+<span class="token punctuation">[</span>ceph@ceph-deploy ~<span class="token punctuation">]</span>$ rbd <span class="token function">ls</span> <span class="token parameter variable">--pool</span> xin-rbd-pool1 
+shijie-img-img1
+
+
+<span class="token comment">#验证镜像信息</span>
+<span class="token punctuation">[</span>ceph@ceph-deploy ~<span class="token punctuation">]</span>$ rbd <span class="token parameter variable">--image</span> xin-img-img1 <span class="token parameter variable">--pool</span> xin-rbd-pool1 
+inforbd image <span class="token string">&#39;xin-img-img1&#39;</span><span class="token builtin class-name">:</span>
+
+   size <span class="token number">3</span> GiBin <span class="token number">768</span> objects
+   order <span class="token number">22</span> <span class="token punctuation">(</span><span class="token number">4</span> MiB objects<span class="token punctuation">)</span>
+   id:1e7356b8b4567b
+   lock_name_prefix:rbd_data.1e7356b8b4567
+   format: <span class="token number">2</span>
+   features: layering
+   op_features:
+   flags:
+   create timestamp: Wed Jan <span class="token number">611</span>:01:51 <span class="token number">2021</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a name="meygs"></a></p><h2 id="客户端安装ceph-common" tabindex="-1"><a class="header-anchor" href="#客户端安装ceph-common" aria-hidden="true">#</a> 客户端安装ceph-common<br><br></h2><p>分别在 k8s master 与各 node 节点安装 ceph-common 组件包</p><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code><span class="token comment">#下载key文件</span>
+root@k8s-master1:$ <span class="token function">wget</span> <span class="token parameter variable">-q</span> -0- <span class="token string">&#39;https://download.ceph.com/keys/release.asc&#39;</span> <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -
+root@k8s-master2:$ <span class="token function">wget</span> <span class="token parameter variable">-q</span> -0- <span class="token string">&#39;https://download.ceph.com/keys/release.asc&#39;</span> <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -
+root@k8s-worker1:$ <span class="token function">wget</span> <span class="token parameter variable">-q</span> -0- <span class="token string">&#39;https://download.ceph.com/keys/release.asc&#39;</span> <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -
+root@k8s-worker2:$ <span class="token function">wget</span> <span class="token parameter variable">-q</span> -0- <span class="token string">&#39;https://download.ceph.com/keys/release.asc&#39;</span> <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -
+
+
+<span class="token comment">#各 master与node 节点配置apt源</span>
+
+root@k8s-master1:~$ <span class="token function">cat</span> /etc/apt/sources.list
+<span class="token comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span>
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+<span class="token comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span>
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+<span class="token comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span>
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+<span class="token comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span>
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+<span class="token comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span>
+
+
+<span class="token comment">#更新软件源</span>
+root@k8s-node3:~$ <span class="token function">apt</span> update
+
+<span class="token comment">#验证 ceph 版本</span>
+root@k8s-master1:~$ <span class="token function">apt-cache</span> madison ceph-common
+
+<span class="token comment">#各节点安装和当前 ceph 集群相同版本的 ceph-common</span>
+
+root@k8s-node3:~$ <span class="token function">apt</span> <span class="token function">install</span> ceph-common<span class="token operator">=</span><span class="token number">13.2</span>.10-1bionic
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a name="yXbkC"></a></p><h2 id="创建ceph-用户与授权" tabindex="-1"><a class="header-anchor" href="#创建ceph-用户与授权" aria-hidden="true">#</a> 创建ceph 用户与授权</h2><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code>ceph@ceph-deploy ceph-clusterl$ ceph auth get-or-create client.xinceph-zcc mon <span class="token string">&#39;allow r&#39;</span> osd <span class="token string">&#39;allow * pool=xin-rbd-pool1&#39;</span> 
+client.xinceph-zcc<span class="token punctuation">]</span>
+    <span class="token assign-left variable">key</span><span class="token operator">=</span>AQB4L79g/he7HBAAvJQ7sl3zdSsTUL21Nx6zLQ<span class="token operator">==</span>
+
+
+<span class="token comment">#验证用户</span>
+<span class="token punctuation">[</span>ceph@ceph-deploy ceph-cluster<span class="token punctuation">]</span>$ ceph auth get client.xinceph-zcc
+exported keyring <span class="token keyword">for</span> client.xinceph-zcc 
+<span class="token punctuation">[</span>clientmagedu-shijie<span class="token punctuation">]</span>
+   <span class="token assign-left variable">key</span><span class="token operator">=</span> AQB4L79g/he7HBAAvJQ7sl3zdSsTUL21Nx6zLQ<span class="token operator">==</span>
+   caps mon <span class="token operator">=</span><span class="token string">&quot;allow r&quot;</span>
+   caps osd <span class="token operator">=</span><span class="token string">&quot;allow* pool=xin-rbd-pool1&quot;</span>
+
+<span class="token comment">#导出用户信息至keyring文件</span>
+ceph@ceph-deploy ceph-cluster<span class="token punctuation">]</span><span class="token variable">$ceph</span> auth get client.xinceph-zcc <span class="token parameter variable">-o</span> client.xinceph-zcc.keyring 
+exported keyring <span class="token keyword">for</span> client.xinceph-zcc
+
+
+<span class="token comment">#同步认证文件到 k8s各master 及node节点</span>
+ceph@ceph-deploy ceph-cluster<span class="token punctuation">]</span>$ <span class="token function">scp</span> ceph.conf ceph.client.xinceph-zcc.keyring root@10.1.0.30:/etc/ceph
+ceph@ceph-deploy ceph-cluster<span class="token punctuation">]</span>$ <span class="token function">scp</span> ceph.conf ceph.client.xinceph-zcc.keyring root@10.1.0.31:/etc/ceph
+ceph@ceph-deploy ceph-cluster<span class="token punctuation">]</span>$ <span class="token function">scp</span> ceph.conf ceph.client.xinceph-zcc.keyring root@10.1.0.32:/etc/ceph
+ceph@ceph-deploy ceph-cluster<span class="token punctuation">]</span>$ <span class="token function">scp</span> ceph.conf ceph.client.xinceph-zcc.keyring root@10.1.0.33:/etc/ceph
+
+<span class="token comment">#添加hosts</span>
+
+<span class="token number">172.31</span>.6.101 ceph-node1.jie.local ceph-node1
+<span class="token number">172.31</span>.6.102 ceph-node2.jie.ocal ceph-node2
+<span class="token number">172.31</span>.6.103 ceph-node3.jie.ocal ceph-node3
+<span class="token number">172.31</span>.6.104 ceph-mon1.jie.local ceph-mon1
+<span class="token number">172.31</span>.6.105 ceph-mon2.jie.local ceph-mon2
+<span class="token number">172.31</span>.6.106 ceph-mon3.jie.local ceph-mon3
+<span class="token number">172.31</span>.6.107 ceph-mgr1.jie.local ceph-mgr1
+<span class="token number">172.31</span>.6.108 ceph-mgr2.jie.local ceph-mgr2
+<span class="token number">172.31</span>.6.109 ceph-deploy.jie.local ceph-deploy
+
+
+<span class="token comment">#在k8snode节点验证用户权限</span>
+root@k8s-node1:~$ ceph <span class="token parameter variable">--user</span> xinceph-zcc <span class="token parameter variable">-s</span> 
+
+
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a name="yOaKY"></a></p><h2 id="通过-keyring-文件挂载-rbd" tabindex="-1"><a class="header-anchor" href="#通过-keyring-文件挂载-rbd" aria-hidden="true">#</a> 通过 keyring 文件挂载 rbd</h2><p>基于 ceph 提供的rbd 实现存储卷的动态提供，<strong>由两种实现方式，一是通过宿主机的 keyring文件挂载rbd</strong>，另外<strong>一个是通过将 keyring 中key 定义为 k8s中的 secret</strong>,然后 pod 通过secret 挂载 rbd。</p><p><a name="LNSLN"></a></p><h3 id="通过-keyring-文件直接挂载-busybox" tabindex="-1"><a class="header-anchor" href="#通过-keyring-文件直接挂载-busybox" aria-hidden="true">#</a> 通过 keyring 文件直接挂载-busybox</h3><div class="language-yaml line-numbers-mode" data-ext="yml"><pre class="language-yaml"><code><span class="token comment">#podyaml文件</span>
+root@k8s<span class="token punctuation">-</span>master1<span class="token punctuation">:</span>/opt/ceph<span class="token punctuation">-</span>case<span class="token comment"># cat case1-busybox-keyring.yaml</span>
+
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> busybox
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox 
+    <span class="token key atrule">command</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> sleep
+      <span class="token punctuation">-</span> <span class="token string">&quot;3600&quot;</span>
+    <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> Always 
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> busybox
+    <span class="token comment">#restartPolicy: Always</span>
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> rbd<span class="token punctuation">-</span>data1
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /data
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> rbd<span class="token punctuation">-</span>data1
+      <span class="token key atrule">rbd</span><span class="token punctuation">:</span>
+        <span class="token key atrule">monitors</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.101:6789&#39;</span>
+        <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.102:6789&#39;</span>
+        <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.103:6789&#39;</span>
+        <span class="token key atrule">pool</span><span class="token punctuation">:</span> xin<span class="token punctuation">-</span>rbd<span class="token punctuation">-</span>pool1
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> xin<span class="token punctuation">-</span>img<span class="token punctuation">-</span>img1
+        <span class="token key atrule">fsType</span><span class="token punctuation">:</span> ext4
+        <span class="token key atrule">readOnly</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+        <span class="token key atrule">user</span><span class="token punctuation">:</span> xinceph<span class="token punctuation">-</span>zcc
+        <span class="token key atrule">keyring</span><span class="token punctuation">:</span> /etc/ceph/ceph.client.xinceph<span class="token punctuation">-</span>zcc.keyring
+
+
+
+<span class="token comment">#创建 pod</span>
+root@k8s<span class="token punctuation">-</span>master1<span class="token punctuation">:</span>/opt/ceph<span class="token punctuation">-</span>case<span class="token comment"># kubectl apply -f case1-busybox-keyring.yamlpod/busybox created</span>
+pod/busybox created
+<span class="token comment">#到pod验证rbd是否挂载成功</span>
+
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://cdn.nlark.com/yuque/0/2023/png/33538388/1674889936820-b1e98d87-5f4b-4363-870d-770e69014658.png#averageHue=%23080808&amp;clientId=ufb5cd280-a723-4&amp;from=paste&amp;height=358&amp;id=u37922b23&amp;name=image.png&amp;originHeight=358&amp;originWidth=1282&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=245664&amp;status=done&amp;style=none&amp;taskId=u90beabab-4c11-46c6-998b-d5ad9a9ee1d&amp;title=&amp;width=1282" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure><p><a name="M2LZb"></a></p><h2 id="通过secret-挂载rbd" tabindex="-1"><a class="header-anchor" href="#通过secret-挂载rbd" aria-hidden="true">#</a> 通过secret 挂载rbd</h2><p>将key定义为secret ，然后在挂载至pod，每个k8s node 就不用保存keyring文件了。</p><p><a name="W3DTh"></a></p><h3 id="创建secret" tabindex="-1"><a class="header-anchor" href="#创建secret" aria-hidden="true">#</a> 创建secret</h3><p>首先创建secret ，secret中主要就是包含ceph中被授权用户的keyring文件中的key,需要将key内容通过 base64编码后即可创建secret。</p><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code><span class="token comment">#将 key 进行编码</span>
+
+ceph auth print-key client.xinceph-zcc
+AQB4L79g/he7HBAAvJQ7sl3zdSsTUL21Nx6zLQ<span class="token operator">==</span>
+
+ceph auth print-key client.xinceph-zcc <span class="token operator">|</span> base64
+<span class="token assign-left variable">QVFDbm1HSmg2L0dCTGhBQWtXQlRUTmg2R1RHWGpreXFtdFo5RHc9PQo</span><span class="token operator">=</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-yaml line-numbers-mode" data-ext="yml"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Secret
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> ceph<span class="token punctuation">-</span>secret<span class="token punctuation">-</span>xinceph<span class="token punctuation">-</span>zcc
+<span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;kubernetes.io/rbd&quot;</span>
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">key</span><span class="token punctuation">:</span> QVFDbm1HSmg2L0dCTGhBQWtXQlRUTmg2R1RHWGpreXFtdFo5RHc9PQo= 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code><span class="token comment">#查看secret</span>
+root@k8s-master1:~/ceph-case$ kubectl get secrets
+NAME                     TYPE                                DATA          AGE
+ceph-secret-xinceph-zcc  kubernetes.io/service-account-token <span class="token number">1</span>             3s
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-yaml line-numbers-mode" data-ext="yml"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>deployment
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span> <span class="token comment">#rs or deployment</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> ng<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span><span class="token number">80</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> ng<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span><span class="token number">80</span>
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> ng<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span><span class="token number">80</span>
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+
+        <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> rbd<span class="token punctuation">-</span>data1
+          <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /data
+      <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> rbd<span class="token punctuation">-</span>data1
+          <span class="token key atrule">rbd</span><span class="token punctuation">:</span>
+            <span class="token key atrule">monitors</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.101:6789&#39;</span>
+            <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.102:6789&#39;</span>
+            <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.103:6789&#39;</span>
+            <span class="token key atrule">pool</span><span class="token punctuation">:</span> xin<span class="token punctuation">-</span>rbd<span class="token punctuation">-</span>pool1
+            <span class="token key atrule">image</span><span class="token punctuation">:</span> xin<span class="token punctuation">-</span>img<span class="token punctuation">-</span>img1
+            <span class="token key atrule">fsType</span><span class="token punctuation">:</span> ext4
+            <span class="token key atrule">readOnly</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+            <span class="token key atrule">user</span><span class="token punctuation">:</span> xinceph<span class="token punctuation">-</span>zcc
+            <span class="token key atrule">secretRef</span><span class="token punctuation">:</span>
+              <span class="token key atrule">name</span><span class="token punctuation">:</span> ceph<span class="token punctuation">-</span>secret<span class="token punctuation">-</span>xinceph<span class="token punctuation">-</span>zcc
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>查看pod挂载情况<br><img src="https://cdn.nlark.com/yuque/0/2023/png/33538388/1674891101243-0f2488ce-778a-4dda-87b4-90b3c1b1cf9a.png#averageHue=%23171618&amp;clientId=ufb5cd280-a723-4&amp;from=paste&amp;height=390&amp;id=u8bae82ea&amp;name=image.png&amp;originHeight=390&amp;originWidth=1239&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=351754&amp;status=done&amp;style=none&amp;taskId=uc4c9485d-da5a-4879-961e-5ec6b0f6ae9&amp;title=&amp;width=1239" alt="image.png" loading="lazy"></p><p><a name="ZFqiV"></a></p><h2 id="ceph-持久化存储" tabindex="-1"><a class="header-anchor" href="#ceph-持久化存储" aria-hidden="true">#</a> ceph 持久化存储</h2><p><strong>admin secret</strong> 用于k8s master 节点 连接到ceph 自动创建pv ，并关联pvc提供给pod 使用。<br>uer secret 用于pod挂载。</p><figure><img src="https://cdn.nlark.com/yuque/0/2023/png/33538388/1674891447209-73e1dade-be4a-4a07-bbfe-f4c1ecb67858.png#averageHue=%23ffffff&amp;clientId=ufb5cd280-a723-4&amp;from=paste&amp;height=415&amp;id=u08a44afe&amp;name=image.png&amp;originHeight=415&amp;originWidth=757&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=14410&amp;status=done&amp;style=none&amp;taskId=u2b25ca0a-2be1-428a-83ac-15e7b27b3b9&amp;title=&amp;width=757" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure><div class="language-yaml line-numbers-mode" data-ext="yml"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Secret
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> ceph<span class="token punctuation">-</span>secret<span class="token punctuation">-</span>admin
+<span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;kubernetes.io/rbd&quot;</span>
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">key</span><span class="token punctuation">:</span> QVFBM2RoZGhNZC9VQUJBQXIyU05wSitoY0sxZEQ1bDJIajVYTWc9PQo= 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a name="vsb0A"></a></p><h3 id="创建存储类" tabindex="-1"><a class="header-anchor" href="#创建存储类" aria-hidden="true">#</a> 创建存储类</h3><div class="language-yaml line-numbers-mode" data-ext="yml"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> storage.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> StorageClass
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> ceph<span class="token punctuation">-</span>storage<span class="token punctuation">-</span>class<span class="token punctuation">-</span>xin
+  <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+    <span class="token key atrule">storageclass.kubernetes.io/is-default-class</span><span class="token punctuation">:</span> <span class="token string">&quot;true&quot;</span> <span class="token comment">#设置为默认存储类</span>
+<span class="token key atrule">provisioner</span><span class="token punctuation">:</span> kubernetes.io/rbd
+<span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+  <span class="token key atrule">monitors</span><span class="token punctuation">:</span> 172.31.6.101<span class="token punctuation">:</span><span class="token number">6789</span><span class="token punctuation">,</span>172.31.6.102<span class="token punctuation">:</span><span class="token number">6789</span><span class="token punctuation">,</span>172.31.6.103<span class="token punctuation">:</span><span class="token number">6789</span>
+  <span class="token key atrule">adminId</span><span class="token punctuation">:</span> admin
+  <span class="token key atrule">adminSecretName</span><span class="token punctuation">:</span> ceph<span class="token punctuation">-</span>secret<span class="token punctuation">-</span>admin
+  <span class="token key atrule">adminSecretNamespace</span><span class="token punctuation">:</span> default 
+  <span class="token key atrule">pool</span><span class="token punctuation">:</span> xin<span class="token punctuation">-</span>rbd<span class="token punctuation">-</span>pool1
+  <span class="token key atrule">userId</span><span class="token punctuation">:</span> xinceph<span class="token punctuation">-</span>zcc
+  <span class="token key atrule">userSecretName</span><span class="token punctuation">:</span> ceph<span class="token punctuation">-</span>secret<span class="token punctuation">-</span>xinceph<span class="token punctuation">-</span>zcc
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a name="tDGmn"></a></p><h3 id="创建-secret" tabindex="-1"><a class="header-anchor" href="#创建-secret" aria-hidden="true">#</a> 创建 secret</h3><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code>root@k8s-master1:~/ceph-cease$ kubectl apply <span class="token parameter variable">-f</span> case3-secret-client-shijie.yaml
+root@k8s-master1:~/ceph-cease$ kubectl apply <span class="token parameter variable">-f</span> case4-secret-client-admin.yaml
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><a name="D1dNe"></a></p><h3 id="创建pvc" tabindex="-1"><a class="header-anchor" href="#创建pvc" aria-hidden="true">#</a> 创建pvc</h3><p>关联</p><div class="language-yaml line-numbers-mode" data-ext="yml"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolumeClaim
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> mysql<span class="token punctuation">-</span>data<span class="token punctuation">-</span>pvc
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">accessModes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ReadWriteOnce
+  <span class="token key atrule">storageClassName</span><span class="token punctuation">:</span> ceph<span class="token punctuation">-</span>storage<span class="token punctuation">-</span>class<span class="token punctuation">-</span>xin 
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+    <span class="token key atrule">requests</span><span class="token punctuation">:</span>
+      <span class="token key atrule">storage</span><span class="token punctuation">:</span> <span class="token string">&#39;5Gi&#39;</span>
+
+
+
+<span class="token comment">#查看pvc</span>
+
+root@k8s<span class="token punctuation">-</span>master1<span class="token punctuation">:</span>~/ceph<span class="token punctuation">-</span>cease$ kubectl get pvc 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-yaml line-numbers-mode" data-ext="yml"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> mysql
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> mysql
+  <span class="token key atrule">strategy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> Recreate
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> mysql
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span>5.6.46 
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> mysql
+        <span class="token key atrule">env</span><span class="token punctuation">:</span>
+          <span class="token comment"># Use secret in real usage</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> MYSQL_ROOT_PASSWORD
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token number">123456</span>
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">3306</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> mysql
+        <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> mysql<span class="token punctuation">-</span>persistent<span class="token punctuation">-</span>storage
+          <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /var/lib/mysql
+      <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> mysql<span class="token punctuation">-</span>persistent<span class="token punctuation">-</span>storage
+        <span class="token key atrule">persistentVolumeClaim</span><span class="token punctuation">:</span>
+          <span class="token key atrule">claimName</span><span class="token punctuation">:</span> mysql<span class="token punctuation">-</span>data<span class="token punctuation">-</span>pvc 
+
+
+<span class="token punctuation">---</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> mysql<span class="token punctuation">-</span>service<span class="token punctuation">-</span>label 
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> mysql<span class="token punctuation">-</span>service
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> NodePort
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">3306</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">3306</span>
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">43306</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> mysql
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>查看ceph使用空间</p><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code>ceph <span class="token function">df</span> 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><a name="cym4r"></a></p><h2 id="cephfs" tabindex="-1"><a class="header-anchor" href="#cephfs" aria-hidden="true">#</a> cephFs</h2><p>实现多主机的挂载共享数据</p><p><a name="KvfKl"></a></p><h3 id="配置cephfs" tabindex="-1"><a class="header-anchor" href="#配置cephfs" aria-hidden="true">#</a> 配置cephfs</h3><p>步骤如下：<br><a href="https://www.yuque.com/ryanxx/ga3673/bz0645hbae3emovp" target="_blank" rel="noopener noreferrer">https://www.yuque.com/ryanxx/ga3673/bz0645hbae3emovp<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></p><p><a name="n6eJq"></a></p><h3 id="创建nginx-pod同时挂载cephfs" tabindex="-1"><a class="header-anchor" href="#创建nginx-pod同时挂载cephfs" aria-hidden="true">#</a> 创建nginx pod同时挂载cephfs</h3><div class="language-yaml line-numbers-mode" data-ext="yml"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>deployment
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span> <span class="token comment">#rs or deployment</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> ng<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span><span class="token number">80</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> ng<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span><span class="token number">80</span>
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> ng<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span><span class="token number">80</span>
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+
+        <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> xinceph<span class="token punctuation">-</span>staticdata<span class="token punctuation">-</span>cephfs 
+          <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /usr/share/nginx/html/ 
+      <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> xinceph<span class="token punctuation">-</span>staticdata<span class="token punctuation">-</span>cephfs
+          <span class="token key atrule">cephfs</span><span class="token punctuation">:</span>
+            <span class="token key atrule">monitors</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.101:6789&#39;</span>
+            <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.102:6789&#39;</span>
+            <span class="token punctuation">-</span> <span class="token string">&#39;172.31.6.103:6789&#39;</span>
+            <span class="token key atrule">path</span><span class="token punctuation">:</span> /
+            <span class="token key atrule">user</span><span class="token punctuation">:</span> admin
+            <span class="token key atrule">secretRef</span><span class="token punctuation">:</span>
+              <span class="token key atrule">name</span><span class="token punctuation">:</span> ceph<span class="token punctuation">-</span>secret<span class="token punctuation">-</span>admin
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!----><footer class="page-meta"><div class="meta-item edit-link"><a href="https://github.com/vuepress-theme-hope/vuepress-theme-hope/edit/main/demo/theme-docs/src/k8s/log/kubernetes-6.md" rel="noopener noreferrer" target="_blank" aria-label="在 GitHub 上编辑此页" class="nav-link label"><!--[--><svg xmlns="http://www.w3.org/2000/svg" class="icon edit-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="edit icon"><path d="M430.818 653.65a60.46 60.46 0 0 1-50.96-93.281l71.69-114.012 7.773-10.365L816.038 80.138A60.46 60.46 0 0 1 859.225 62a60.46 60.46 0 0 1 43.186 18.138l43.186 43.186a60.46 60.46 0 0 1 0 86.373L588.879 565.55l-8.637 8.637-117.466 68.234a60.46 60.46 0 0 1-31.958 11.229z"></path><path d="M728.802 962H252.891A190.883 190.883 0 0 1 62.008 771.98V296.934a190.883 190.883 0 0 1 190.883-192.61h267.754a60.46 60.46 0 0 1 0 120.92H252.891a69.962 69.962 0 0 0-69.098 69.099V771.98a69.962 69.962 0 0 0 69.098 69.098h475.911A69.962 69.962 0 0 0 797.9 771.98V503.363a60.46 60.46 0 1 1 120.922 0V771.98A190.883 190.883 0 0 1 728.802 962z"></path></svg><!--]-->在 GitHub 上编辑此页<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></div><div class="meta-item git-info"><!----><!----></div></footer><!----><!----><!----><!--]--></main><!--]--><footer class="footer-wrapper"><div class="footer">Ryan's Notebook</div><div class="copyright">Copyright © 2023 Ryan</div></footer></div><!--]--><!----><!----><!--]--></div>
+    <script type="module" src="/assets/app-7222e3ed.js" defer></script>
+  </body>
+</html>
