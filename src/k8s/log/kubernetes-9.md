@@ -1,3 +1,19 @@
+---
+Author: Ryan
+title: 9.实战案例-运行java应用
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-9 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
+
+
 **本次以jenkins.war 包部署⽅式为例 **运⾏java war包或jar包，且要求jenkins的数据保存⾄外部存储(NFS或者PVC)，其他java应⽤看实际需求是否需要将数据保存⾄外部存储。 <br /> 
 
 

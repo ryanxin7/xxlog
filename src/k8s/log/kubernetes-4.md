@@ -1,3 +1,18 @@
+---
+Author: Ryan
+title: 4.kubernetesAPI资源对象
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-4 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
+
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673335368520-3d26b509-0ef8-42a6-8744-fcce0df96dee.png#averageHue=%23f7f7f7&clientId=ufb618a72-0a24-4&from=paste&height=565&id=u1cf7316b&name=image.png&originHeight=565&originWidth=790&originalType=binary&ratio=1&rotation=0&showTitle=false&size=116754&status=done&style=none&taskId=u33b5d0cd-dc79-488f-b704-6252b946830&title=&width=790)
 
 

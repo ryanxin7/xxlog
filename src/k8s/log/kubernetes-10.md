@@ -1,3 +1,20 @@
+---
+Author: Ryan
+title: 10.实战案例-WordPress
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-10 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
+
+
+
 [https://cn.wordpress.org/download/releases/](https://cn.wordpress.org/download/releases/)
 
 <a name="m05Oo"></a>

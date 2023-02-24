@@ -1,4 +1,16 @@
-
+---
+Author: Ryan
+title: 3. yaml文件语法基础
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-3 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
 
 
 <a name="OkmdV"></a>

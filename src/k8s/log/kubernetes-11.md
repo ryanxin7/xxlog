@@ -1,3 +1,18 @@
+---
+Author: Ryan
+title: 11.实战案例-基于zookeeper实现微服务动态注册和发现
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-11 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
+
 
  Apache Dubbo 最初在 2008 年由 Alibaba 捐献开源，很快成为了国内开源服务框架选型的事实标准框架 ，得到了各行各业的广泛应用。在 2017 年，Dubbo 正式捐献到 Apache 软件基金会并成为 Apache 顶级项目 。
 

@@ -1,3 +1,16 @@
+---
+Author: Ryan
+title: 12.ingress 实现基于域名的多虚拟主机,URL转发及多域名HTTPS实现案例
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-12 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
 
 <a name="qARQK"></a>
 ## Ingress和Ingress控制器介绍

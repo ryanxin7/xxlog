@@ -1,3 +1,18 @@
+---
+Author: Ryan
+title: 7.Pod的状态和探针
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-7 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
+
 
 **Pod状态**<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674895053415-2477036f-d642-41c9-90c7-942d1a238360.png#averageHue=%23f7f7f7&clientId=uafa4f2ec-2bc7-4&from=paste&height=329&id=u315f4e81&name=image.png&originHeight=329&originWidth=995&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43391&status=done&style=none&taskId=u79ab7eca-4ef7-4dc1-8160-2142481a5d3&title=&width=995)
 

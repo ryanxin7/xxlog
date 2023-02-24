@@ -1,3 +1,19 @@
+---
+Author: Ryan
+title: 8.实战案例-基于StatefulSetMySQL主从架构
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-8 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
+
+
 [https://kubernetes.io/zh-cn/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/](https://kubernetes.io/zh-cn/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/)<br />Pod调度运⾏时，如果应⽤不需要任何稳定的标示、有序的部署、删除和扩展，则应该使⽤⼀组⽆状态副本的控制<br />器来部署应⽤，例如 Deployment 或 ReplicaSet更适合⽆状态服务需求，⽽StatefulSet适合管理所有有状态的服<br />务，⽐如MySQL、 MongoDB集群等。 
 
 **运行一个有状态的应用程序：**<br />[https://kubernetes.io/zh-cn/docs/tasks/run-application/run-replicated-stateful-application/](https://kubernetes.io/zh-cn/docs/tasks/run-application/run-replicated-stateful-application/)

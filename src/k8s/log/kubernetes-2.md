@@ -1,3 +1,17 @@
+---
+Author: Ryan
+title: 2.etcd 客户端使用、数据备份与恢复
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-2 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
 
 etcd是CoreOS团队于2013年6月发起的开源项目，它的目标是构建一个高可用的分 布式键值(key-value)数据库。etcd内部采用raft协议作为-致性算法，etcd基于Go语言实现。
 

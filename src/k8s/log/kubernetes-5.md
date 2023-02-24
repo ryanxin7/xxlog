@@ -1,3 +1,18 @@
+---
+Author: Ryan
+title: 5.k8s实战案例-nginx与tomcat实现动静分离
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-5 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
+
 <a name="Ti5Lf"></a>
 ## 自定义镜像-运行nginx与tomcat实现动静分离
 

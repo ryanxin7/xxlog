@@ -1,3 +1,17 @@
+---
+Author: Ryan
+title: 6.k8s使用ceph实现数据持久化
+tag: 
+    - k8s进阶训练营
+category: 
+   - k8s
+date: 2022-6-6 12:12:22
+lastUpdated: true
+sidebar: false
+##breadcrumb: false
+contributors: false
+---
+
 
 <a name="nlbOU"></a>
 ## rbd结合k8s提供存储卷及动态存储卷使用案例
