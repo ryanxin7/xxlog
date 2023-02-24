@@ -18,7 +18,6 @@ actions:
     link: /about/
 
 features:
-
   - title: Kubernetes
     icon: support
     details: Kubernetes是Google开源的一个容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。
@@ -63,7 +62,6 @@ features:
     icon: config
     details: 一个开源的服务监控系统。
     link: /statuspage/
-
 
   - title: Linux 基础
     icon: pic
