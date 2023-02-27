@@ -14,7 +14,7 @@ contributors: false
 
 
 
-**本次以jenkins.war 包部署⽅式为例 **运⾏java war包或jar包，且要求jenkins的数据保存⾄外部存储(NFS或者PVC)，其他java应⽤看实际需求是否需要将数据保存⾄外部存储。 <br /> 
+本次以jenkins.war 包部署⽅式为例运⾏ ，java war包或jar包，且要求jenkins的数据保存⾄外部存储(NFS或者PVC)，其他java应⽤看实际需求是否需要将数据保存⾄外部存储。 <br /> 
 
 
 <a name="PyFag"></a>
