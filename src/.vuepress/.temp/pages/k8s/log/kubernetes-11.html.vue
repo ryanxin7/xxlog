@@ -2,7 +2,7 @@
 <p>Apache Dubbo 是一款 RPC 服务开发框架，用于解决微服务架构下的服务治理与通信问题，官方提供了 Java、Golang 等多语言 SDK 实现。使用 Dubbo 开发的微服务原生具备相互之间的远程地址发现与通信能力， 利用 Dubbo 提供的丰富服务治理特性，可以实现诸如服务发现、负载均衡、流量调度等服务治理诉求。Dubbo 被设计为高度可扩展，用户可以方便的实现流量拦截、选址的各种定制逻辑。</p>
 <p><strong>dubbo 简介</strong></p>
 <p>**dubbo 架构 **</p>
-<figure><img src="https://cdn.nlark.com/yuque/0/2023/png/33538388/1675737775849-f438cf10-e5c5-4a72-a68f-6206a722476f.png#averageHue=%23fbf9f8&amp;clientId=ubeb03e06-4754-4&amp;from=paste&amp;height=195&amp;id=ucdd7f421&amp;name=p224003.png&amp;originHeight=195&amp;originWidth=796&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=12356&amp;status=done&amp;style=none&amp;taskId=uf5a30471-1972-4eec-bf83-4f24e765f06&amp;title=&amp;width=796" alt="p224003.png" tabindex="0" loading="lazy"><figcaption>p224003.png</figcaption></figure>
+<figure><img src="http://cdn1.ryanxin.live/1675737775849-f438cf10-e5c5-4a72-a68f-6206a722476f.png" alt="dubbo 架构" tabindex="0" loading="lazy"><figcaption>dubbo 架构</figcaption></figure>
 <p><a name="RXB7W"></a></p>
 <h2 id="_1-构建provider镜像" tabindex="-1"><a class="header-anchor" href="#_1-构建provider镜像" aria-hidden="true">#</a> 1.构建Provider镜像<br /><br /></h2>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token comment">#Dubbo provider</span>

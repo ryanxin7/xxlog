@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-9 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -271,8 +271,8 @@ jenkins-319-service   NodePort   10.10.24.94   <none>        80:38080/TCP   41s
 ```
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675140260595-e7f2ee78-f004-4dfd-afb3-ab7473eb824b.png#averageHue=%23e6e6e6&clientId=ube9bee59-c41e-4&from=paste&height=974&id=u8c1b4bc7&name=image.png&originHeight=974&originWidth=1675&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59231&status=done&style=none&taskId=ud2c9907d-d549-47eb-a345-1de15bb75be&title=&width=1675)
+![](http://cdn1.ryanxin.live/1675140260595-e7f2ee78-f004-4dfd-afb3-ab7473eb824b.png)
 
-获取密码<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675140354511-98828f8d-9a2c-4692-a714-a750401805d7.png#averageHue=%230c0c0c&clientId=ube9bee59-c41e-4&from=paste&height=981&id=ud08372dc&name=image.png&originHeight=981&originWidth=1525&originalType=binary&ratio=1&rotation=0&showTitle=false&size=84265&status=done&style=none&taskId=u6625e003-fc23-4b4a-8ed8-b23d604d243&title=&width=1525)
+获取密码<br />![获取密码](http://cdn1.ryanxin.live/1675140354511-98828f8d-9a2c-4692-a714-a750401805d7.png)
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675150017505-dc2f9866-e03f-47ce-9c94-89f18fc539fb.png#averageHue=%23e9e8e8&clientId=ube9bee59-c41e-4&from=paste&height=713&id=ub1c95437&name=image.png&originHeight=713&originWidth=1916&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67371&status=done&style=none&taskId=u1e3258dc-b18d-41b8-973e-41c898bf4aa&title=&width=1916)
+![](http://cdn1.ryanxin.live/1675150017505-dc2f9866-e03f-47ce-9c94-89f18fc539fb.png)

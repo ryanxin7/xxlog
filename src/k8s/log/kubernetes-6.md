@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-6 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -214,7 +214,7 @@ pod/busybox created
 
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674889936820-b1e98d87-5f4b-4363-870d-770e69014658.png#averageHue=%23080808&clientId=ufb5cd280-a723-4&from=paste&height=358&id=u37922b23&name=image.png&originHeight=358&originWidth=1282&originalType=binary&ratio=1&rotation=0&showTitle=false&size=245664&status=done&style=none&taskId=u90beabab-4c11-46c6-998b-d5ad9a9ee1d&title=&width=1282)
+![验证挂载](http://cdn1.ryanxin.live/1674889936820-b1e98d87-5f4b-4363-870d-770e69014658.png)
 
 <a name="M2LZb"></a>
 ## 通过secret 挂载rbd
@@ -295,7 +295,7 @@ spec:
 ```
 
 
-查看pod挂载情况<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674891101243-0f2488ce-778a-4dda-87b4-90b3c1b1cf9a.png#averageHue=%23171618&clientId=ufb5cd280-a723-4&from=paste&height=390&id=u8bae82ea&name=image.png&originHeight=390&originWidth=1239&originalType=binary&ratio=1&rotation=0&showTitle=false&size=351754&status=done&style=none&taskId=uc4c9485d-da5a-4879-961e-5ec6b0f6ae9&title=&width=1239)
+查看pod挂载情况<br />![查看pod挂载情况](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674891101243-0f2488ce-778a-4dda-87b4-90b3c1b1cf9a.png#averageHue=%23171618&clientId=ufb5cd280-a723-4&from=paste&height=390&id=u8bae82ea&name=image.png&originHeight=390&originWidth=1239&originalType=binary&ratio=1&rotation=0&showTitle=false&size=351754&status=done&style=none&taskId=uc4c9485d-da5a-4879-961e-5ec6b0f6ae9&title=&width=1239)
 
 
 
@@ -305,7 +305,7 @@ spec:
 
 **admin secret** 用于k8s master 节点 连接到ceph 自动创建pv ，并关联pvc提供给pod 使用。<br />uer  secret 用于pod挂载。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674891447209-73e1dade-be4a-4a07-bbfe-f4c1ecb67858.png#averageHue=%23ffffff&clientId=ufb5cd280-a723-4&from=paste&height=415&id=u08a44afe&name=image.png&originHeight=415&originWidth=757&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14410&status=done&style=none&taskId=u2b25ca0a-2be1-428a-83ac-15e7b27b3b9&title=&width=757)
+![后端存储流程图](http://cdn1.ryanxin.live/1674891447209-73e1dade-be4a-4a07-bbfe-f4c1ecb67858.png)
 ```yaml
 apiVersion: v1
 kind: Secret

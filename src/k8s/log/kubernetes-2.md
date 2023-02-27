@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-2 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -88,7 +88,7 @@ WantedBy=multi-user.target
 ```bash
 ETCDCTL_API=3 /usr/local/bin/etcdctl --write-out=table member list   --endpoints=https://172.31.7.101:2379 --cacert=/etc/kubernetes/ssl/ca.pem   --cert=/etc/kubernetes/ssl/etcd.pem --key=/etc/kubernetes/ssl/etcd-key.pem
 ```
- 
+
 <a name="tfn5J"></a>
 #### 3.以表格方式显示节点详细状态
 ```bash

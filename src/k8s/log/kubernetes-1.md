@@ -7,15 +7,15 @@ category:
    - k8s
 date: 2022-6-1 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
-
 
 [k8s-实战案例_v1.21.x-部署.pdf](https://www.yuque.com/attachments/yuque/0/2023/pdf/33538388/1672721011349-4455b094-61ee-4956-a375-07ad6fc387a1.pdf)
 
 <a name="lXlPc"></a>
+
 ## 1.基础环境配置
 
 <a name="jRBYX"></a>
@@ -1461,7 +1461,7 @@ options ndots:5
 
 <a name="RvzW5"></a>
 ### 10.6 测试 prometheus 监控项
-[http://10.1.0.31:30009/metrics](http://10.1.0.31:30009/metrics)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1672815227326-157edf5d-ca34-48af-be12-9e8c529e0271.png#averageHue=%23eaeaea&clientId=u289ff26a-2031-4&from=paste&height=393&id=u7f77c0e8&name=image.png&originHeight=393&originWidth=656&originalType=binary&ratio=1&rotation=0&showTitle=false&size=24688&status=done&style=none&taskId=u6e15f3f8-41d7-46fc-a546-6353fac97e3&title=&width=656)
+[http://10.1.0.31:30009/metrics](http://10.1.0.31:30009/metrics)<br />![prometheus监控项接口访问](http://cdn1.ryanxin.live/1672815227326-157edf5d-ca34-48af-be12-9e8c529e0271.png)
 
 
 
@@ -1481,7 +1481,7 @@ options ndots:5
 - ? Due to breaking changes between Kubernetes API versions, some features might not work correctly in the Dashboard.
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1672820696762-d1dfdf70-772d-43c6-9047-43d17459f886.png#averageHue=%23e2c08c&clientId=u289ff26a-2031-4&from=paste&height=465&id=u1bfd4923&name=image.png&originHeight=465&originWidth=898&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18967&status=done&style=none&taskId=udc438587-f806-453c-b2e5-9368e2f7474&title=&width=898)
+![2.6.1版本](http://cdn1.ryanxin.live/1672820696762-d1dfdf70-772d-43c6-9047-43d17459f886.png)
 
 ```yaml
 # Copyright 2017 The Kubernetes Authors.
@@ -1964,9 +1964,9 @@ ca.crt:     1302 bytes
 <a name="LVYtG"></a>
 ### 11.8 登录测试
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1672820370137-de794fe7-65da-418b-85a4-b92f3b8b3e42.png#averageHue=%23d2dfdf&clientId=u289ff26a-2031-4&from=paste&height=761&id=uc2326bbc&name=image.png&originHeight=761&originWidth=1325&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53903&status=done&style=none&taskId=ub8b631e1-6524-4faf-9f47-bdfa8c0adf4&title=&width=1325)
+![输入token](http://cdn1.ryanxin.live/1672820370137-de794fe7-65da-418b-85a4-b92f3b8b3e42.png)
 
-![image.png](http://cdn1.ryanxin.live/1672820388726-cab07cf9-cbb9-4db3-bb1d-ef6ecfab21ff.png)
+![界面展示](http://cdn1.ryanxin.live/1672820388726-cab07cf9-cbb9-4db3-bb1d-ef6ecfab21ff.png)
 
 
 

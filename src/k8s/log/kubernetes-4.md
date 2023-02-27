@@ -7,18 +7,18 @@ category:
    - k8s
 date: 2022-6-4 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673335368520-3d26b509-0ef8-42a6-8744-fcce0df96dee.png#averageHue=%23f7f7f7&clientId=ufb618a72-0a24-4&from=paste&height=565&id=u1cf7316b&name=image.png&originHeight=565&originWidth=790&originalType=binary&ratio=1&rotation=0&showTitle=false&size=116754&status=done&style=none&taskId=u33b5d0cd-dc79-488f-b704-6252b946830&title=&width=790)
+![资源对象](http://cdn1.ryanxin.live/1673335368520-3d26b509-0ef8-42a6-8744-fcce0df96dee.png)
 
 
 <a name="jzmM9"></a>
 ## 常用命令
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673335468699-d16c69d0-45ec-4c1e-8088-800238d2db49.png#averageHue=%23cbdaed&clientId=ufb618a72-0a24-4&from=paste&height=758&id=ua1a5f31b&name=image.png&originHeight=758&originWidth=1357&originalType=binary&ratio=1&rotation=0&showTitle=false&size=172007&status=done&style=none&taskId=ue891c13e-5d94-45f8-b2e6-d9a3304cd31&title=&width=1357)
+![常用命令](http://cdn1.ryanxin.live/1673335468699-d16c69d0-45ec-4c1e-8088-800238d2db49.png)
 
 
 
@@ -48,7 +48,7 @@ contributors: false
 
 <a name="aUTxs"></a>
 #### Pod生命周期
-初始化容器、启动前操作、就绪探针、存活探针、删除pod操作<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673336189572-84786ce3-c99e-464f-aafa-b05287a15d02.png#averageHue=%23f4f4f4&clientId=ufb618a72-0a24-4&from=paste&height=455&id=udaded401&name=image.png&originHeight=455&originWidth=808&originalType=binary&ratio=1&rotation=0&showTitle=false&size=76231&status=done&style=none&taskId=u14a0c6f6-f593-4e48-bdec-c28affdfbd1&title=&width=808)
+初始化容器、启动前操作、就绪探针、存活探针、删除pod操作<br />![生命周期](http://cdn1.ryanxin.live/1673336189572-84786ce3-c99e-464f-aafa-b05287a15d02.png)
 
 <a name="YWK1X"></a>
 #### livenessProbe和readinessProbe 探针
@@ -253,7 +253,7 @@ service 访问流程：
 
 k8s内部服务对外发布一般有两种方式，nodeport和ingress ，如果使用nodeport方式就会在每台node节点都会监听一个端口通常是30000以上，nodeport为什么不直接转发给pod ？ 因为维护nodeport和pod绑定关系比较难，通过需要service进行转发，service相当于k8s内部的负载均衡器负责转发，基于label标签匹配和筛选那些具有标签的pod。 默认使用轮询调度方式
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673402165869-231b571d-0e9f-46fa-bb0c-8931d2a1cc9d.png#averageHue=%234e4e4e&clientId=uf0c85d93-f28c-4&from=paste&height=1023&id=u0b5911b0&name=image.png&originHeight=1023&originWidth=1817&originalType=binary&ratio=1&rotation=0&showTitle=false&size=109692&status=done&style=none&taskId=uceaa7be8-ff08-4601-8f06-302ad47e08c&title=&width=1817)
+![svc访问流程](http://cdn1.ryanxin.live/1673402165869-231b571d-0e9f-46fa-bb0c-8931d2a1cc9d.png)
 
 <a name="qoJQC"></a>
 ### configmap
@@ -404,11 +404,11 @@ spec:
 
 在存储和k8s直接封装一层 PV/PVC 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673413439244-b1ef9fc6-ac17-42c4-8bbd-92d13d4a6504.png#averageHue=%23c65f18&clientId=uf0c85d93-f28c-4&from=paste&height=955&id=QQ7uZ&name=image.png&originHeight=955&originWidth=1556&originalType=binary&ratio=1&rotation=0&showTitle=false&size=24793&status=done&style=none&taskId=ua57fb876-778b-408f-83fa-f4115cf01da&title=&width=1556)
+![pv](http://cdn1.ryanxin.live/1673413439244-b1ef9fc6-ac17-42c4-8bbd-92d13d4a6504.png)
 
 **PV是对底层⽹络存储的抽象，即将⽹络存储定义为⼀种存储资源**，将⼀个整体的存储资源拆分成多份后给不同的业务使用。   PV是由管理员添加的的⼀个存储的描述，是⼀个全局资源即**不⾪属于任何namespace**，包含存储的类型，存储的⼤⼩和访问模式等，它的⽣命周期独⽴于Pod，例如当使⽤它的Pod销毁时对PV没有影响。  
 
-**PersistentVolumeClaim（PVC）**是⽤户存储的请求，它类似于pod，Pod消耗节点资源，PVC消耗存储资源， 就像 pod可以请求特定级别的资源（CPU和内存），PVC是namespace中的资源，可以设置特定的空间大小和访问模式。   pod是通过PVC将数据保存⾄PV，PV在保存⾄存储。  <br /> <br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673420707945-cbb3d3e9-e20f-4a43-9e5d-57aeef5dfc16.png#averageHue=%23f9f9f9&clientId=uf0c85d93-f28c-4&from=paste&height=420&id=uf4ad35b7&name=image.png&originHeight=304&originWidth=520&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79453&status=done&style=none&taskId=ua3ab26e0-30ab-41f7-a08f-5bc25b4a496&title=&width=718)
+**PersistentVolumeClaim（PVC）**是⽤户存储的请求，它类似于pod，Pod消耗节点资源，PVC消耗存储资源， 就像 pod可以请求特定级别的资源（CPU和内存），PVC是namespace中的资源，可以设置特定的空间大小和访问模式。   pod是通过PVC将数据保存⾄PV，PV在保存⾄存储。  <br /> <br />![pvc](http://cdn1.ryanxin.live/1673420707945-cbb3d3e9-e20f-4a43-9e5d-57aeef5dfc16.png)
 
 
 <a name="IemzW"></a>
@@ -429,10 +429,9 @@ ReadWriteMany – PV可以被多个节点是读写⽅式挂载使⽤,RWX
 ```
 [https://kubernetes.io/zh-cn/docs/concepts/storage/persistent-volumes/#access-modes](https://kubernetes.io/zh-cn/docs/concepts/storage/persistent-volumes/#access-modes)
 
-
 **官⽅提供的基于各后端存储创建的PV⽀持的访问模式**
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673421868807-b85faeed-f417-408f-8c0b-92bb351f28e4.png#averageHue=%23f7f7f7&clientId=uf0c85d93-f28c-4&from=paste&height=750&id=uc3d3994e&name=image.png&originHeight=750&originWidth=847&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40251&status=done&style=none&taskId=u888db419-039f-4563-9c83-3bf9e5bc469&title=&width=847)
+![⽀持的访问模式](http://cdn1.ryanxin.live/1673421868807-b85faeed-f417-408f-8c0b-92bb351f28e4.png)
 
 
 <a name="hymYN"></a>
@@ -466,9 +465,9 @@ kubectl explain PersistentVolume.spec.volumeMode
 <a name="TOaVN"></a>
 ##### 
 
-
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673421245380-7d31902c-15fe-438e-bbb0-903154cceac9.png#averageHue=%23f8f7f7&clientId=uf0c85d93-f28c-4&from=paste&height=761&id=u42b86aef&name=image.png&originHeight=761&originWidth=857&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40460&status=done&style=none&taskId=u3a65b06b-609a-4ed1-a854-28d3c0163e3&title=&width=857)
+![](http://cdn1.ryanxin.live/1673421245380-7d31902c-15fe-438e-bbb0-903154cceac9.png)
 <a name="IRoju"></a>
+
 ####  PersistentVolumeClaim 参数
 ```bash
 #kubectl explain PersistentVolumeClaim
@@ -509,7 +508,7 @@ docker push harbor.ceamg.com/baseimages/slim_java:8
 
 <a name="IPZyn"></a>
 ##### 2.构建zookeeper 镜像
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673486581523-20c135bc-2fde-45aa-bc2b-c3fb840e5e15.png#averageHue=%23f6f3f0&clientId=u0160c45a-58dc-4&from=paste&height=267&id=u903794cf&name=image.png&originHeight=267&originWidth=613&originalType=binary&ratio=1&rotation=0&showTitle=false&size=25415&status=done&style=none&taskId=uf0dd8e2a-7cc9-40b3-aa1c-05ff50e5396&title=&width=613)
+![zookeeper镜像](http://cdn1.ryanxin.live/1673486581523-20c135bc-2fde-45aa-bc2b-c3fb840e5e15.png)
 
 ```bash
 chmod a+x *.sh
@@ -875,6 +874,6 @@ xin-zk                 zookeeper3                  1/1     1            1       
 ```
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673500958747-eff6d385-4fe1-40ed-b37f-7cf55130f909.png#averageHue=%23fcfcfc&clientId=ubf99294c-bf1e-4&from=paste&height=670&id=u8dac0c78&name=image.png&originHeight=670&originWidth=1620&originalType=binary&ratio=1&rotation=0&showTitle=false&size=55815&status=done&style=none&taskId=u66e7a1f0-8711-4fbc-8acc-fbce124111a&title=&width=1620)
+![](http://cdn1.ryanxin.live/1673500958747-eff6d385-4fe1-40ed-b37f-7cf55130f909.png)
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673501722922-ecbd4d14-94cb-4e72-a577-8cdb28e7450e.png#averageHue=%23fcfcfc&clientId=ubf99294c-bf1e-4&from=paste&height=760&id=u45b53f77&name=image.png&originHeight=760&originWidth=1010&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21256&status=done&style=none&taskId=u6aea8424-667e-41e3-b80d-853f49719cc&title=&width=1010)
+![zookeeper测试](http://cdn1.ryanxin.live/1673501722922-ecbd4d14-94cb-4e72-a577-8cdb28e7450e.png)

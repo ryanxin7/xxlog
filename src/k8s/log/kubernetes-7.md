@@ -7,14 +7,14 @@ category:
    - k8s
 date: 2022-6-7 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
 
 
-**Pod状态**<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674895053415-2477036f-d642-41c9-90c7-942d1a238360.png#averageHue=%23f7f7f7&clientId=uafa4f2ec-2bc7-4&from=paste&height=329&id=u315f4e81&name=image.png&originHeight=329&originWidth=995&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43391&status=done&style=none&taskId=u79ab7eca-4ef7-4dc1-8160-2142481a5d3&title=&width=995)
+**Pod状态**<br />![Pod状态](http://cdn1.ryanxin.live/1674895053415-2477036f-d642-41c9-90c7-942d1a238360.png)
 
 
 > **第一阶段 **
@@ -35,7 +35,7 @@ contributors: false
 
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674895376985-f56a789b-45f8-418b-836c-22314b8775f4.png#averageHue=%23e8902d&clientId=uafa4f2ec-2bc7-4&from=paste&height=521&id=u80aebc58&name=image.png&originHeight=521&originWidth=1063&originalType=binary&ratio=1&rotation=0&showTitle=false&size=104601&status=done&style=none&taskId=ufdad4585-bf84-4d20-a810-7d8bea6d2ac&title=&width=1063)
+![](http://cdn1.ryanxin.live/1674895376985-f56a789b-45f8-418b-836c-22314b8775f4.png)
 
 ```bash
 Error: #pod 启动过程中发生错误
@@ -202,7 +202,7 @@ spec:
     app: ng-deploy-80
 ```
 
-验证http探针： <br /> ![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674961913237-ed82df48-ae02-4275-aa5c-2099f4fd5fae.png#averageHue=%23f9f8f7&clientId=uafa4f2ec-2bc7-4&from=paste&height=208&id=ufcde29d9&name=image.png&originHeight=208&originWidth=694&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40899&status=done&style=none&taskId=ucab54dcb-9831-4cc5-b02b-84fa2a7414d&title=&width=694)
+验证http探针： <br /> ![](http://cdn1.ryanxin.live/1674961913237-ed82df48-ae02-4275-aa5c-2099f4fd5fae.png)
 
 <a name="NhUhS"></a>
 ### TCP 探针示例
@@ -310,7 +310,7 @@ spec:
     app: redis-deploy-6379
 ```
 
-如果端⼝检测连续超过指定的三次都没有通过，则Pod状态如下： <br /> ![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674961899934-85e91869-b0af-44bb-ad5b-21f9466b891b.png#averageHue=%230f0c0a&clientId=uafa4f2ec-2bc7-4&from=paste&height=232&id=uad12b2d9&name=image.png&originHeight=232&originWidth=682&originalType=binary&ratio=1&rotation=0&showTitle=false&size=106673&status=done&style=none&taskId=ub7ce59ef-ae7d-4f0e-9a2e-8572d9bd420&title=&width=682)
+如果端⼝检测连续超过指定的三次都没有通过，则Pod状态如下： <br /> ![](http://cdn1.ryanxin.live/1674961899934-85e91869-b0af-44bb-ad5b-21f9466b891b.png)
 
 
 

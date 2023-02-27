@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-5 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -16,7 +16,7 @@ contributors: false
 <a name="Ti5Lf"></a>
 ## 自定义镜像-运行nginx与tomcat实现动静分离
 
-![图片.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673526070905-fa3a6810-3329-4dbd-9896-e1da10114b61.png#averageHue=%23fdfbfa&clientId=u37cd80e8-479b-4&from=paste&height=263&id=u9336b92c&name=%E5%9B%BE%E7%89%87.png&originHeight=409&originWidth=1172&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36727&status=done&style=none&taskId=u643a3c48-fcf6-45e6-ae28-d284e65aac4&title=&width=755)
+![构建流程图](http://cdn1.ryanxin.live/1673526070905-fa3a6810-3329-4dbd-9896-e1da10114b61.png)
 
 <a name="IRPqD"></a>
 ### 1. 系统基础镜像
@@ -452,7 +452,7 @@ docker run -it --rm -p 9900:8080 harbor.ceamg.com/xinweb11/tomcat-app1:1.9
 ```
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673854826003-6af01184-b520-4ed6-b187-ecaf9c803a00.png#averageHue=%23f4f2f1&clientId=u90027c0d-8539-4&from=paste&height=795&id=ua5b66b4d&name=image.png&originHeight=795&originWidth=695&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51663&status=done&style=none&taskId=u3226995c-0a0c-4581-9ed0-1874d6117d2&title=&width=695)
+![访问测试](http://cdn1.ryanxin.live/1673854826003-6af01184-b520-4ed6-b187-ecaf9c803a00.png)
 
 
 <a name="IyXG7"></a>
@@ -542,7 +542,7 @@ spec:
 ```bash
 ping xin-tomcat-app1-service.xin-web.svc.ceamg.local
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673869796202-9de30c77-d621-466e-ab4c-e8a5060d9ed9.png#averageHue=%23171411&clientId=u910bc575-a904-4&from=paste&height=142&id=u5f1168b1&name=image.png&originHeight=142&originWidth=733&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12950&status=done&style=none&taskId=u254b7563-9b0d-41cc-be00-444ba36b0da&title=&width=733)
+![检测后端TomcatSVC连通性](http://cdn1.ryanxin.live/1673869796202-9de30c77-d621-466e-ab4c-e8a5060d9ed9.png)
 
 启动nginx pod 
 
@@ -671,4 +671,4 @@ upstream  tomcat_webserver {
 ```
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673872226767-dd34b982-4e75-4aa6-b700-eb761d4f4dfd.png#averageHue=%238ac9e3&clientId=u910bc575-a904-4&from=paste&height=170&id=u9a33f408&name=image.png&originHeight=170&originWidth=938&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16487&status=done&style=none&taskId=ucf3dbc05-bb3b-4b84-bdaf-d8da95b68d7&title=&width=938)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1673872214571-9e2fc591-cfbb-4368-8d65-1072d5a9b297.png#averageHue=%23f3f2f0&clientId=u910bc575-a904-4&from=paste&height=838&id=uf93b77de&name=image.png&originHeight=838&originWidth=682&originalType=binary&ratio=1&rotation=0&showTitle=false&size=50950&status=done&style=none&taskId=u28c03f23-695b-4309-a6c9-404b63922ac&title=&width=682)
+![访问测试](http://cdn1.ryanxin.live/1673872226767-dd34b982-4e75-4aa6-b700-eb761d4f4dfd.png)<br />![访问测试](http://cdn1.ryanxin.live/1673872214571-9e2fc591-cfbb-4368-8d65-1072d5a9b297.png)

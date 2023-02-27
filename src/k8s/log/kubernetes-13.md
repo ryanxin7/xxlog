@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-13 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -34,7 +34,7 @@ HPA需要通过Metrics Server来获取Pod的资源利用率，所以需要先部
 
 Metrics Server是Kubernetes 集群核心监控数据的聚合器，它负责从kubelet收集资源指标，然后对这些指标监控数据进行聚合，并通过**Metrics API**将它们暴露在Kubernetes apiserver中，供水平Pod Autoscaler和垂直Pod Autoscaler使用。也可以通过kubectl top node/pod查看指标数据。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676516280565-5ee4d1cd-bc2d-4c5e-8973-b0fd7a8a7e98.png#averageHue=%23d3a876&clientId=u67668d2c-bcdc-4&from=paste&height=357&id=ub3a28c73&name=image.png&originHeight=357&originWidth=846&originalType=binary&ratio=1&rotation=0&showTitle=false&size=32855&status=done&style=none&taskId=u79b9bdc4-c92d-4488-a074-d36ffe8cb01&title=&width=846)
+![](http://cdn1.ryanxin.live/1676516280565-5ee4d1cd-bc2d-4c5e-8973-b0fd7a8a7e98.png)
 
 
 
@@ -299,7 +299,7 @@ NAME        CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
 10.1.0.33   331m         4%     5453Mi          75% 
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676526546778-814391aa-f544-40cb-b538-c2996ac10d20.png#averageHue=%23e2c9a3&clientId=u261faa54-159e-4&from=paste&height=917&id=u220cc817&name=image.png&originHeight=917&originWidth=1919&originalType=binary&ratio=1&rotation=0&showTitle=false&size=178404&status=done&style=none&taskId=u2554f322-32ed-4572-9c97-b9e6d2bd56e&title=&width=1919)
+![](http://cdn1.ryanxin.live/1676526546778-814391aa-f544-40cb-b538-c2996ac10d20.png)
 
 
  可以获取node和pod的资源指标就表示metrics-server可以正常工作  
@@ -395,11 +395,11 @@ NAME                  REFERENCE                 TARGETS   MINPODS   MAXPODS   RE
 pod-autoscaler-demo   Deployment/nginx-deploy   0%/80%    3         10        5          21s
 ```
 
- 因为之前创建的nginx pod访问量较低，cpul利用率肯定不超过80%，所以等待一段时间就会触发缩容  <br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676532911192-26193a95-e0a2-4179-bf88-8e266f44b84a.png#averageHue=%232b2e39&clientId=u261faa54-159e-4&from=paste&height=392&id=ue5c00e22&name=image.png&originHeight=392&originWidth=1142&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48363&status=done&style=none&taskId=u83a25ebb-431d-41c4-9b05-233c4ead160&title=&width=1142)
+ 因为之前创建的nginx pod访问量较低，cpul利用率肯定不超过80%，所以等待一段时间就会触发缩容  <br />![](http://cdn1.ryanxin.live/1676532911192-26193a95-e0a2-4179-bf88-8e266f44b84a.png)
 
  因为在hpa中定义的最小副本数为3，所以缩容到3个Pod就不会缩容了  
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676532937099-f0a2d6da-da9e-4509-a36d-da0886cc412d.png#averageHue=%2332343f&clientId=u261faa54-159e-4&from=paste&height=193&id=u1e7a2f8f&name=image.png&originHeight=193&originWidth=640&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28156&status=done&style=none&taskId=u8665b884-333a-4b6d-b620-7487758b605&title=&width=640)
+![](http://cdn1.ryanxin.live/1676532937099-f0a2d6da-da9e-4509-a36d-da0886cc412d.png)
 
 
 <a name="NH9Rb"></a>
@@ -462,7 +462,7 @@ spec:
   targetCPUUtilizationPercentage: 80
 ```
 
- 查看hpa资源：  <br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676536647445-101ff26a-c0fe-4bb2-94d9-3107defa651d.png#averageHue=%23343743&clientId=u261faa54-159e-4&from=paste&height=69&id=uc080ded6&name=image.png&originHeight=69&originWidth=707&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12938&status=done&style=none&taskId=ua5e942bd-1b3a-4cd8-b36e-67766b6e4ba&title=&width=707)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676536873005-3161c453-e717-4da2-a40f-3fb3ef15d72a.png#averageHue=%232b2d39&clientId=u261faa54-159e-4&from=paste&height=496&id=uf4d9a50c&name=image.png&originHeight=496&originWidth=1886&originalType=binary&ratio=1&rotation=0&showTitle=false&size=75328&status=done&style=none&taskId=ud8cb4b54-17db-4833-9ea1-de2c9273627&title=&width=1886)<br /> stress-ng会将Pod的cpu利用率打满，所以等待一段时间hpa就会逐步提高pod的副本数，如下图所示，但是在hpa中定义的最大副本数为10，所以最多扩容到10个Pod就不会扩容了  <br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676536708283-cc4704cc-5098-49bf-bac3-3cdcebdf987b.png#averageHue=%2332343f&clientId=u261faa54-159e-4&from=paste&height=327&id=u2ed43d87&name=image.png&originHeight=327&originWidth=714&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51077&status=done&style=none&taskId=u1eb37a76-c00a-4fc3-86a2-b6cd3757cad&title=&width=714)
+ 查看hpa资源：  <br />![](http://cdn1.ryanxin.live/1676536647445-101ff26a-c0fe-4bb2-94d9-3107defa651d.png)<br />![](http://cdn1.ryanxin.live/1676536873005-3161c453-e717-4da2-a40f-3fb3ef15d72a.png)<br /> stress-ng会将Pod的cpu利用率打满，所以等待一段时间hpa就会逐步提高pod的副本数，如下图所示，但是在hpa中定义的最大副本数为10，所以最多扩容到10个Pod就不会扩容了  <br />![](http://cdn1.ryanxin.live/1676536708283-cc4704cc-5098-49bf-bac3-3cdcebdf987b.png)
 
 
 

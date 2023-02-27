@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-12 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -25,7 +25,7 @@ contributors: false
 
 如下图所示：  
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675821066302-e7f2e7a2-7032-4d52-b186-470babac7d1b.png#averageHue=%23f1dacd&clientId=u61a03d31-46df-4&from=paste&height=452&id=u548d2323&name=image.png&originHeight=452&originWidth=611&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27821&status=done&style=none&taskId=uc2dbc2b0-ffb7-4d90-9d7b-c9f3fed1582&title=&width=611)
+![](http://cdn1.ryanxin.live/1675821066302-e7f2e7a2-7032-4d52-b186-470babac7d1b.png)
 
 
 Ingress官方文档：[https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/](https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/)<br />Ingress控制器官方文档：[https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress-controllers/](https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress-controllers/)
@@ -55,7 +55,7 @@ nginx Ingress控制器github地址：[https://github.com/kubernetes/ingress-ngin
 通过NodePort或LoadBalancer类型的Service或者通过拥有外部IP地址（externalIP）的Service对象为其接入集群外部的客户端请求流量。<br />这意味着，在生产环境以这种方式部署一个Ingress控制器时，必须在其前端定义一个负载均衡器，这个负载均衡器可以是LoadBalancer类型的Service，也可以是用户自行管理的负载均衡器。
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675822367503-e4adce9e-bfca-4bb3-9b2f-549eac4f60ed.png#averageHue=%23f8f2ef&clientId=u61a03d31-46df-4&from=paste&height=614&id=u440a438b&name=image.png&originHeight=614&originWidth=733&originalType=binary&ratio=1&rotation=0&showTitle=false&size=45763&status=done&style=none&taskId=uec696fd8-906b-4a0d-8682-a98c7ffc3f4&title=&width=733)
+![](http://cdn1.ryanxin.live/1675822367503-e4adce9e-bfca-4bb3-9b2f-549eac4f60ed.png)
 
 
 
@@ -63,7 +63,7 @@ nginx Ingress控制器github地址：[https://github.com/kubernetes/ingress-ngin
 ### 2.以DaemonSet方式部署Ingress控制器
 Pod资源Ingress控制器的各Pod分别以单一实例的方式运行在集群的所有节点或部分专用节点之上，并配置这些Pod对象以hostPort或hostNetwork的方式在当前节点接入外部流量。在这种方式下，前端还是需要一个负载均衡器，作为客户端流量的统一入口，然后转发给Ingress控制器Pod
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675822438502-f95a9c45-e281-47e8-b65f-fce5abecd40a.png#averageHue=%23f6f6f2&clientId=u61a03d31-46df-4&from=paste&height=486&id=u9ac953d6&name=image.png&originHeight=486&originWidth=637&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28055&status=done&style=none&taskId=ud1143d45-3b31-4158-96f6-1775ca6a71b&title=&width=637)
+![](http://cdn1.ryanxin.live/1675822438502-f95a9c45-e281-47e8-b65f-fce5abecd40a.png)
 
 
 
@@ -74,7 +74,7 @@ Pod资源Ingress控制器的各Pod分别以单一实例的方式运行在集群�
 
  选定好版本，下载对应的部署文件 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675833096495-64fbd3a8-e6ab-4eeb-9c19-063d0909ac07.png#averageHue=%23141a21&clientId=ua68a97d2-e0ab-4&from=paste&height=613&id=u1943c99c&name=image.png&originHeight=613&originWidth=679&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42264&status=done&style=none&taskId=u507f2dba-06ee-406d-ac54-eb7941f0218&title=&width=679)
+![](http://cdn1.ryanxin.live/1675833096495-64fbd3a8-e6ab-4eeb-9c19-063d0909ac07.png)
 
 
 
@@ -214,7 +214,7 @@ listen ingress-nginx-controller-443
        server ingress-controller-server2 10.1.0.32:30021 check inter 2000 fall 3 rise 5
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676361150547-2ea0c07b-1974-4351-9488-f601238b0a2c.png#averageHue=%230f111a&clientId=uf152a37f-4e38-4&from=paste&height=288&id=u7115d88f&name=image.png&originHeight=288&originWidth=693&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21240&status=done&style=none&taskId=ud6ec3785-d612-46da-be12-99c1e6569f7&title=&width=693)
+![](http://cdn1.ryanxin.live/1676361150547-2ea0c07b-1974-4351-9488-f601238b0a2c.png)
 
 
 <a name="bH2vb"></a>
@@ -586,7 +586,7 @@ listen k8s-xin-ingress-443
 
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676441359881-2d49ba70-9af5-4d2a-b4c4-e5bba389aa3c.png#averageHue=%23a3ecb5&clientId=ub0ecf962-4f87-4&from=paste&height=89&id=u5a4cfc1b&name=image.png&originHeight=89&originWidth=513&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5207&status=done&style=none&taskId=u3b0852d6-7897-4d1f-af17-af1084fc021&title=&width=513)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676441343917-040c8c97-7dc3-4f51-ac74-3671a2f8651d.png#averageHue=%23a3ecb5&clientId=ub0ecf962-4f87-4&from=paste&height=78&id=uf32278bc&name=image.png&originHeight=78&originWidth=533&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5270&status=done&style=none&taskId=ucf5375df-4624-4d66-bbcb-e0eaea85d9b&title=&width=533)
+![](http://cdn1.ryanxin.live/1676441359881-2d49ba70-9af5-4d2a-b4c4-e5bba389aa3c.png)<br />![](http://cdn1.ryanxin.live/1676441343917-040c8c97-7dc3-4f51-ac74-3671a2f8651d.png)
 
 
 <a name="IyYla"></a>
@@ -673,7 +673,7 @@ spec:
   - hosts: ["www.myapp1.com"]		#如果多个域名使用相同的证书，在这里的列表添加一个域名即可
     secretName: cert-www.myapp1.com
 ```
- 
+
 
 <a name="m2IUC"></a>
 #### 3.3.3 pod 中创建用于测试的目录和页面
@@ -690,7 +690,7 @@ echo "www.myapp1.com/tls2/index.html" > /data/tomcat/webapps/tls2/index.html
 
 <a name="oQtYJ"></a>
 #### 3.3.4 访问测试
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676444292477-d1741e62-31dd-4c06-8e05-ff85d8fb18e2.png#averageHue=%23a9e6a0&clientId=ub0ecf962-4f87-4&from=paste&height=83&id=u1073d74c&name=image.png&originHeight=83&originWidth=534&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5895&status=done&style=none&taskId=u4a9dbb38-ba52-42b3-98d6-4d44f834c37&title=&width=534)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676444442373-03d6e130-fea0-4e91-8f83-7121b860019d.png#averageHue=%2393db95&clientId=ub0ecf962-4f87-4&from=paste&height=82&id=u6240276d&name=image.png&originHeight=82&originWidth=522&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5863&status=done&style=none&taskId=u1ab1ba8e-2fae-461c-9797-0ef08af40c6&title=&width=522)
+![](http://cdn1.ryanxin.live/1676444292477-d1741e62-31dd-4c06-8e05-ff85d8fb18e2.png)<br />![](http://cdn1.ryanxin.live/1676444442373-03d6e130-fea0-4e91-8f83-7121b860019d.png)
 
 <a name="xadme"></a>
 ### 3.4 证书更新
@@ -720,6 +720,6 @@ root@master-01:~/resources/ingress-cert# base64 www.myapp1.com-new.crt -w 0
 LS0tLS1CRUdJTiBDRVJ..............FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
 root@master-01:~# kubectl edit secret/cert-www.myapp1.com
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1676445008460-e809acd8-60e2-4ef6-ac23-1faa36ddf2cc.png#averageHue=%2312151e&clientId=ub0ecf962-4f87-4&from=paste&height=698&id=uf571f9a8&name=image.png&originHeight=698&originWidth=1887&originalType=binary&ratio=1&rotation=0&showTitle=false&size=266981&status=done&style=none&taskId=u85c0173a-13ef-4387-bf95-bd584af672a&title=&width=1887)
+![](http://cdn1.ryanxin.live/1676445008460-e809acd8-60e2-4ef6-ac23-1faa36ddf2cc.png)
 
  和之前的访问结果进行对比，可以看到证书已经被更新  

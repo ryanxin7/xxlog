@@ -6,9 +6,9 @@ tag: K8S 训练营
 #breadcrumb: false
 ---
 
-![image.png](http://cdn1.ryanxin.live/image.png)
+![](http://cdn1.ryanxin.live/image.png)
 
-![image.png](http://cdn1.ryanxin.live/1672103988640-94e7cad6-e070-4b5f-be58-2ed79f41d965.png)
+![](http://cdn1.ryanxin.live/1672103988640-94e7cad6-e070-4b5f-be58-2ed79f41d965.png)
 <a name="jhzMg"></a>
 
 ##  kubernetes API Server简介  
@@ -49,25 +49,25 @@ curl 127.0.0.1:6443/metrics #指标数据
 
  第一步：创建pod  
 
-![image.png](http://cdn1.ryanxin.live/1672103284221-c56ef642-3eea-4c1b-9aca-6e77065171c8.png)
+![](http://cdn1.ryanxin.live/1672103284221-c56ef642-3eea-4c1b-9aca-6e77065171c8.png)
 
 第二步：过滤掉资源不足的节点
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/33538388/1672103299547-be22c211-0e9d-443a-bac7-95e505413d03.png#averageHue=%238bc399&clientId=ub37da60d-24a9-4&from=paste&height=289&id=uce0a3e70&name=image.png&originHeight=289&originWidth=745&originalType=binary&ratio=1&rotation=0&showTitle=false&size=62275&status=done&style=none&taskId=ucc23b05f-a0dc-4070-b128-2872d6a3d5b&title=&width=745)
+![](http://cdn1.ryanxin.live/1672103299547-be22c211-0e9d-443a-bac7-95e505413d03.png)
 
-第三步：在剩余可用的节点中进行删选<br />![image.png](http://cdn1.ryanxin.live/1672103313952-a6eafd96-cc96-41ba-8c22-0dd33e5d07ca.png)
+第三步：在剩余可用的节点中进行删选<br />![](http://cdn1.ryanxin.live/1672103313952-a6eafd96-cc96-41ba-8c22-0dd33e5d07ca.png)
 
 第四步：选中节点
 
-![image.png](http://cdn1.ryanxin.live/1672103334334-4a15ff0a-621a-49ec-bf36-dd4bc890bfb0.png)
+![](http://cdn1.ryanxin.live/1672103334334-4a15ff0a-621a-49ec-bf36-dd4bc890bfb0.png)
 
 
 
 
 
-![image.png](http://cdn1.ryanxin.live/1672103977131-62e6ea80-5d00-4c33-8042-f0e39bfb71cf.png)
+![](http://cdn1.ryanxin.live/1672103977131-62e6ea80-5d00-4c33-8042-f0e39bfb71cf.png)
 
-![image.png](http://cdn1.ryanxin.live/1672103988640-94e7cad6-e070-4b5f-be58-2ed79f41d965.png)
+![](http://cdn1.ryanxin.live/1672103988640-94e7cad6-e070-4b5f-be58-2ed79f41d965.png)
 
 
 
@@ -88,11 +88,12 @@ controller-manager将在标记为无法访问之前等待40秒。<br />如果该
 
 pod 高可用机制:<br />node monitor period: 节点监视周期<br />node monitor grace period: 节点监视器宽限期<br />pod eviction timeout: pod 驱逐超时时间
 
-![image.png](http://cdn1.ryanxin.live/1672104826429-a48a7340-d7b8-4306-9ad3-cc330ca5cdaf.png)
+![](http://cdn1.ryanxin.live/1672104826429-a48a7340-d7b8-4306-9ad3-cc330ca5cdaf.png)
 
 
 
 <a name="KW9k0"></a>
+
 ## kube-proxy 简介
 [https://kubernetes.io/zh/docs/reference/command-line-tools-reference/kube-proxy/](https://kubernetes.io/zh/docs/reference/command-line-tools-reference/kube-proxy/)
 
@@ -104,13 +105,13 @@ kube-proxy 运行在每个节点上，监听 API Server 中服务对象的变化
 Kube-Proxy 不同的版本可支持三种工作模式：<br />UserSpace：k8s v1.1之前使用,k8s 1.2及以后就已经淘汰<br />IPtables : k8s 1.1版本开始支持，1.2开始为默认<br />IPVS: k8s 1.9引入到1.11为正式版本，需要安装ipvsadm、ipset 工具包和加载 ipvs 内核模块
 
 
-![image.png](http://cdn1.ryanxin.live/1672105080341-033fbd6d-3559-425a-9f4e-772b487675e6.png)
+![](http://cdn1.ryanxin.live/1672105080341-033fbd6d-3559-425a-9f4e-772b487675e6.png)
 
 iptables 模式：
 
 
 
-![image.png](http://cdn1.ryanxin.live/1672105157054-64ef5bca-a487-4502-a88e-f380c413492a.png)
+![](http://cdn1.ryanxin.live/1672105157054-64ef5bca-a487-4502-a88e-f380c413492a.png)
 
 
 

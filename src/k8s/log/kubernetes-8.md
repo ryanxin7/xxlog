@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-8 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -18,7 +18,7 @@ contributors: false
 
 **运行一个有状态的应用程序：**<br />[https://kubernetes.io/zh-cn/docs/tasks/run-application/run-replicated-stateful-application/](https://kubernetes.io/zh-cn/docs/tasks/run-application/run-replicated-stateful-application/)
 
- <br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675045229487-bc9ccd32-8c67-4f4c-8097-e358c394297b.png#averageHue=%23e4ead3&clientId=u07032b4b-04a2-4&from=paste&height=601&id=u15957a54&name=image.png&originHeight=601&originWidth=866&originalType=binary&ratio=1&rotation=0&showTitle=false&size=63834&status=done&style=none&taskId=u5e782982-70a8-4b14-bdf8-eddfe74d71d&title=&width=866)
+ <br />![有状态的应用启动顺序](http://cdn1.ryanxin.live/1675045229487-bc9ccd32-8c67-4f4c-8097-e358c394297b.png)
 
 
 
@@ -421,7 +421,8 @@ mysql-1   2/2     Running   0          64s
 mysql-2   1/2     Running   0          18s
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675321021708-f97227f0-ef0f-484e-977a-eb4be4d79421.png#averageHue=%23191817&clientId=ua2ee9124-b043-4&from=paste&height=450&id=u1edee1ee&name=image.png&originHeight=450&originWidth=842&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48737&status=done&style=none&taskId=u8ae37fb0-9dd9-4534-b24a-091947a13cf&title=&width=842)
+![](http://cdn1.ryanxin.live/1675321021708-f97227f0-ef0f-484e-977a-eb4be4d79421.png)
 <a name="B4xbl"></a>
+
 ### 验证MySQL主从同步是否正常 <br /> 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675063510415-a66964a9-27e4-466f-92d9-1185adfa1ce7.png#averageHue=%230f111a&clientId=u07032b4b-04a2-4&from=paste&height=515&id=u3e103252&name=image.png&originHeight=515&originWidth=913&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53430&status=done&style=none&taskId=uad162b22-417a-416e-a83c-4f60767ebfa&title=&width=913)
+![](http://cdn1.ryanxin.live/1675063510415-a66964a9-27e4-466f-92d9-1185adfa1ce7.png)

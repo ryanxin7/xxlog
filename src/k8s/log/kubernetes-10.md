@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-10 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -2911,16 +2911,16 @@ chown -R 2023.2023 /data/k8s/wordpress
 #修改目录所属者为Pod的容器里的nginx用户，否则可能会出现权限不足无法读写的问题
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675306401503-693d21f8-8ebe-4869-9783-073eb5e9693f.png#averageHue=%2310141d&clientId=u62cf884c-2080-4&from=paste&height=433&id=ucacf0ea2&name=image.png&originHeight=433&originWidth=542&originalType=binary&ratio=1&rotation=0&showTitle=false&size=56710&status=done&style=none&taskId=u07d2eab6-870b-407f-b560-9a67d1cecd5&title=&width=542)
+![](http://cdn1.ryanxin.live/1675306401503-693d21f8-8ebe-4869-9783-073eb5e9693f.png)
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675313682044-a7289353-554f-444f-90a6-dcd96649781d.png#averageHue=%236993ac&clientId=u62cf884c-2080-4&from=paste&height=690&id=ue09e5c25&name=image.png&originHeight=690&originWidth=1622&originalType=binary&ratio=1&rotation=0&showTitle=false&size=58651&status=done&style=none&taskId=u51e7a22a-8882-4fd3-a1ee-7511d0424a3&title=&width=1622)
+![](http://cdn1.ryanxin.live/1675313682044-a7289353-554f-444f-90a6-dcd96649781d.png)
 
 
 <a name="WSxwE"></a>
 ### 初始化数据库
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675320414058-e6a2f9bc-87d1-4a0c-a0eb-c6bfa6ba4dfd.png#averageHue=%23151211&clientId=u5dc60f57-edf3-4&from=paste&height=646&id=u2f28dafb&name=image.png&originHeight=646&originWidth=1062&originalType=binary&ratio=1&rotation=0&showTitle=false&size=65744&status=done&style=none&taskId=u050f9ec0-13d5-4c4c-9b13-5ab5dbfe680&title=&width=1062)
+![](http://cdn1.ryanxin.live/1675320414058-e6a2f9bc-87d1-4a0c-a0eb-c6bfa6ba4dfd.png)
 
 ```sql
 mysql> create database wordpress;
@@ -2933,7 +2933,7 @@ Query OK, 0 rows affected (0.03 sec)
 mysql-sts
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675321030190-9a01f092-6ed1-4756-9815-3924a3a7efc0.png#averageHue=%23191817&clientId=u641f660f-8b2f-4&from=paste&height=450&id=u65374759&name=image.png&originHeight=450&originWidth=842&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48737&status=done&style=none&taskId=u2d77c96e-455f-4821-98ff-79efbe12e9f&title=&width=842)
+![](http://cdn1.ryanxin.live/1675321030190-9a01f092-6ed1-4756-9815-3924a3a7efc0.png)
 
 
 wordpress 数据库填为主库`mysql.mysql-sts.svc.ceamg.local`
@@ -2941,18 +2941,17 @@ wordpress 数据库填为主库`mysql.mysql-sts.svc.ceamg.local`
 mysql.mysql-sts.svc.ceamg.local
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675321235287-df1c21c2-c188-42ae-b107-6a6e1ae59ede.png#averageHue=%23bbe4b9&clientId=u641f660f-8b2f-4&from=paste&height=590&id=u6663ebac&name=image.png&originHeight=590&originWidth=895&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41717&status=done&style=none&taskId=u4063ae41-d589-461c-bfbe-e5d8aa3c09a&title=&width=895)
+![](http://cdn1.ryanxin.live/1675321235287-df1c21c2-c188-42ae-b107-6a6e1ae59ede.png)
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675321258457-801ba4b1-8e81-407f-bc0d-c67b1b28f7ff.png#averageHue=%23f6f0c1&clientId=u641f660f-8b2f-4&from=paste&height=877&id=u55494dab&name=image.png&originHeight=877&originWidth=897&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59299&status=done&style=none&taskId=uac294eed-4dc3-4da7-b5e2-a1256dc81b2&title=&width=897)
+![](http://cdn1.ryanxin.live/1675321258457-801ba4b1-8e81-407f-bc0d-c67b1b28f7ff.png)
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675321343851-d9406dc5-561d-476e-a1ec-66d6e5e598f4.png#averageHue=%23f6f9d5&clientId=u641f660f-8b2f-4&from=paste&height=457&id=u84649e18&name=image.png&originHeight=457&originWidth=836&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17008&status=done&style=none&taskId=u826a86bb-043d-4981-b976-197d56789d7&title=&width=836)
+![](http://cdn1.ryanxin.live/1675321343851-d9406dc5-561d-476e-a1ec-66d6e5e598f4.png)
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675321376969-12df2786-7951-4147-bbf2-44faa61357c0.png#averageHue=%23d2f3f4&clientId=u641f660f-8b2f-4&from=paste&height=969&id=ub5e19b84&name=image.png&originHeight=969&originWidth=1916&originalType=binary&ratio=1&rotation=0&showTitle=false&size=244224&status=done&style=none&taskId=u8322d7c3-21e1-42a7-a424-e4b0c846dde&title=&width=1916)
+![](http://cdn1.ryanxin.live/1675321376969-12df2786-7951-4147-bbf2-44faa61357c0.png)
 
 <a name="OSgH6"></a>
 ### 测试上传图片
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675321605147-1ff82115-8cf0-489f-956a-203cf92212da.png#averageHue=%23fdfdfd&clientId=u641f660f-8b2f-4&from=paste&height=859&id=u736fa525&name=image.png&originHeight=859&originWidth=1379&originalType=binary&ratio=1&rotation=0&showTitle=false&size=293202&status=done&style=none&taskId=u9fe1c022-5fe7-40f9-8cb1-5450bc4b61a&title=&width=1379)
-
+![](http://cdn1.ryanxin.live/1675321605147-1ff82115-8cf0-489f-956a-203cf92212da.png)
 

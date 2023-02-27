@@ -7,8 +7,8 @@ category:
    - k8s
 date: 2022-6-11 12:12:22
 lastUpdated: true
-sidebar: false
-##breadcrumb: false
+#sidebar: false
+breadcrumb: false
 contributors: false
 ---
 
@@ -26,7 +26,7 @@ contributors: false
 
 
 
-![p224003.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675737775849-f438cf10-e5c5-4a72-a68f-6206a722476f.png#averageHue=%23fbf9f8&clientId=ubeb03e06-4754-4&from=paste&height=195&id=ucdd7f421&name=p224003.png&originHeight=195&originWidth=796&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12356&status=done&style=none&taskId=uf5a30471-1972-4eec-bf83-4f24e765f06&title=&width=796)
+![dubbo 架构](http://cdn1.ryanxin.live/1675737775849-f438cf10-e5c5-4a72-a68f-6206a722476f.png)
 
 
 <a name="RXB7W"></a>
