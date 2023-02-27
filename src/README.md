@@ -42,22 +42,22 @@ features:
     icon: sitemap
     details: Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。
     link: /statuspage/
-	
+
   - title: Haproxy
     icon: rss
     details: 一种高效、可靠、免费的高可用及负载均衡软件。
     link: /statuspage/
-	
+
   - title: Tomcat
     icon: contrast
     details: Apache 旗下的一个免费开源的轻量级Web 应用服务。
     link: /statuspage/
-	
+
   - title: Mysql
     icon: copy
     details: Oracle 旗下最流行的关系型数据库。
     link: /statuspage/
-	
+
   - title: Prometheus
     icon: config
     details: 一个开源的服务监控系统。
