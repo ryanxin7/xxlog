@@ -9,7 +9,7 @@ date: 2022-6-1 12:12:22
 lastUpdated: true
 #sidebar: false
 breadcrumb: false
-contributors: false
+#contributors: false
 ---
 
 [k8s-实战案例_v1.21.x-部署.pdf](https://www.yuque.com/attachments/yuque/0/2023/pdf/33538388/1672721011349-4455b094-61ee-4956-a375-07ad6fc387a1.pdf)

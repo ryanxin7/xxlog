@@ -1,4 +1,4 @@
-<template><div><p>**本次以jenkins.war 包部署⽅式为例 **运⾏java war包或jar包，且要求jenkins的数据保存⾄外部存储(NFS或者PVC)，其他java应⽤看实际需求是否需要将数据保存⾄外部存储。 <br /></p>
+<template><div><p>本次以jenkins.war 包部署⽅式为例运⾏ ，java war包或jar包，且要求jenkins的数据保存⾄外部存储(NFS或者PVC)，其他java应⽤看实际需求是否需要将数据保存⾄外部存储。 <br /></p>
 <p><a name="PyFag"></a></p>
 <h2 id="构建镜像" tabindex="-1"><a class="header-anchor" href="#构建镜像" aria-hidden="true">#</a> 构建镜像</h2>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token comment">#Jenkins Version 2.319.3</span>
