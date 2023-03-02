@@ -28,6 +28,6 @@
   }
   
 //侧边栏  
-#app {
-	--sidebar-space: clamp( var(--sidebar-width), calc(max(0px, calc((100vw - var(--content-width)) / 0 - 2rem))), 100vw );
-}
+//#app {
+//	--sidebar-space: clamp( var(--sidebar-width), calc(max(0px, calc((100vw - var(--content-width)) / 0 - //2rem))), 100vw );
+//}

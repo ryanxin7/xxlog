@@ -16,9 +16,9 @@ export default hopeTheme({
 
   logo: "/logo.svg",
 
-  repo: "ryanxin7/Notes",
+  repo: "ryanxin7/xxlog",
 
-  docsDir: "Notes/docs/",
+  docsDir: "xxlog/src/",
 
   locales: {
     "/": {

@@ -5,7 +5,7 @@ import { gitPlugin } from '@vuepress/plugin-git'
 
 export default defineUserConfig({
     // 关键词: "iconfont", "iconify", "fontawesome", "fontawesome-with-brands"
-    iconAssets: "fontawesome",
+    iconAssets: "iconfont",
 
 
   plugins: [
