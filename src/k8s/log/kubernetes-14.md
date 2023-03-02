@@ -675,7 +675,11 @@ http://10.1.0.34:8181
 
 ::: warning
 
-AWT is not properly configured on this server. Perhaps you need to run  your container with "-Djava.awt.headless=true"? See also:  https://www.jenkins.io/redirect/troubleshooting/java.awt.headless
+
+
+AWT is not properly configured on this server. Perhaps you need to run  your container with "-Djava.awt.headless=true"? See also:  https://www.jenkins.io/redirect/troubleshooting/java.awt.headless\
+
+:::
 
 
 
