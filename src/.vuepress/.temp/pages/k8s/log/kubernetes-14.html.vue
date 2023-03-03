@@ -413,7 +413,7 @@ Password: F5o6JeW+jH2qmgyc/yXwlp++DiKX0XchafdYvKB7cdo=
 <p><strong>JDK 下载地址</strong>：</p>
 <p>11：<a href="https://www.oracle.com/java/technologies/downloads/#java11" target="_blank" rel="noopener noreferrer">https://www.oracle.com/java/technologies/downloads/#java11<ExternalLinkIcon/></a></p>
 <p>17：<a href="https://www.oracle.com/java/technologies/downloads/#java17" target="_blank" rel="noopener noreferrer">https://www.oracle.com/java/technologies/downloads/#java17<ExternalLinkIcon/></a></p>
-<figure><img src="C:\Users\xx9z\AppData\Roaming\Typora\typora-user-images\image-20230228143025864.png" alt="版本选择" tabindex="0" loading="lazy"><figcaption>版本选择</figcaption></figure>
+<figure><img src="http://cdn1.ryanxin.live/image-20230228143025864.png" alt="版本选择" tabindex="0" loading="lazy"><figcaption>版本选择</figcaption></figure>
 <h5 id="_3-2-2-2-解压压缩包" tabindex="-1"><a class="header-anchor" href="#_3-2-2-2-解压压缩包" aria-hidden="true">#</a> 3.2.2.2 解压压缩包</h5>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>root@etcd01<span class="token punctuation">[</span><span class="token number">13</span>:24:27<span class="token punctuation">]</span>~ <span class="token comment">#:mkdir /apps/jdk17 -p</span>
 root@etcd01<span class="token punctuation">[</span><span class="token number">13</span>:24:37<span class="token punctuation">]</span>~ <span class="token comment">#:cd /apps/jdk17</span>
@@ -542,6 +542,84 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOy
 <figure><img src="http://cdn1.ryanxin.live/image-20230228162441448.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <h4 id="_2-1-1-jenkis到gitlab" tabindex="-1"><a class="header-anchor" href="#_2-1-1-jenkis到gitlab" aria-hidden="true">#</a> 2.1.1 Jenkis到GitLab</h4>
 <p>目的是拉取代码时免密<br />导出<a href="https://so.csdn.net/so/search?q=Jenkins&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">Jenkins<ExternalLinkIcon/></a>服务器秘钥到gitlab服务器中</p>
-</div></template>
+<h2 id="使用jenkins对前端工程vue代码打包" tabindex="-1"><a class="header-anchor" href="#使用jenkins对前端工程vue代码打包" aria-hidden="true">#</a> 使用Jenkins对前端工程vue代码打包</h2>
+<h3 id="安装npm" tabindex="-1"><a class="header-anchor" href="#安装npm" aria-hidden="true">#</a> 安装npm</h3>
+<figure><img src="http://cdn1.ryanxin.live/image-20230303150036697.png" alt="选择长期维护版本" tabindex="0" loading="lazy"><figcaption>选择长期维护版本</figcaption></figure>
+<p>国内淘宝源</p>
+<p><a href="https://registry.npmmirror.com/binary.html?path=node/" target="_blank" rel="noopener noreferrer">https://registry.npmmirror.com/binary.html?path=node/<ExternalLinkIcon/></a></p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>$ <span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> node-v18.14.2-linux-x64.tar.gz  
+$ <span class="token function">ln</span> <span class="token parameter variable">-s</span>  node-v18.14.2-linux-x64 <span class="token function">node</span>
+$ <span class="token function">vim</span> /etc/profile.d/npm.sh
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/software/npm/node/bin
+
+
+$ <span class="token builtin class-name">source</span> /etc/profile.d/npm.sh 
+$ <span class="token function">npm</span> <span class="token parameter variable">-v</span> 
+<span class="token number">9.5</span>.0
+
+<span class="token comment">#替换npm仓库地址为淘宝镜像地址（推荐）</span>
+$ <span class="token function">npm</span> config <span class="token builtin class-name">set</span> registry https://registry.npm.taobao.org
+$ <span class="token function">npm</span> config get registry
+https://registry.npm.taobao.org/
+
+
+<span class="token function">npm</span> config <span class="token builtin class-name">set</span> registry http://r.cnpmjs.org
+
+<span class="token comment">#配置后可通过下面方式来验证是否成功</span>
+<span class="token function">npm</span> config get registry
+
+<span class="token comment"># 或者</span>
+<span class="token function">npm</span> info express
+
+
+<span class="token comment">#故需要国内可靠的npm源可以使用</span>
+一、国内镜像
+
+<span class="token number">1</span>、淘宝NPM镜像
+
+搜索地址：http://npm.taobao.org
+registry地址：http://registry.npm.taobao.org
+
+<span class="token number">2</span>、cnpmjs镜像
+
+搜索地址：http://cnpmjs.org
+registry地址：http://r.cnpmjs.org
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>测试前端工程编译</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token builtin class-name">cd</span> /xxlog
+<span class="token function">git</span> init 
+Initialized empty Git repository <span class="token keyword">in</span> /xxlog/.git/
+
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name ryanxin7
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email xinxincn0506@outlook.com
+<span class="token function">git</span> remote <span class="token function">add</span> origin git@github.com:ryanxin7/xxlog.git
+
+root@etcd01<span class="token punctuation">[</span><span class="token number">15</span>:18:55<span class="token punctuation">]</span>/xxlog <span class="token comment">#:cat /root/.ssh/id_rsa.pub </span>
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOymHt7eFlWPQ/qmsnzdey2V28InALJIBJkQcfRwjmG3OTPsYpcP+ea0jhQ1GJHcamERwDJDxcg7jyk+r+dRwGhxLlWeHdiORGZGdqM2LPp7L3FqkDIKko0WMoL490kmAUMgjICrd3pjAQ7iV66YHxB2Y+w9EdWdj3d3GewtYhfnBlrn1bSaEx73y1KBhf3oy4pNOTeFPb2R5IIBllKiuD1r6J7AznRpVxihiQUadYLVFU4eCnXBHTRgiFTtd8oCghRxfrWgFpm0liBikeaawxM0wDQfYoWjZmKobxgvi47+OxS9xhvOn+yy4Iif2MqbH+V0go+eoAKwUE/FiaqqG0P/J5b6ZKx3ZrBF1FS6JztjI5PnzufizbgetvCqHf58+P4MKl8SuKHEI6SXbVzdf9KNmEpiK15m/flQUmYYIUba1nOiBiRFmZ+bLGvRRqUKLf+4P9XZTU1a0zIYXRaseq9QzU<span class="token operator">=</span> root@etcd01
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="http://cdn1.ryanxin.live/image-20230303152055911.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>拉取代码</p>
+<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>root@etcd01[15:21:29]/xxlog #:git pull origin main
+The authenticity of host 'github.com (20.205.243.166)' can't be established.
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com,20.205.243.166' (ECDSA) to the list of known hosts.
+remote: Enumerating objects: 1219, done.
+remote: Counting objects: 100% (1219/1219), done.
+remote: Compressing objects: 100% (794/794), done.
+remote: Total 1219 (delta 532), reused 1073 (delta 397), pack-reused 0
+Receiving objects: 100% (1219/1219), 16.95 MiB | 5.16 MiB/s, done.
+Resolving deltas: 100% (532/532), done.
+From github.com:ryanxin7/xxlog
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+ 
+ 
+ root@etcd01[15:22:16]/xxlog #:git checkout main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+Switched to a new branch 'main'
+root@etcd01[15:22:34]/xxlog #:git branch -a 
+* main
+  master
+  remotes/origin/main
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
 
 
