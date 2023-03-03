@@ -574,7 +574,7 @@ Jenkins 团队已经开发了近 1000 个插件，使得应用程序可以与其
 
 
 
-![版本选择](C:\Users\xx9z\AppData\Roaming\Typora\typora-user-images\image-20230228143025864.png)
+![版本选择](http://cdn1.ryanxin.live/image-20230228143025864.png)
 
 
 
@@ -879,4 +879,111 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOy
 目的是拉取代码时免密<br />导出[Jenkins](https://so.csdn.net/so/search?q=Jenkins&spm=1001.2101.3001.7020)服务器秘钥到gitlab服务器中
 
 
+
+
+
+## 使用Jenkins对前端工程vue代码打包
+
+### 安装npm 
+
+![选择长期维护版本](http://cdn1.ryanxin.live/image-20230303150036697.png)
+
+
+
+国内淘宝源
+
+https://registry.npmmirror.com/binary.html?path=node/
+
+```bash
+$ tar -zxvf node-v18.14.2-linux-x64.tar.gz  
+$ ln -s  node-v18.14.2-linux-x64 node
+$ vim /etc/profile.d/npm.sh
+export PATH=$PATH:/software/npm/node/bin
+
+
+$ source /etc/profile.d/npm.sh 
+$ npm -v 
+9.5.0
+
+#替换npm仓库地址为淘宝镜像地址（推荐）
+$ npm config set registry https://registry.npm.taobao.org
+$ npm config get registry
+https://registry.npm.taobao.org/
+
+
+npm config set registry http://r.cnpmjs.org
+
+#配置后可通过下面方式来验证是否成功
+npm config get registry
+
+# 或者
+npm info express
+
+
+#故需要国内可靠的npm源可以使用
+一、国内镜像
+
+1、淘宝NPM镜像
+
+搜索地址：http://npm.taobao.org
+registry地址：http://registry.npm.taobao.org
+
+2、cnpmjs镜像
+
+搜索地址：http://cnpmjs.org
+registry地址：http://r.cnpmjs.org
+```
+
+
+
+
+
+测试前端工程编译
+
+```bash
+cd /xxlog
+git init 
+Initialized empty Git repository in /xxlog/.git/
+
+git config --global user.name ryanxin7
+git config --global user.email xinxincn0506@outlook.com
+git remote add origin git@github.com:ryanxin7/xxlog.git
+
+root@etcd01[15:18:55]/xxlog #:cat /root/.ssh/id_rsa.pub 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOymHt7eFlWPQ/qmsnzdey2V28InALJIBJkQcfRwjmG3OTPsYpcP+ea0jhQ1GJHcamERwDJDxcg7jyk+r+dRwGhxLlWeHdiORGZGdqM2LPp7L3FqkDIKko0WMoL490kmAUMgjICrd3pjAQ7iV66YHxB2Y+w9EdWdj3d3GewtYhfnBlrn1bSaEx73y1KBhf3oy4pNOTeFPb2R5IIBllKiuD1r6J7AznRpVxihiQUadYLVFU4eCnXBHTRgiFTtd8oCghRxfrWgFpm0liBikeaawxM0wDQfYoWjZmKobxgvi47+OxS9xhvOn+yy4Iif2MqbH+V0go+eoAKwUE/FiaqqG0P/J5b6ZKx3ZrBF1FS6JztjI5PnzufizbgetvCqHf58+P4MKl8SuKHEI6SXbVzdf9KNmEpiK15m/flQUmYYIUba1nOiBiRFmZ+bLGvRRqUKLf+4P9XZTU1a0zIYXRaseq9QzU= root@etcd01
+```
+
+
+
+![](http://cdn1.ryanxin.live/image-20230303152055911.png)
+
+
+
+拉取代码
+
+```
+root@etcd01[15:21:29]/xxlog #:git pull origin main
+The authenticity of host 'github.com (20.205.243.166)' can't be established.
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com,20.205.243.166' (ECDSA) to the list of known hosts.
+remote: Enumerating objects: 1219, done.
+remote: Counting objects: 100% (1219/1219), done.
+remote: Compressing objects: 100% (794/794), done.
+remote: Total 1219 (delta 532), reused 1073 (delta 397), pack-reused 0
+Receiving objects: 100% (1219/1219), 16.95 MiB | 5.16 MiB/s, done.
+Resolving deltas: 100% (532/532), done.
+From github.com:ryanxin7/xxlog
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+ 
+ 
+ root@etcd01[15:22:16]/xxlog #:git checkout main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+Switched to a new branch 'main'
+root@etcd01[15:22:34]/xxlog #:git branch -a 
+* main
+  master
+  remotes/origin/main
+```
 
