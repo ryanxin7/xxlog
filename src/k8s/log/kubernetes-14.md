@@ -961,8 +961,8 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOy
 
 拉取代码
 
-```
-root@etcd01[15:21:29]/xxlog #:git pull origin main
+```bash
+$ git pull origin main
 The authenticity of host 'github.com (20.205.243.166)' can't be established.
 ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
@@ -978,12 +978,47 @@ From github.com:ryanxin7/xxlog
  * [new branch]      main       -> origin/main
  
  
- root@etcd01[15:22:16]/xxlog #:git checkout main
+$ git checkout main
 Branch 'main' set up to track remote branch 'main' from 'origin'.
 Switched to a new branch 'main'
 root@etcd01[15:22:34]/xxlog #:git branch -a 
 * main
   master
   remotes/origin/main
+  
+  
+  
+ #初始化项目所需的node模块
+$ npm install -g cnpm 
+npm WARN deprecated @npmcli/move-file@2.0.1: This functionality has been moved to @npmcli/fs
+
+changed 420 packages in 2m
+
+11 packages are looking for funding
+  run `npm fund` for details
+  
+$ npm install 
+
+up to date in 3s
+
+122 packages are looking for funding
+  run `npm fund` for details
+  
+$ ls
+LICENSE  node_modules  package.json  package-lock.json  README.md  src 
+
+
+#测试运行
+$ npm run docs:dev 
+
+> xxlog@2.0.0 docs:dev
+> vuepress dev src
+
+✔ Initializing and preparing data - done in 3.95s
+
+  vite v4.0.4 dev server running at:
+
+  ➜  Local:   http://localhost:8080/
+  ➜  Network: http://10.1.0.34:8080/
 ```
 
