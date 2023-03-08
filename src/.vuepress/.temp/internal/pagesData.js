@@ -5,16 +5,26 @@ export const pagesData = {
   "v-2e3eac9e": () => import(/* webpackChunkName: "v-2e3eac9e" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/slides.html.js").then(({ data }) => data),
   // path: /about/
   "v-74bc627b": () => import(/* webpackChunkName: "v-74bc627b" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/about/index.html.js").then(({ data }) => data),
+  // path: /haproxy/Haproxy-1.html
+  "v-6598b193": () => import(/* webpackChunkName: "v-6598b193" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/haproxy/Haproxy-1.html.js").then(({ data }) => data),
+  // path: /haproxy/Haproxy-2.html
+  "v-674d8a32": () => import(/* webpackChunkName: "v-674d8a32" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/haproxy/Haproxy-2.html.js").then(({ data }) => data),
+  // path: /haproxy/Haproxy-3.html
+  "v-690262d1": () => import(/* webpackChunkName: "v-690262d1" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/haproxy/Haproxy-3.html.js").then(({ data }) => data),
+  // path: /haproxy/Haproxy-4.html
+  "v-6ab73b70": () => import(/* webpackChunkName: "v-6ab73b70" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/haproxy/Haproxy-4.html.js").then(({ data }) => data),
+  // path: /haproxy/
+  "v-4a0dc89a": () => import(/* webpackChunkName: "v-4a0dc89a" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/haproxy/index.html.js").then(({ data }) => data),
   // path: /k8s/
   "v-74485282": () => import(/* webpackChunkName: "v-74485282" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/k8s/index.html.js").then(({ data }) => data),
+  // path: /statuspage/
+  "v-03082396": () => import(/* webpackChunkName: "v-03082396" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/statuspage/index.html.js").then(({ data }) => data),
   // path: /xj/git.html
   "v-b8d923aa": () => import(/* webpackChunkName: "v-b8d923aa" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xj/git.html.js").then(({ data }) => data),
   // path: /xj/
   "v-2d0acde4": () => import(/* webpackChunkName: "v-2d0acde4" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xj/index.html.js").then(({ data }) => data),
   // path: /xw/
   "v-2d0acf77": () => import(/* webpackChunkName: "v-2d0acf77" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/index.html.js").then(({ data }) => data),
-  // path: /statuspage/
-  "v-03082396": () => import(/* webpackChunkName: "v-03082396" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/statuspage/index.html.js").then(({ data }) => data),
   // path: /k8s/log/kubernetes-1.html
   "v-55c04c62": () => import(/* webpackChunkName: "v-55c04c62" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-1.html.js").then(({ data }) => data),
   // path: /k8s/log/kubernetes-10.html
@@ -59,12 +69,6 @@ export const pagesData = {
   "v-f55f8df6": () => import(/* webpackChunkName: "v-f55f8df6" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/hyy/2.html.js").then(({ data }) => data),
   // path: /xw/hyy/
   "v-03c9579e": () => import(/* webpackChunkName: "v-03c9579e" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/hyy/index.html.js").then(({ data }) => data),
-  // path: /xw/wx/1.html
-  "v-78c9e09f": () => import(/* webpackChunkName: "v-78c9e09f" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/wx/1.html.js").then(({ data }) => data),
-  // path: /xw/wx/2.html
-  "v-7a7eb93e": () => import(/* webpackChunkName: "v-7a7eb93e" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/wx/2.html.js").then(({ data }) => data),
-  // path: /xw/wx/
-  "v-c5f292d2": () => import(/* webpackChunkName: "v-c5f292d2" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/wx/index.html.js").then(({ data }) => data),
   // path: /xw/tc/1.html
   "v-3683e551": () => import(/* webpackChunkName: "v-3683e551" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/tc/1.html.js").then(({ data }) => data),
   // path: /xw/tc/2.html
@@ -77,6 +81,12 @@ export const pagesData = {
   "v-55326f92": () => import(/* webpackChunkName: "v-55326f92" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yf/2.html.js").then(({ data }) => data),
   // path: /xw/yf/
   "v-c5f2882a": () => import(/* webpackChunkName: "v-c5f2882a" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yf/index.html.js").then(({ data }) => data),
+  // path: /xw/wx/1.html
+  "v-78c9e09f": () => import(/* webpackChunkName: "v-78c9e09f" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/wx/1.html.js").then(({ data }) => data),
+  // path: /xw/wx/2.html
+  "v-7a7eb93e": () => import(/* webpackChunkName: "v-7a7eb93e" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/wx/2.html.js").then(({ data }) => data),
+  // path: /xw/wx/
+  "v-c5f292d2": () => import(/* webpackChunkName: "v-c5f292d2" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/wx/index.html.js").then(({ data }) => data),
   // path: /xw/yd/1.html
   "v-f8898596": () => import(/* webpackChunkName: "v-f8898596" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yd/1.html.js").then(({ data }) => data),
   // path: /xw/yd/2.html

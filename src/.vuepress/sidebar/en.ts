@@ -22,4 +22,13 @@ export const enSidebar = sidebar({
       //children: ['yf','wx'],
     },
   ],
+  "/haproxy/": [
+    "",
+    {
+      icon: "discover",
+      text: "HAproxy笔记",
+      prefix: "",
+	  children: "structure",
+    },
+  ],
 });

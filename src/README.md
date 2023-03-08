@@ -46,7 +46,7 @@ features:
   - title: Haproxy
     icon: fuzaijunheng
     details: 一种高效、可靠、免费的高可用及负载均衡软件。
-    link: /statuspage/
+    link: /haproxy/
 
   - title: Tomcat
     icon: TOMCAT
