@@ -531,6 +531,66 @@ Password: F5o6JeW+jH2qmgyc/yXwlp++DiKX0XchafdYvKB7cdo=
 
 
 
+
+
+
+
+#### 3.1.2 deb包安装
+
+##### 3.1.2.1 下载deb包
+
+![](http://cdn1.ryanxin.live/image-20230306152500322.png)
+
+
+
+#####  3.1.2.2 修改配置文件
+
+```bash
+$ dpkg -i gitlab-ce_15.7.8-ce.0_amd64.deb 
+$ vim /etc/gitlab/gitlab.rb
+external_url 'http://10.1.0.35'
+
+
+
+#生成配置
+$ gitlab-ctl reconfigure
+
+Notes:
+Default admin account has been configured with following details:
+Username: root
+Password: You didn't opt-in to print initial root password to STDOUT.
+Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.
+
+NOTE: Because these credentials might be present in your log files in plain text, it is highly recommended to reset the password following https://docs.gitlab.com/ee/security/reset_user_password.html#reset-your-root-password.
+
+gitlab Reconfigured!
+
+#查看密码
+$ cat /etc/gitlab/initial_root_password
+# WARNING: This value is valid only in the following conditions
+#          1. If provided manually (either via `GITLAB_ROOT_PASSWORD` environment variable or via `gitlab_rails['initial_root_password']` setting in `gitlab.rb`, it was provided before database was seeded for the first time (usually, the first reconfigure run).
+#          2. Password hasn't been changed manually, either via UI or via command line.
+#
+#          If the password shown here doesn't work, you must reset the admin password following https://docs.gitlab.com/ee/security/reset_user_password.html#reset-your-root-password.
+
+Password: HepNFhKpXwvQo4rHpYF0t4/ijMMa8CXfghj55frY7b0=
+
+# NOTE: This file will be automatically deleted in the first reconfigure run after 24 hours.
+
+
+#登录名是root
+```
+
+
+
+![](http://cdn1.ryanxin.live/image-20230306153348145.png)
+
+
+
+
+
+
+
 ### 3.2 安装Jenkins
 
 #### 3.2.1 jenkins 介绍
@@ -859,13 +919,21 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOy
 
 
 
+
+
+![](C:\Users\xx9z\AppData\Roaming\Typora\typora-user-images\image-20230306153715826.png)
+
+![](http://cdn1.ryanxin.live/image-20230306153936964.png)
+
 <br>
 
 **测试免密克隆项目代码**
 
 ![](http://cdn1.ryanxin.live/image-20230228162255183.png)
 
-![](http://cdn1.ryanxin.live/image-20230228162441448.png)
+
+
+![](http://cdn1.ryanxin.live/image-20230306154053941.png)
 
 
 
@@ -875,8 +943,46 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOy
 
 
 
-#### 2.1.1 Jenkis到GitLab
-目的是拉取代码时免密<br />导出[Jenkins](https://so.csdn.net/so/search?q=Jenkins&spm=1001.2101.3001.7020)服务器秘钥到gitlab服务器中
+#### 3.3.2 测试免密克隆
+
+
+**使用http方式克隆**
+
+```bash
+root@etcd01[15:42:17]/pr #:git clone http://10.1.0.35/cy1/test.git
+Cloning into 'test'...
+Username for 'http://10.1.0.35': ryanxin
+Password for 'http://ryanxin@10.1.0.35': 
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 2.77 KiB | 2.77 MiB/s, done.
+```
+
+
+
+
+
+**使用ssh 方式克隆**
+
+```bash
+root@etcd01[15:43:37]/pr #:git clone git@10.1.0.35:cy1/test.git
+Cloning into 'test'...
+The authenticity of host '10.1.0.35 (10.1.0.35)' can't be established.
+ECDSA key fingerprint is SHA256:lhRjKQBhgEhjbqcfKBb6oyle8C9EIOzu48QUoaeISIE.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.1.0.35' (ECDSA) to the list of known hosts.
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+```
+
+
+
+
 
 
 

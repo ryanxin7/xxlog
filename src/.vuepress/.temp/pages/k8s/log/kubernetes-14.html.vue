@@ -398,6 +398,44 @@ Password: F5o6JeW+jH2qmgyc/yXwlp++DiKX0XchafdYvKB7cdo=
 # NOTE: This file will be automatically deleted in the first reconfigure run after 24 hours
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>进入后修改admin密码</p>
 <figure><img src="http://cdn1.ryanxin.live/image-20230227155828572.png" alt="修改密码" tabindex="0" loading="lazy"><figcaption>修改密码</figcaption></figure>
+<h4 id="_3-1-2-deb包安装" tabindex="-1"><a class="header-anchor" href="#_3-1-2-deb包安装" aria-hidden="true">#</a> 3.1.2 deb包安装</h4>
+<h5 id="_3-1-2-1-下载deb包" tabindex="-1"><a class="header-anchor" href="#_3-1-2-1-下载deb包" aria-hidden="true">#</a> 3.1.2.1 下载deb包</h5>
+<figure><img src="http://cdn1.ryanxin.live/image-20230306152500322.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h5 id="_3-1-2-2-修改配置文件" tabindex="-1"><a class="header-anchor" href="#_3-1-2-2-修改配置文件" aria-hidden="true">#</a> 3.1.2.2 修改配置文件</h5>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>$ dpkg <span class="token parameter variable">-i</span> gitlab-ce_15.7.8-ce.0_amd64.deb 
+$ <span class="token function">vim</span> /etc/gitlab/gitlab.rb
+external_url <span class="token string">'http://10.1.0.35'</span>
+
+
+
+<span class="token comment">#生成配置</span>
+$ gitlab-ctl reconfigure
+
+Notes:
+Default admin account has been configured with following details:
+Username: root
+Password: You didn<span class="token string">'t opt-in to print initial root password to STDOUT.
+Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.
+
+NOTE: Because these credentials might be present in your log files in plain text, it is highly recommended to reset the password following https://docs.gitlab.com/ee/security/reset_user_password.html#reset-your-root-password.
+
+gitlab Reconfigured!
+
+#查看密码
+$ cat /etc/gitlab/initial_root_password
+# WARNING: This value is valid only in the following conditions
+#          1. If provided manually (either via `GITLAB_ROOT_PASSWORD` environment variable or via `gitlab_rails['</span>initial_root_password<span class="token string">']` setting in `gitlab.rb`, it was provided before database was seeded for the first time (usually, the first reconfigure run).
+#          2. Password hasn'</span>t been changed manually, either via UI or via <span class="token builtin class-name">command</span> line.
+<span class="token comment">#</span>
+<span class="token comment">#          If the password shown here doesn't work, you must reset the admin password following https://docs.gitlab.com/ee/security/reset_user_password.html#reset-your-root-password.</span>
+
+Password: HepNFhKpXwvQo4rHpYF0t4/ijMMa8CXfghj55frY7b0<span class="token operator">=</span>
+
+<span class="token comment"># NOTE: This file will be automatically deleted in the first reconfigure run after 24 hours.</span>
+
+
+<span class="token comment">#登录名是root</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="http://cdn1.ryanxin.live/image-20230306153348145.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <h3 id="_3-2-安装jenkins" tabindex="-1"><a class="header-anchor" href="#_3-2-安装jenkins" aria-hidden="true">#</a> 3.2 安装Jenkins</h3>
 <h4 id="_3-2-1-jenkins-介绍" tabindex="-1"><a class="header-anchor" href="#_3-2-1-jenkins-介绍" aria-hidden="true">#</a> 3.2.1 jenkins 介绍</h4>
 <p>Jenkins 是一款著名的可扩展的用于自动化部署的开源 CI/CD 工具。Jenkins 是完全用 Java 编写的，是在 MIT 许可下发布的。它有一组强大的功能，可以将软件的构建、测试、部署、集成和发布等相关任务自动化。</p>
@@ -536,13 +574,36 @@ root@etcd01<span class="token punctuation">[</span><span class="token number">14
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>root@etcd01<span class="token punctuation">[</span><span class="token number">16</span>:20:31<span class="token punctuation">]</span>~ <span class="token comment">#:ssh-keygen -t rsa -q -P "" -f ~/.ssh/id_rsa</span>
 root@etcd01<span class="token punctuation">[</span><span class="token number">16</span>:20:31<span class="token punctuation">]</span>~ <span class="token comment">#:cat /root/.ssh/id_rsa.pub </span>
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOymHt7eFlWPQ/qmsnzdey2V28InALJIBJkQcfRwjmG3OTPsYpcP+ea0jhQ1GJHcamERwDJDxcg7jyk+r+dRwGhxLlWeHdiORGZGdqM2LPp7L3FqkDIKko0WMoL490kmAUMgjICrd3pjAQ7iV66YHxB2Y+w9EdWdj3d3GewtYhfnBlrn1bSaEx73y1KBhf3oy4pNOTeFPb2R5IIBllKiuD1r6J7AznRpVxihiQUadYLVFU4eCnXBHTRgiFTtd8oCghRxfrWgFpm0liBikeaawxM0wDQfYoWjZmKobxgvi47+OxS9xhvOn+yy4Iif2MqbH+V0go+eoAKwUE/FiaqqG0P/J5b6ZKx3ZrBF1FS6JztjI5PnzufizbgetvCqHf58+P4MKl8SuKHEI6SXbVzdf9KNmEpiK15m/flQUmYYIUba1nOiBiRFmZ+bLGvRRqUKLf+4P9XZTU1a0zIYXRaseq9QzU<span class="token operator">=</span> root@etcd01
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="C:\Users\xx9z\AppData\Roaming\Typora\typora-user-images\image-20230306153715826.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<figure><img src="http://cdn1.ryanxin.live/image-20230306153936964.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<br>
 <p><strong>测试免密克隆项目代码</strong></p>
 <figure><img src="http://cdn1.ryanxin.live/image-20230228162255183.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<figure><img src="http://cdn1.ryanxin.live/image-20230228162441448.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h4 id="_2-1-1-jenkis到gitlab" tabindex="-1"><a class="header-anchor" href="#_2-1-1-jenkis到gitlab" aria-hidden="true">#</a> 2.1.1 Jenkis到GitLab</h4>
-<p>目的是拉取代码时免密<br />导出<a href="https://so.csdn.net/so/search?q=Jenkins&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">Jenkins<ExternalLinkIcon/></a>服务器秘钥到gitlab服务器中</p>
-<h2 id="使用jenkins对前端工程vue代码打包" tabindex="-1"><a class="header-anchor" href="#使用jenkins对前端工程vue代码打包" aria-hidden="true">#</a> 使用Jenkins对前端工程vue代码打包</h2>
+<figure><img src="http://cdn1.ryanxin.live/image-20230306154053941.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h4 id="_3-3-2-测试免密克隆" tabindex="-1"><a class="header-anchor" href="#_3-3-2-测试免密克隆" aria-hidden="true">#</a> 3.3.2 测试免密克隆</h4>
+<p><strong>使用http方式克隆</strong></p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>root@etcd01<span class="token punctuation">[</span><span class="token number">15</span>:42:17<span class="token punctuation">]</span>/pr <span class="token comment">#:git clone http://10.1.0.35/cy1/test.git</span>
+Cloning into <span class="token string">'test'</span><span class="token punctuation">..</span>.
+Username <span class="token keyword">for</span> <span class="token string">'http://10.1.0.35'</span><span class="token builtin class-name">:</span> ryanxin
+Password <span class="token keyword">for</span> <span class="token string">'http://ryanxin@10.1.0.35'</span><span class="token builtin class-name">:</span> 
+remote: Enumerating objects: <span class="token number">3</span>, done.
+remote: Counting objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">3</span>/3<span class="token punctuation">)</span>, done.
+remote: Compressing objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">2</span>/2<span class="token punctuation">)</span>, done.
+remote: Total <span class="token number">3</span> <span class="token punctuation">(</span>delta <span class="token number">0</span><span class="token punctuation">)</span>, reused <span class="token number">0</span> <span class="token punctuation">(</span>delta <span class="token number">0</span><span class="token punctuation">)</span>, pack-reused <span class="token number">0</span>
+Unpacking objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">3</span>/3<span class="token punctuation">)</span>, <span class="token number">2.77</span> KiB <span class="token operator">|</span> <span class="token number">2.77</span> MiB/s, done.
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>使用ssh 方式克隆</strong></p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>root@etcd01<span class="token punctuation">[</span><span class="token number">15</span>:43:37<span class="token punctuation">]</span>/pr <span class="token comment">#:git clone git@10.1.0.35:cy1/test.git</span>
+Cloning into <span class="token string">'test'</span><span class="token punctuation">..</span>.
+The authenticity of <span class="token function">host</span> <span class="token string">'10.1.0.35 (10.1.0.35)'</span> can<span class="token string">'t be established.
+ECDSA key fingerprint is SHA256:lhRjKQBhgEhjbqcfKBb6oyle8C9EIOzu48QUoaeISIE.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '</span><span class="token number">10.1</span>.0.35' <span class="token punctuation">(</span>ECDSA<span class="token punctuation">)</span> to the list of known hosts.
+remote: Enumerating objects: <span class="token number">3</span>, done.
+remote: Counting objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">3</span>/3<span class="token punctuation">)</span>, done.
+remote: Compressing objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">2</span>/2<span class="token punctuation">)</span>, done.
+remote: Total <span class="token number">3</span> <span class="token punctuation">(</span>delta <span class="token number">0</span><span class="token punctuation">)</span>, reused <span class="token number">0</span> <span class="token punctuation">(</span>delta <span class="token number">0</span><span class="token punctuation">)</span>, pack-reused <span class="token number">0</span>
+Receiving objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">3</span>/3<span class="token punctuation">)</span>, done.
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="使用jenkins对前端工程vue代码打包" tabindex="-1"><a class="header-anchor" href="#使用jenkins对前端工程vue代码打包" aria-hidden="true">#</a> 使用Jenkins对前端工程vue代码打包</h2>
 <h3 id="安装npm" tabindex="-1"><a class="header-anchor" href="#安装npm" aria-hidden="true">#</a> 安装npm</h3>
 <figure><img src="http://cdn1.ryanxin.live/image-20230303150036697.png" alt="选择长期维护版本" tabindex="0" loading="lazy"><figcaption>选择长期维护版本</figcaption></figure>
 <p>国内淘宝源</p>
@@ -597,11 +658,11 @@ root@etcd01<span class="token punctuation">[</span><span class="token number">15
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvFuqsriXcIcyRQG7KpYbwtM+Fn5BSyJSvfGdDIbOymHt7eFlWPQ/qmsnzdey2V28InALJIBJkQcfRwjmG3OTPsYpcP+ea0jhQ1GJHcamERwDJDxcg7jyk+r+dRwGhxLlWeHdiORGZGdqM2LPp7L3FqkDIKko0WMoL490kmAUMgjICrd3pjAQ7iV66YHxB2Y+w9EdWdj3d3GewtYhfnBlrn1bSaEx73y1KBhf3oy4pNOTeFPb2R5IIBllKiuD1r6J7AznRpVxihiQUadYLVFU4eCnXBHTRgiFTtd8oCghRxfrWgFpm0liBikeaawxM0wDQfYoWjZmKobxgvi47+OxS9xhvOn+yy4Iif2MqbH+V0go+eoAKwUE/FiaqqG0P/J5b6ZKx3ZrBF1FS6JztjI5PnzufizbgetvCqHf58+P4MKl8SuKHEI6SXbVzdf9KNmEpiK15m/flQUmYYIUba1nOiBiRFmZ+bLGvRRqUKLf+4P9XZTU1a0zIYXRaseq9QzU<span class="token operator">=</span> root@etcd01
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="http://cdn1.ryanxin.live/image-20230303152055911.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <p>拉取代码</p>
-<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>root@etcd01[15:21:29]/xxlog #:git pull origin main
-The authenticity of host 'github.com (20.205.243.166)' can't be established.
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>$ <span class="token function">git</span> pull origin main
+The authenticity of <span class="token function">host</span> <span class="token string">'github.com (20.205.243.166)'</span> can<span class="token string">'t be established.
 ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added 'github.com,20.205.243.166' (ECDSA) to the list of known hosts.
+Warning: Permanently added '</span>github.com,20.205.243.166<span class="token string">' (ECDSA) to the list of known hosts.
 remote: Enumerating objects: 1219, done.
 remote: Counting objects: 100% (1219/1219), done.
 remote: Compressing objects: 100% (794/794), done.
@@ -613,13 +674,48 @@ From github.com:ryanxin7/xxlog
  * [new branch]      main       -> origin/main
  
  
- root@etcd01[15:22:16]/xxlog #:git checkout main
-Branch 'main' set up to track remote branch 'main' from 'origin'.
-Switched to a new branch 'main'
-root@etcd01[15:22:34]/xxlog #:git branch -a 
+$ git checkout main
+Branch '</span>main<span class="token string">' set up to track remote branch '</span>main<span class="token string">' from '</span>origin<span class="token string">'.
+Switched to a new branch '</span>main'
+root@etcd01<span class="token punctuation">[</span><span class="token number">15</span>:22:34<span class="token punctuation">]</span>/xxlog <span class="token comment">#:git branch -a </span>
 * main
   master
   remotes/origin/main
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+  
+  
+  
+ <span class="token comment">#初始化项目所需的node模块</span>
+$ <span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> cnpm 
+<span class="token function">npm</span> WARN deprecated @npmcli/move-file@2.0.1: This functionality has been moved to @npmcli/fs
+
+changed <span class="token number">420</span> packages <span class="token keyword">in</span> 2m
+
+<span class="token number">11</span> packages are looking <span class="token keyword">for</span> funding
+  run <span class="token variable"><span class="token variable">`</span><span class="token function">npm</span> fund<span class="token variable">`</span></span> <span class="token keyword">for</span> details
+  
+$ <span class="token function">npm</span> <span class="token function">install</span> 
+
+up to <span class="token function">date</span> <span class="token keyword">in</span> 3s
+
+<span class="token number">122</span> packages are looking <span class="token keyword">for</span> funding
+  run <span class="token variable"><span class="token variable">`</span><span class="token function">npm</span> fund<span class="token variable">`</span></span> <span class="token keyword">for</span> details
+  
+$ <span class="token function">ls</span>
+LICENSE  node_modules  package.json  package-lock.json  README.md  src 
+
+
+<span class="token comment">#测试运行</span>
+$ <span class="token function">npm</span> run docs:dev 
+
+<span class="token operator">></span> xxlog@2.0.0 docs:dev
+<span class="token operator">></span> vuepress dev src
+
+✔ Initializing and preparing data - <span class="token keyword">done</span> <span class="token keyword">in</span> <span class="token number">3</span>.95s
+
+  vite v4.0.4 dev server running at:
+
+  ➜  Local:   http://localhost:8080/
+  ➜  Network: http://10.1.0.34:8080/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
 
 

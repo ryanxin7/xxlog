@@ -5,17 +5,21 @@ export const enSidebar = sidebar({
     "",
     {
       icon: "discover",
-      text: "k8s",
+      text: "容器",
       prefix: "k8s/",
       //link: "k8s/log/",
       children: "structure",
     },
-    //{
-    //  text: "Docs",
-    //  icon: "note",
-    //  prefix: "guide/",
-    //  children: "structure",
-    //},
-    //"slides",
+  ],
+  "/xw/": [
+    "",
+    {
+      icon: "discover",
+      text: "直播课笔记",
+      prefix: "",
+      //link: "yf/",
+	  children: "structure",
+      //children: ['yf','wx'],
+    },
   ],
 });
