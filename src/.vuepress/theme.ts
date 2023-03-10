@@ -6,7 +6,23 @@ import { enSidebar, zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
   hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
-
+  
+	blog: {
+	  avatar: "logo2.png",
+	  name: "Ryan Cheung",
+	  roundAvatar: true,
+	  description: "口开则灵魂之门闭,口闭则灵魂之门开。",
+	  intro: "/about",
+	  medias: {
+        // GitHub 已经内置了图标
+        GitHub: "https://github.com/ryanxin7",
+		Douban: "https://www.douban.com/people/197705561/?_i=8433244dzTS9IN",
+		BiliBili: "https://space.bilibili.com/15519607",
+		Steam:"https://steamcommunity.com/id/luox1n/",
+		gmail:"mailto:99929x@gmail.com",
+		},
+    },
+	
   author: {
     name: "Ryan",
     url: "http://ryanxin.live",
@@ -74,14 +90,14 @@ export default hopeTheme({
 
 
   plugins: {
-
+   blog: true,
    /**
     comment: {
       // @ts-expect-error: You should generate and use your own comment service
       provider: "Waline",
     },
 	*/
-
+    
     // all features are enabled for demo, only preserve features you need here
     mdEnhance: {
       align: true,

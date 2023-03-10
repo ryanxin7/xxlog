@@ -2,9 +2,9 @@ import { navbar } from "vuepress-theme-hope";
 
 export const enNavbar = navbar([
   "/",
-  { text: "实战进阶⚗️", icon: "beaker", link: "/demo/" },
+  { text: "归档🗂️", icon: "beaker", link: "/category/" },
   {
-    text: "小记🥳",
+    text: "小记📌",
     //icon: "more",
     //prefix: "/xj/",
     children: [
@@ -25,8 +25,9 @@ export const enNavbar = navbar([
         //prefix: "",
         children: [ { text: "图片压缩", icon: "more", link: "https://imageresizer.com/" },
 		            { text: "免费图标素材", icon: "more", link: "https://www.flaticon.com/" },
+					{ text: "emojipedia", icon: "more", link: "https://emojipedia.org/" },
 		]
-		                  //{ text: "图片压缩", icon: "more", link: "https://imageresizer.com/" },
+		                  //
 						  //{ text: "图片压缩", icon: "more", link: "https://imageresizer.com/" },
 						  //{ text: "图片压缩", icon: "more", link: "https://imageresizer.com/" },
 						  //{ text: "图片压缩", icon: "more", link: "https://imageresizer.com/" },

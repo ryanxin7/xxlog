@@ -7,7 +7,6 @@ export default defineUserConfig({
     // 关键词: "iconfont", "iconify", "fontawesome", "fontawesome-with-brands"
     iconAssets: "iconfont",
 
-
   plugins: [
     gitPlugin({
 	

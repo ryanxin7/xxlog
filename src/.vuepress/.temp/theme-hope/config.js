@@ -10,6 +10,13 @@ import { setupSidebarItems } from "@theme-hope/modules/sidebar/composables/index
 
 import "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-theme-hope/lib/client/styles/index.scss";
 
+import BloggerInfo from "@theme-hope/modules/blog/components/BloggerInfo";
+import { setupBlog } from "@theme-hope/modules/blog/composables/index";
+import BlogCategory from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-theme-hope/lib/client/modules/blog/layouts/BlogCategory.js";
+import BlogHome from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-theme-hope/lib/client/modules/blog/layouts/BlogHome.js";
+import BlogType from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-theme-hope/lib/client/modules/blog/layouts/BlogType.js";
+import Timeline from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-theme-hope/lib/client/modules/blog/layouts/Timeline.js";
+import "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/layout.scss";
 import GlobalEncrypt from "@theme-hope/modules/encrypt/components/GlobalEncrypt";
 import LocalEncrypt from "@theme-hope/modules/encrypt/components/LocalEncrypt";
 import Slide from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-theme-hope/lib/client/layouts/Slide.js";
@@ -30,6 +37,7 @@ export default defineClientConfig({
     // render icon for auto-catalog
     app.component("HopeIcon", HopeIcon);
 
+    app.component("BloggerInfo", BloggerInfo);
     app.component("GlobalEncrypt", GlobalEncrypt);
     app.component("LocalEncrypt", LocalEncrypt);
     
@@ -37,11 +45,16 @@ export default defineClientConfig({
   setup: () => {
     setupDarkmode();
     setupSidebarItems();
+    setupBlog();
     
   },
   layouts: {
     Layout,
     NotFound,
+    BlogCategory,
+    BlogHome,
+    BlogType,
+    Timeline,
     Slide,
       }
 });
