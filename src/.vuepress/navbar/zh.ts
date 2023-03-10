@@ -3,6 +3,9 @@ import { navbar } from "vuepress-theme-hope";
 export const enNavbar = navbar([
   "/",
   { text: "归档🗂️", icon: "beaker", link: "/category/" },
+  { text: "文章🌱", icon: "beaker", link: "/article/" },
+  { text: "时间线⏰", icon: "beaker", link: "/timeline/" },
+  { text: "关于🤷", icon: "beaker", link: "/about/" },
   {
     text: "小记📌",
     //icon: "more",

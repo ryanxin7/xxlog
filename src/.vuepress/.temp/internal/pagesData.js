@@ -5,8 +5,6 @@ export const pagesData = {
   "v-2e3eac9e": () => import(/* webpackChunkName: "v-2e3eac9e" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/slides.html.js").then(({ data }) => data),
   // path: /about/
   "v-74bc627b": () => import(/* webpackChunkName: "v-74bc627b" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/about/index.html.js").then(({ data }) => data),
-  // path: /k8s/
-  "v-74485282": () => import(/* webpackChunkName: "v-74485282" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/k8s/index.html.js").then(({ data }) => data),
   // path: /haproxy/Haproxy-1.html
   "v-6598b193": () => import(/* webpackChunkName: "v-6598b193" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/haproxy/Haproxy-1.html.js").then(({ data }) => data),
   // path: /haproxy/Haproxy-2.html
@@ -17,6 +15,8 @@ export const pagesData = {
   "v-6ab73b70": () => import(/* webpackChunkName: "v-6ab73b70" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/haproxy/Haproxy-4.html.js").then(({ data }) => data),
   // path: /haproxy/
   "v-4a0dc89a": () => import(/* webpackChunkName: "v-4a0dc89a" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/haproxy/index.html.js").then(({ data }) => data),
+  // path: /k8s/
+  "v-74485282": () => import(/* webpackChunkName: "v-74485282" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/k8s/index.html.js").then(({ data }) => data),
   // path: /statuspage/
   "v-03082396": () => import(/* webpackChunkName: "v-03082396" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/statuspage/index.html.js").then(({ data }) => data),
   // path: /xw/
@@ -61,6 +61,12 @@ export const pagesData = {
   "v-f55f8df6": () => import(/* webpackChunkName: "v-f55f8df6" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/hyy/2.html.js").then(({ data }) => data),
   // path: /xw/hyy/
   "v-03c9579e": () => import(/* webpackChunkName: "v-03c9579e" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/hyy/index.html.js").then(({ data }) => data),
+  // path: /xw/yd/1.html
+  "v-f8898596": () => import(/* webpackChunkName: "v-f8898596" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yd/1.html.js").then(({ data }) => data),
+  // path: /xw/yd/2.html
+  "v-f51fd458": () => import(/* webpackChunkName: "v-f51fd458" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yd/2.html.js").then(({ data }) => data),
+  // path: /xw/yd/
+  "v-c5f288a6": () => import(/* webpackChunkName: "v-c5f288a6" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yd/index.html.js").then(({ data }) => data),
   // path: /xw/tc/1.html
   "v-3683e551": () => import(/* webpackChunkName: "v-3683e551" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/tc/1.html.js").then(({ data }) => data),
   // path: /xw/tc/2.html
@@ -87,12 +93,6 @@ export const pagesData = {
   "v-4f867d76": () => import(/* webpackChunkName: "v-4f867d76" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yyh/2.html.js").then(({ data }) => data),
   // path: /xw/yyh/
   "v-03d10fde": () => import(/* webpackChunkName: "v-03d10fde" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yyh/index.html.js").then(({ data }) => data),
-  // path: /xw/yd/1.html
-  "v-f8898596": () => import(/* webpackChunkName: "v-f8898596" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yd/1.html.js").then(({ data }) => data),
-  // path: /xw/yd/2.html
-  "v-f51fd458": () => import(/* webpackChunkName: "v-f51fd458" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yd/2.html.js").then(({ data }) => data),
-  // path: /xw/yd/
-  "v-c5f288a6": () => import(/* webpackChunkName: "v-c5f288a6" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xw/yd/index.html.js").then(({ data }) => data),
   // path: /xj/xx/qiniu.html
   "v-19eb9422": () => import(/* webpackChunkName: "v-19eb9422" */"C:/Users/xx9z/Desktop/新建文件夹/xxlog/src/.vuepress/.temp/pages/xj/xx/qiniu.html.js").then(({ data }) => data),
   // path: /xj/xx/
