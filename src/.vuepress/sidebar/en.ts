@@ -5,8 +5,8 @@ export const enSidebar = sidebar({
     "",
     {
       icon: "discover",
-      text: "容器",
-      prefix: "k8s/",
+      //text: "容器",
+      prefix: "k8s/log/",
       //link: "k8s/log/",
       children: "structure",
     },
@@ -26,8 +26,8 @@ export const enSidebar = sidebar({
     "",
     {
       icon: "discover",
-      text: "HAproxy笔记",
-      prefix: "",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
 	  children: "structure",
     },
   ],

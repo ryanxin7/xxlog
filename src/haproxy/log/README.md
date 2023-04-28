@@ -1,6 +1,6 @@
 ---
-title: HAProxy
-icon: fuzaijunheng
+title: 简介
+#icon: fuzaijunheng
 tag: HAproxy
 
 #breadcrumb: false

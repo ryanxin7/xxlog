@@ -1,5 +1,5 @@
 ---
-title: K8S 训练营
+title: K8S 简介
 icon: creative
 tag: K8S 训练营
 
