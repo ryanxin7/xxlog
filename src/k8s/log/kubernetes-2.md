@@ -5,6 +5,7 @@ tag:
     - k8s进阶训练营
 category: 
    - k8s
+   - etcd
 date: 2022-6-2 12:12:22
 lastUpdated: true
 #sidebar: false

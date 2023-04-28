@@ -1,21 +1,21 @@
 import { defineClientConfig } from "@vuepress/client";
-import ChartJS from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/ChartJS.js";
-import CodeTabs from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeTabs.js";
-import { hasGlobalComponent } from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-shared/lib/client/index.js";
-import { CodeGroup, CodeGroupItem } from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/compact/index.js";
-import "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/container/index.scss";
-import CodeDemo from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeDemo.js";
-import ECharts from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/ECharts.js";
-import "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/figure.scss";
-import FlowChart from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/FlowChart.js";
-import "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/footnote.scss";
-import "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/image-mark.scss";
-import Mermaid from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Mermaid.js";
-import Presentation from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Presentation.js";
-import Playground from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Playground.js";
-import Tabs from "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Tabs.js";
-import "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/tasklist.scss";
-import "C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/katex.scss";
+import ChartJS from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/ChartJS.js";
+import CodeTabs from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeTabs.js";
+import { hasGlobalComponent } from "D:/xxlog/node_modules/vuepress-shared/lib/client/index.js";
+import { CodeGroup, CodeGroupItem } from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/compact/index.js";
+import "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/container/index.scss";
+import CodeDemo from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeDemo.js";
+import ECharts from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/ECharts.js";
+import "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/figure.scss";
+import FlowChart from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/FlowChart.js";
+import "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/footnote.scss";
+import "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/image-mark.scss";
+import Mermaid from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Mermaid.js";
+import Presentation from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Presentation.js";
+import Playground from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Playground.js";
+import Tabs from "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Tabs.js";
+import "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/tasklist.scss";
+import "D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/katex.scss";
 import { defineAsyncComponent } from "vue";
 
 
@@ -34,7 +34,7 @@ export default defineClientConfig({
     app.component("Presentation", Presentation);
     app.component("Playground", Playground);
     app.component("Tabs", Tabs);
-    app.component("VuePlayground", defineAsyncComponent(() => import("C:/Users/xx9z/Desktop/新建文件夹/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/VuePlayground.js")));
+    app.component("VuePlayground", defineAsyncComponent(() => import("D:/xxlog/node_modules/vuepress-plugin-md-enhance/lib/client/components/VuePlayground.js")));
         
   },
 });

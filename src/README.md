@@ -26,12 +26,12 @@ features:
   - title: Redis 
     icon: Redis
     details: 一个开源的可基于内存也可持久化的Key-Value数据库。
-    link: /statuspage/
+    link: /redis/
 
   - title: Ceph
     icon: Ceph1
     details: Ceph是一种为优秀的性能、可靠性和可扩展性而设计的统一的、分布式文件系统。
-    link: /statuspage/
+    link: /ceph/
 
   - title: ELASTIC STACK
     icon: ElasticSearch

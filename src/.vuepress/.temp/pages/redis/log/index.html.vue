@@ -1,0 +1,141 @@
+<template><div><p>用户访问的过程中会产生各种各样的数据，为了让网站能够正常的运行，并且高效的让用户精准的看到相应的数据，我们就会在不同业务功能场景中采用各种各样的数据类型来进行承载。</p>
+<!-- more -->
+<h1 id="数据分类" tabindex="-1"><a class="header-anchor" href="#数据分类" aria-hidden="true">#</a> <strong>数据分类</strong></h1>
+<p>用户访问的过程中会产生各种各样的数据，为了让网站能够正常的运行，并且高效的让用户精准的看到相应的数据，我们就会在不同业务功能场景中采用各种各样的数据类型来进行承载。</p>
+<p>按照我们的项目场景落地的实现方式分为三种类型：</p>
+<ul>
+<li>结构化数据</li>
+<li>半结构化数据</li>
+<li>非结构化数据</li>
+</ul>
+<h2 id="结构化数据" tabindex="-1"><a class="header-anchor" href="#结构化数据" aria-hidden="true">#</a> 结构化数据</h2>
+<p>所谓的结构化数据，指的是数据的表现样式有一定的(横竖)结构,一般情况下，这种数据是以二维表的方式来实现数据的存储和逻辑关系的表达。</p>
+<p>-- 数据以行为单位，一行数据表示一个实体的信息，每一行数据的属性是相同的。</p>
+<p>这些数据在存储的时候，为了实现数据的统一存储，往往对数据存储的格式和长度规范都进行了一定程度的限制，这些数据的具体存储主要是以关系型数据库软件来实现。</p>
+<p>结构化数据，是指由二维表结构来逻辑表达和实现的数据，严格地遵循数据格式与长度规范，主要通过关系型数据库进行存储和管理。</p>
+<p>结构化数据的存储和排列是很有规律的，所以这些数据在查询或修改等操作的时候非常方便，但是由于数据在存储的时候，有一定的关联关系，所以在数据扩充属性或者收缩属性的时候不太方便 -- 扩展性不好。</p>
+<p>数据在存储的过程中本身是有强关联的，在储存数据本身有相应的数据结构来进行限制，两个不同业务场景之中的数据，一旦他们之间有相应关联的话，我们会基于数据存储软件本身的特性将这些数据关联在一起。对于数据完整的整体来说他们之间是强关联的有相应的结构。</p>
+<p><strong>结构化数据表现样式如下</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>姓名</th>
+<th>性别</th>
+<th>电话</th>
+<th>籍贯</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>张三</td>
+<td>男</td>
+<td>13382261344</td>
+<td>山西</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李四</td>
+<td>女</td>
+<td>18612388412</td>
+<td>山东</td>
+</tr>
+</tbody>
+</table>
+<p>对于某一条数据来说，它的内部有相应数据存储格式，对于数据整体来说由大量数据整合一起。</p>
+<p>对于行来说是由多个具体的数据组合在一起的具有特殊的含义，对于每一列来说对数据的属性、长度</p>
+<p>是否可以为空等等都有相应的限制。可以通过查看表结构查看相应的属性。如 mysql 中 <code v-pre>desc user;</code></p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-Linux/elks/关系型数据库-多表关联.png" alt="关系型数据库-多表关联" tabindex="0" loading="lazy"><figcaption>关系型数据库-多表关联</figcaption></figure>
+<h2 id="半结构化数据" tabindex="-1"><a class="header-anchor" href="#半结构化数据" aria-hidden="true">#</a> 半结构化数据</h2>
+<p>所谓的半结构化数据，应用数据使用的时候有一定的关联、层次， 但是这些数据在存储的时候没有像关系型数据有数据属性、长度、是否为空、数据唯一性的限制。但在存储的时候有一定业务关联。</p>
+<p>半结构化数据的存储一般是以文件的方式来实现的，比较常见的文件样式有：json、XML等。</p>
+<p>在json存储过程中，会构造字典然后按照固定格式进行存储里面的数据自由获取。</p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-Linux/elks/半结构化数据.png" alt="半结构化数据" tabindex="0" loading="lazy"><figcaption>半结构化数据</figcaption></figure>
+<p><strong>Json数据</strong></p>
+<div class="language-json line-numbers-mode" data-ext="json"><pre v-pre class="language-json"><code><span class="token punctuation">{</span>
+<span class="token property">"status"</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+<span class="token property">"message"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+<span class="token property">"person"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+<span class="token punctuation">{</span>
+<span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+<span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"张三"</span><span class="token punctuation">,</span>
+<span class="token property">"gender"</span><span class="token operator">:</span> <span class="token string">"男"</span><span class="token punctuation">,</span>
+<span class="token property">"address"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+<span class="token property">"Country"</span><span class="token operator">:</span> <span class="token string">"中国"</span><span class="token punctuation">,</span>
+<span class="token property">"Province"</span><span class="token operator">:</span> <span class="token string">"北京市"</span><span class="token punctuation">,</span>
+<span class="token property">"city"</span><span class="token operator">:</span> <span class="token string">"北京市"</span><span class="token punctuation">,</span>
+<span class="token property">"district"</span><span class="token operator">:</span> <span class="token string">"丰台区"</span><span class="token punctuation">,</span>
+<span class="token property">"town"</span><span class="token operator">:</span> <span class="token string">"五里店"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+数据关系
+<span class="token punctuation">[</span><span class="token punctuation">]</span>中括号代表的是一个数组或列表
+<span class="token punctuation">{</span><span class="token punctuation">}</span>大括号代表的是一个数据对象
+双引号“”表示的是属性值
+冒号：代表的是前后之间的关系，冒号前面是属性的名称，后面是属性的值
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>XML 数据</strong></p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><pre v-pre class="language-xml"><code><span class="token prolog">&lt;?xml version="1.0" encoding="gb2312"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>namelist</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ID</span><span class="token punctuation">></span></span>01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ID</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>张三<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sex</span><span class="token punctuation">></span></span>男<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sex</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address</span><span class="token punctuation">></span></span>北京市市丰台区五里店<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>address</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>namelist</span><span class="token punctuation">></span></span>
+数据关系
+存储格式是以节点为主,一个节点衍生出另外的子节点
+每个节点遵循html的风格，但是里面的标签属性是我们自定义的。
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>XML 主要用于测试，如测试网页功能</p>
+<p>将成功的数据和不成功的数据全部罗列出来，以XML的样式单独实现，在测试的时候基于对应的测试软件框架加载定制好的测试数据以自动化的方式，把所有的功能全部测试出来。</p>
+<p>测试的数据仅仅是为了功能测试时使用的，没有必要存储下来，所以我们就用简单的Html场景当中的数据单独存储xml格式来进行存储。</p>
+<p>数据本身存储没有强关联，但是应用的时候有一定的关联结构。这种数据被称之为半结构化数据。</p>
+<h2 id="非结构化数据" tabindex="-1"><a class="header-anchor" href="#非结构化数据" aria-hidden="true">#</a> 非结构化数据</h2>
+<p>所谓非结构化数据，在存储的时候数据和数据之间没有所谓的强关联，应用场景也没有所谓的整体一起使用。 用的时候直接调用就可以了。</p>
+<p>非结构化数据，其实就是没有固定结构的数据 -- 即结构化数据之外的一切数据。它们常以 图片、视频、音频等 样式存在。对于这类数据，我们一般直接整体进行存储，而且一般存储为二进制的数据格式。</p>
+<p><strong>非结构化数据一般有两种生成方式</strong>：</p>
+<ul>
+<li>
+<p>人为手工生成 - 文本文件、图片、视频、音频、业务应用程序等。</p>
+</li>
+<li>
+<p>机器自动生成 - 卫星图形、科学数据、数据监控、传感数据等</p>
+<p>一般情况下，非结构化数据存储在非关系数据库中，并使用NoSQL进行查询。工作生活，非结构化数据是越来越多，占比远远的超出结构化数据。</p>
+</li>
+</ul>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-Linux/elks/非结构化数据.jpg" alt="非结构化数据" tabindex="0" loading="lazy"><figcaption>非结构化数据</figcaption></figure>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-Linux/elks/image-20211124163735729.png" alt="image-20211124163735729" tabindex="0" loading="lazy"><figcaption>image-20211124163735729</figcaption></figure>
+<p>资料来源：<a href="https://db-engines.com/en/ranking" target="_blank" rel="noopener noreferrer">https://db-engines.com/en/ranking<ExternalLinkIcon/></a></p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-Linux/elks/image-20211124163537597.png" alt="DB-Engines Ranking" tabindex="0" loading="lazy"><figcaption>DB-Engines Ranking</figcaption></figure>
+<p><strong>数据软件的应用</strong></p>
+<p>目前 结构化软件还是占据绝对的位置
+非结构化数据软件，在特定场景中，占据一席地位</p>
+<p>目前所有的软件，都有一个趋同的发展 “我是结构化数据软件，但是能做对方的事情“</p>
+<hr>
+<p><strong>小结</strong></p>
+<p>结构化数据
+1 数据存储本身是有意义的 -- 强关联和存储约束
+2 数据存储的整体，在业务场景中也有关联
+-- 一对多、多对一、一对一等
+半结构化数据
+1 开发场景：
+页面的展示 和 展示的数据 分开
+数据本身没有意义，但是组合在一起能够使用
+- json
+2 测试场景；
+自动化测试 -- 构造大量的测试数据单独保存
+- xml
+非结构化数据
+数据本身存储和业务场景存储没有所谓的关联
+-- 但是我要的时候，必须给我
+kv</p>
+<p>注意：
+这里的结构 不是 数据结构与算法里面 数据存储应用到的结构
+指的是 业务场景中的数据关联存储</p>
+</div></template>
+
+

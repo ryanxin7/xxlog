@@ -31,4 +31,22 @@ export const enSidebar = sidebar({
 	  children: "structure",
     },
   ],
+    "/redis/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
+      "/ceph/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
 });
