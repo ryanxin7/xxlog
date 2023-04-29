@@ -1,0 +1,72 @@
+<template><div><h1 id="linux-基础" tabindex="-1"><a class="header-anchor" href="#linux-基础" aria-hidden="true">#</a> Linux 基础</h1>
+<p>Linux，全称GNU/Linux，是一套免费使用和自由传播的<a href="https://baike.baidu.com/item/%E7%B1%BBUNIX/9032872" target="_blank" rel="noopener noreferrer">类UNIX<ExternalLinkIcon/></a>操作系统，其内核由<a href="https://baike.baidu.com/item/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%9C%AC%E7%BA%B3%E7%AC%AC%E5%85%8B%E7%89%B9%C2%B7%E6%89%98%E7%93%A6%E5%85%B9/1034429" target="_blank" rel="noopener noreferrer">林纳斯·本纳第克特·托瓦兹<ExternalLinkIcon/></a>于1991年第一次释出，它主要受到Minix和Unix思想的启发，是一个基于<a href="https://baike.baidu.com/item/POSIX" target="_blank" rel="noopener noreferrer">POSIX<ExternalLinkIcon/></a>和Unix的多用户、<a href="https://baike.baidu.com/item/%E5%A4%9A%E4%BB%BB%E5%8A%A1/1011764" target="_blank" rel="noopener noreferrer">多任务<ExternalLinkIcon/></a>、支持<a href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404" target="_blank" rel="noopener noreferrer">多线程<ExternalLinkIcon/></a>和多<a href="https://baike.baidu.com/item/CPU" target="_blank" rel="noopener noreferrer">CPU<ExternalLinkIcon/></a>的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持<a href="https://baike.baidu.com/item/32%E4%BD%8D/5812218" target="_blank" rel="noopener noreferrer">32位<ExternalLinkIcon/></a>和<a href="https://baike.baidu.com/item/64%E4%BD%8D" target="_blank" rel="noopener noreferrer">64位<ExternalLinkIcon/></a>硬件。Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。Linux有上百种不同的发行版，如基于社区开发的<a href="https://baike.baidu.com/item/debian/748667" target="_blank" rel="noopener noreferrer">debian<ExternalLinkIcon/></a>、<a href="https://baike.baidu.com/item/archlinux/10857530" target="_blank" rel="noopener noreferrer">archlinux<ExternalLinkIcon/></a>，和基于商业开发的[Red Hat Enterprise Linux](<a href="https://baike.baidu.com/item/Red" target="_blank" rel="noopener noreferrer">https://baike.baidu.com/item/Red<ExternalLinkIcon/></a> Hat Enterprise Linux/10770503)、<a href="https://baike.baidu.com/item/SUSE/60409" target="_blank" rel="noopener noreferrer">SUSE<ExternalLinkIcon/></a>、[oracle linux](<a href="https://baike.baidu.com/item/oracle" target="_blank" rel="noopener noreferrer">https://baike.baidu.com/item/oracle<ExternalLinkIcon/></a>  linux/6876458)等。</p>
+<h2 id="一、操作系统的基本知识" tabindex="-1"><a class="header-anchor" href="#一、操作系统的基本知识" aria-hidden="true">#</a> 一、操作系统的基本知识</h2>
+<p>一般而言，现代计算机计算机系统是一个复杂的系统，故若程序员需要掌握该系统的每一个细节例如如何通过代码去调用音响等这些事情，那可能不再编写代码了，这种情况会严重影响程序员的开发效率。</p>
+<p>并且管理这些部件并加以优化使用，是一件极富挑战性的工作，于是，计算安装了一层软件（系统软件），称为操作系统。它的任务就是为用户程序提供一个更好、更简单、更清晰的计算机模型，并管理刚才提到的所有设备。</p>
+<h3 id="_1-linux-介绍" tabindex="-1"><a class="header-anchor" href="#_1-linux-介绍" aria-hidden="true">#</a> 1. linux 介绍</h3>
+<p><strong>Linux</strong> 是一个多用户多任务的操作系统，也是一款自由软件，拥有良好的用户界面，支持多种处理器架构，移植方便。严格的来讲，Linux 并不算是一个操作系统，只是一个 Linux 系统中的<strong>内核</strong>，即计算机软件与硬件通讯之间的平台。</p>
+<h4 id="_1-1-gun协议" tabindex="-1"><a class="header-anchor" href="#_1-1-gun协议" aria-hidden="true">#</a> 1.1 GUN协议</h4>
+<p>Linux的全称是GNU/Linux，这才算是一个真正意义上的Linux系统。</p>
+<p>设计原则：</p>
+<pre><code>    1）所有的东西都是文件，所以管理简单
+    2）所有操作系统配置数据都存储在正文文件中
+    3）每个操作系统命令或应用程序很小，只完成单一功能
+    4）避免使用俘获用户的接口，很少交互命令，应用程序由vi编辑器等完成交互
+    5）多个程序串接在一起完成复杂任务
+</code></pre>
+<h1 id="二、linux-常用命令" tabindex="-1"><a class="header-anchor" href="#二、linux-常用命令" aria-hidden="true">#</a> 二、Linux 常用命令</h1>
+<p>1、<strong>pwd</strong> 返回当前工作目录，直接输入 pwd 即可，后面不带参数。</p>
+<p>2、<strong>ls</strong> 即英文单词list的缩写，列出指定目录的所有文件名或者文件夹名（默认为当前工作目录下），</p>
+<p>其选项如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-a</td>
+<td style="text-align:left">显示指定目录下所有子目录与文件，包括隐藏文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-i</td>
+<td style="text-align:left">以列表方式显示文件的详细信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-h</td>
+<td style="text-align:left">配合 -i 以人性化方式显示文件大小</td>
+</tr>
+</tbody>
+</table>
+<p>3、<strong>cd</strong>  切换工作目录；</p>
+<p>在使用Unix/Linux的时候，经常需要更换工作目录。cd命令可以帮助用户切换工作目录。Linux所有的目录和文件名大小写敏感cd后面可跟绝对路径，也可以跟相对路径。如果省略目录，则默认切换到当前用户的主目录。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cd</td>
+<td>切换到当前用户的主目录，用户登录的使用，默认的目录就是用户的主目录。</td>
+</tr>
+<tr>
+<td>cd ~</td>
+<td>切换到当前用户的主目录</td>
+</tr>
+<tr>
+<td>cd .</td>
+<td>切换到当前目录</td>
+</tr>
+</tbody>
+</table>
+<p>![](C:\Users\xinxi\Desktop\期末考试 2020春\1328034-20180704191623328-304845393.png)</p>
+<h2 id="三、文件权限" tabindex="-1"><a class="header-anchor" href="#三、文件权限" aria-hidden="true">#</a> 三、文件权限</h2>
+<p>在Linux操作系统上，有些文件很重要，这些文件只有系统或经过授权的用户才能使用，这样才能保护系统的安全。因为有一些文件是只有部分指定的人才能存取，以免不小心被他人删除或修改，因此文件的安全管理是非常重要的。为了防止未授权用户访问你的 文件，可以在文件和目录上设置权限位。还可以设定文件在创建时所具有的缺省权限。</p>
+</div></template>
+
+

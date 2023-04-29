@@ -36,12 +36,12 @@ features:
   - title: ELASTIC STACK
     icon: ElasticSearch
     details: 开源产品合集，包括 Elasticsearch、Kibana、Logstash 以及 Beats 等
-    link: /statuspage/
+    link: /elk/
 
   - title: Nginx
     icon: nginx
     details: Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。
-    link: /statuspage/
+    link: /nginx/
 
   - title: Haproxy
     icon: fuzaijunheng
@@ -56,7 +56,7 @@ features:
   - title: Mysql
     icon: MySQL
     details: Oracle 旗下最流行的关系型数据库。
-    link: /statuspage/
+    link: /mysql/
 
   - title: Prometheus
     icon: prometheusprometheusjiankongfuwu
@@ -66,7 +66,7 @@ features:
   - title: Linux 基础
     icon: linux
     details: 该模块主要介绍一些关于 Linux 运维过程中的问题。
-    link: /statuspage/
+    link: /linux/
 
   - title: 应试英语技巧课
     icon: yingyu

@@ -1,0 +1,167 @@
+<template><div><h1 id="sql-基本概念引入" tabindex="-1"><a class="header-anchor" href="#sql-基本概念引入" aria-hidden="true">#</a> SQL 基本概念引入</h1>
+<h2 id="_1-mysql数据库的内置功能" tabindex="-1"><a class="header-anchor" href="#_1-mysql数据库的内置功能" aria-hidden="true">#</a> 1. MySQL数据库的内置功能</h2>
+<br>
+<br>
+<h3 id="_1-1-连接数据库" tabindex="-1"><a class="header-anchor" href="#_1-1-连接数据库" aria-hidden="true">#</a> 1.1 连接数据库</h3>
+<p><strong>参数介绍</strong></p>
+<p><strong>-u</strong>    指定登录用户</p>
+<p><strong>-p</strong>     指定密码</p>
+<p><strong>-S</strong>    使用Socket文件方式登录</p>
+<p><strong>-h</strong>    指定远程主机登录地址</p>
+<p><strong>-P</strong>    指定连接数据库的端口</p>
+<p><strong>-e</strong>    免交互执行SQL语句</p>
+<p><strong>&lt;</strong>     恢复数据  后面加要导入的数据库数据</p>
+<br>
+<p><strong>例子:</strong></p>
+<ol>
+<li>
+<p><code v-pre>mysql -uroot -p -S /tmp/mysql.sock</code></p>
+</li>
+<li>
+<p><code v-pre>mysql -uroot -p -h10.0.0.51 -P3306</code></p>
+</li>
+<li>
+<p><code v-pre>mysql -uroot -p -e &quot;show databases;&quot;</code> <strong>-e</strong> 参数  免交互执行sql语句</p>
+</li>
+<li>
+<p><code v-pre>mysql -uroot -p123     &lt;  /root/world.sql</code>      <strong>恢复数据</strong>  后面加要导入的数据库数据</p>
+</li>
+</ol>
+<br>
+<h3 id="_1-2-数据库内置命令" tabindex="-1"><a class="header-anchor" href="#_1-2-数据库内置命令" aria-hidden="true">#</a> 1.2 数据库内置命令</h3>
+<br>
+<p><strong>help</strong>                              打印mysql帮助</p>
+<p><strong>\c</strong>                                   ctrl+c    结束上个命令运行</p>
+<p><strong>\q</strong>                                   quit; exit;   ctrl+d   退出mysql</p>
+<p><strong>\G</strong>                                   将数据竖起来显示</p>
+<p><strong>source</strong>                           恢复备份文件</p>
+<br>
+<br>
+<h2 id="_2-sql基础应用" tabindex="-1"><a class="header-anchor" href="#_2-sql基础应用" aria-hidden="true">#</a> 2.  SQL基础应用</h2>
+<br>
+<h3 id="_2-1-sql介绍" tabindex="-1"><a class="header-anchor" href="#_2-1-sql介绍" aria-hidden="true">#</a> 2.1 SQL介绍</h3>
+<p>结构化的查询语言</p>
+<p>关系型数据库通用的命令</p>
+<p>遵循SQL92的标准(SQL_MODE)</p>
+<br>
+<h3 id="_2-2-sql常用种类" tabindex="-1"><a class="header-anchor" href="#_2-2-sql常用种类" aria-hidden="true">#</a> 2.2 SQL常用种类</h3>
+<br>
+<p><strong>DDL</strong> 数据定义语言</p>
+<p><strong>DCL</strong> 数据控制语言</p>
+<p><strong>DML</strong> 数据操作语言</p>
+<p><strong>DQL</strong> 数据查询语言</p>
+ <br>
+<h2 id="_3-sql引入-数据库的逻辑结构" tabindex="-1"><a class="header-anchor" href="#_3-sql引入-数据库的逻辑结构" aria-hidden="true">#</a> 3. SQL引入-数据库的逻辑结构</h2>
+<br>
+<ul>
+<li><strong>库的逻辑结构</strong></li>
+</ul>
+<p>库名字</p>
+<p>库属性:字符集,排序规则</p>
+ <br>
+<br>
+<ul>
+<li><strong>表的逻辑结构</strong></li>
+</ul>
+<p>表名</p>
+<p>表属性:存储引擎类型,字符集,排序规则</p>
+<p>列名</p>
+<p>列属性:数据类型,约束,其他属性</p>
+<p>数据行</p>
+  <br>
+<br>
+<h2 id="_4-字符集-charset" tabindex="-1"><a class="header-anchor" href="#_4-字符集-charset" aria-hidden="true">#</a> 4. 字符集 (charset)</h2>
+  <br>
+<p><strong>Charset</strong>     字符集</p>
+<p><strong>字符集</strong>相当于MySQL数据库的密码本(编码表) 负责把SQL英文语句，转换成<strong>16进制存储</strong>。</p>
+  <br>
+<p><strong>常用的字符集：</strong></p>
+<p><code v-pre>show charset;</code> 查询字符集</p>
+<p><strong>utf8</strong>         : 占用3个字节</p>
+<p><strong>utf8mb4</strong>  (🚩建议) : 占用 4个字节,支持emoji和一些特殊字符。</p>
+   <br>
+  <br>
+<h2 id="_5-排序规则" tabindex="-1"><a class="header-anchor" href="#_5-排序规则" aria-hidden="true">#</a> 5. 排序规则</h2>
+  <br>
+<p><strong>collation</strong>     排序规则  🐤</p>
+<p>查看数据库支持的排序规则。</p>
+<p><code v-pre>mysql&gt; show collation;</code></p>
+<p>每一种字符集对应多个排序规则</p>
+   <br>
+<p><strong>utf8mb4 常见的字符规则：</strong></p>
+<p>用于需求 对于英文字符串的,大小写的敏感的数据库  wW ü</p>
+<p><strong>utf8mb4_general_ci</strong>             大小写不敏感</p>
+<p><strong>utf8mb4_bin</strong>                 大小写敏感(存拼音,日文)</p>
+<p>​    <br></p>
+  <br>
+<h2 id="_6-数据类型介绍" tabindex="-1"><a class="header-anchor" href="#_6-数据类型介绍" aria-hidden="true">#</a> 6. 数据类型介绍</h2>
+   <br>
+<h3 id="_6-1-数字类型" tabindex="-1"><a class="header-anchor" href="#_6-1-数字类型" aria-hidden="true">#</a> 6.1 数字类型</h3>
+<p>常用整数类型，如 <strong>TINYINT,INT</strong> 浮点数不太常用。</p>
+<br>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-1-1.png" alt="数据类型介绍" tabindex="0" loading="lazy"><figcaption>数据类型介绍</figcaption></figure>
+<p>​    <br></p>
+  <br>
+<h3 id="_6-2-字符串类型" tabindex="-1"><a class="header-anchor" href="#_6-2-字符串类型" aria-hidden="true">#</a> 6.2 字符串类型</h3>
+<ul>
+<li>
+<p><strong>char</strong>(100)</p>
+</li>
+<li>
+<p>最多存储 <strong>255</strong> 个字符长度</p>
+ <br>
+</li>
+</ul>
+<p>定长字符串类型,不管字符串长度多长,都<strong>立即分配</strong>100个字符长度的存储空间,未占满的空间使用&quot;空格&quot;填充</p>
+   <br>
+<ul>
+<li>
+<p><strong>varchar</strong>(100)</p>
+</li>
+<li>
+<p>最多存储 <strong>65535</strong> 个字符长度</p>
+ <br>
+</li>
+</ul>
+<p>变长字符串类型,每次存储数据之前,都要<strong>先判断</strong>一下长度,<strong>按需分配</strong>此盘空间.</p>
+<p>会单独申请一个字符长度的空间存储字符长度 (⭐少于255,如果超过255以上,会占用两个存储空间):</p>
+   <br>
+<p><strong>如何选择这两个数据类型?</strong></p>
+   <br>
+<ul>
+<li>
+<p>少于255个字符串长度,定长的列值,选择 <strong>char</strong></p>
+</li>
+<li>
+<p>多于255字符长度,变长的字符串,可以选择 <strong>varchar</strong></p>
+ <br>
+<br>
+</li>
+</ul>
+<p><strong>Enum</strong> <strong>枚举数据类型</strong></p>
+<p><strong>作用：将某一列可能的字符串定义枚举，进行下标</strong></p>
+ <br>
+<p><strong>例如：</strong> address enum('sz','sh','bj'.....)</p>
+<p>下标成 1  2  3  顺序依次排列下去。</p>
+<p><strong>悬念: 以上数据类型可能会影响到索引的性能​ ❓</strong></p>
+   <br>
+  <br>
+<h3 id="_6-3-时间类型" tabindex="-1"><a class="header-anchor" href="#_6-3-时间类型" aria-hidden="true">#</a> 6.3 时间类型</h3>
+ <br>
+<ul>
+<li><strong>datetime</strong></li>
+</ul>
+<p>范围为从 1000-01-01 00:00:00.000000 至 9999-12-31 23:59:59.999999。</p>
+<ul>
+<li><strong>timestamp</strong></li>
+</ul>
+<p>范围为从 1970-01-01 00:00:00.000000 至 2038-01-19 03:14:07.999999。</p>
+   <br>
+<p><strong>timestamp</strong> 时区功能跟着时区自动变更时间</p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-1-2.png" alt="时间类型介绍" tabindex="0" loading="lazy"><figcaption>时间类型介绍</figcaption></figure>
+<h3 id="_6-4-二进制类型" tabindex="-1"><a class="header-anchor" href="#_6-4-二进制类型" aria-hidden="true">#</a> <strong>6.4 二进制类型</strong></h3>
+<br>
+<p>关系型数据库不太擅长存储二进制类型数据。如：图片 、视频 、音频、文件。</p>
+</div></template>
+
+

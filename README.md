@@ -36,7 +36,7 @@ features:
   - title: ELASTIC STACK
     icon: info
     details: 开源产品合集，包括 Elasticsearch、Kibana、Logstash 以及 Beats 等。
-    link: /statuspage/
+    link: /elk/
 
   - title: Nginx
     icon: sitemap

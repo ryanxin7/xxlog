@@ -1,0 +1,315 @@
+<template><div><h1 id="innodb-核心特性" tabindex="-1"><a class="header-anchor" href="#innodb-核心特性" aria-hidden="true">#</a> InnoDB 核心特性</h1>
+<h2 id="_1-事务" tabindex="-1"><a class="header-anchor" href="#_1-事务" aria-hidden="true">#</a> 1. 事务</h2>
+<br>
+<p>事务保证金融交易类服务的安全性完整性和公平性。</p>
+<br>
+<h3 id="_1-1-事务的-acid-特性" tabindex="-1"><a class="header-anchor" href="#_1-1-事务的-acid-特性" aria-hidden="true">#</a> 1.1 事务的 ACID 特性</h3>
+<br>
+<ul>
+<li><strong>Atomic（原子性）</strong></li>
+</ul>
+<p>所有语句作为一个单元全部成功执行或全部取消。不能出现中间状态。</p>
+<ul>
+<li><strong>Consistent（一致性）</strong></li>
+</ul>
+<p>如果数据库在事务开始时处于一致状态，则在执行该事务期间将保留一致状态。</p>
+<ul>
+<li><strong>Isolated（隔离性）</strong></li>
+</ul>
+<p>事务之间不相互影响。</p>
+<ul>
+<li><strong>Durable（持久性）</strong></li>
+</ul>
+<p>事务成功完成后，所做的所有更改都会准确地记录在数据库中。所做的更改不会丢失。</p>
+<p>断电时，也会在磁盘上永久保存，事务的完整性</p>
+<br>
+<h3 id="_1-2-事务控制语句" tabindex="-1"><a class="header-anchor" href="#_1-2-事务控制语句" aria-hidden="true">#</a> 1.2 事务控制语句</h3>
+<br>
+<p><strong>(1)</strong> <strong>如何开启事务</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">begin</span> <span class="token punctuation">;</span>
+<span class="token keyword">start</span> <span class="token keyword">transaction</span>；
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>(2)</strong> <strong>标准的事务语句</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>DML : 
+<span class="token keyword">insert</span> 
+<span class="token keyword">update</span> 
+<span class="token keyword">delete</span>
+mysql<span class="token operator">></span> <span class="token keyword">use</span> world<span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">update</span> city <span class="token keyword">set</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span> <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">update</span> city <span class="token keyword">set</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span> <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">update</span> city <span class="token keyword">set</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span> <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>(3) 事务的结束</strong></p>
+<p>正常的结束有两种，只能回滚未提交的事务</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token comment">--提交:</span>
+<span class="token keyword">commit</span><span class="token punctuation">;</span>
+
+<span class="token comment">--回滚:</span>
+<span class="token keyword">rollback</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
+<h3 id="_1-3-事务自动提交机制-autocommit" tabindex="-1"><a class="header-anchor" href="#_1-3-事务自动提交机制-autocommit" aria-hidden="true">#</a> 1.3 事务自动提交机制 （autocommit）</h3>
+<br>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>mysql<span class="token operator">></span> <span class="token keyword">select</span> @<span class="token variable">@autocommit</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span> @<span class="token variable">@autocommit</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span>      <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+ </span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>在线修改参数:</strong></p>
+<p><strong>(1) 会话级别:</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>mysql<span class="token operator">></span> <span class="token keyword">set</span> autocommit<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">--及时生效,只影响当前登录会话</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>(2)全局级别:</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>mysql<span class="token operator">></span> <span class="token keyword">set</span> <span class="token keyword">global</span> autocommit<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token comment">--断开窗口重连后生效,影响到所有新开的会话</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>(3)永久修改(重启生效)</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>vim <span class="token operator">/</span>etc<span class="token operator">/</span>my<span class="token punctuation">.</span>cnf  <span class="token comment">--修改配置文件</span>
+autocommit<span class="token operator">=</span><span class="token number">0</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><br>
+<h3 id="_1-4-隐式提交的情况" tabindex="-1"><a class="header-anchor" href="#_1-4-隐式提交的情况" aria-hidden="true">#</a> 1.4  <strong>隐式提交的情况</strong></h3>
+<p><strong>触发隐式提交的语句</strong></p>
+<p><strong>导致提交的非事务语句：</strong></p>
+<p>DDL语句： （ALTER、CREATE 和 DROP）</p>
+<p>DCL语句： （GRANT、REVOKE 和 SET PASSWORD）</p>
+<p>锁定语句：（LOCK TABLES 和 UNLOCK TABLES）</p>
+<p><strong>导致隐式提交的语句示例：</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">TRUNCATE</span> <span class="token keyword">TABLE</span>   <span class="token comment">--清除表数据</span>
+<span class="token keyword">LOAD</span> <span class="token keyword">DATA</span> <span class="token keyword">INFILE</span> <span class="token comment">--导入</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">FOR</span> <span class="token keyword">UPDATE</span> <span class="token comment">--查询更新</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
+<h2 id="_2-事务的acid-特性如何保证" tabindex="-1"><a class="header-anchor" href="#_2-事务的acid-特性如何保证" aria-hidden="true">#</a> 2. 事务的ACID 特性如何保证</h2>
+<br>
+<h3 id="_2-1-相关概念名词-初步了解" tabindex="-1"><a class="header-anchor" href="#_2-1-相关概念名词-初步了解" aria-hidden="true">#</a> 2.1 相关概念名词 （初步了解）</h3>
+<br>
+<table>
+<thead>
+<tr>
+<th>相关名词</th>
+<th>作用注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Redo log</td>
+<td>重做日志，默认设置两个文件 ib_logfile0~1 默认大小50M，轮询使用</td>
+</tr>
+<tr>
+<td>Redo log buffer</td>
+<td>Redo log 的内存区域</td>
+</tr>
+<tr>
+<td>IBD</td>
+<td>用于存储 数据行和索引</td>
+</tr>
+<tr>
+<td>Data butter pool</td>
+<td>对应IBD 文件，缓冲区池，数据行和索引的缓存区</td>
+</tr>
+<tr>
+<td>LSN</td>
+<td>日志的序列号，类似Git 版本号。数据库启动,会比较<strong>磁盘数据页和redo log的LSN,两者一致才能正常启动</strong></td>
+</tr>
+<tr>
+<td>WAL</td>
+<td>日志优先写，Write Ahead Log 日志优先写的方式实现持久化,<strong>日志是优先于数据写入磁盘的</strong></td>
+</tr>
+<tr>
+<td>脏页</td>
+<td>内存中发生了修改,<strong>没写入到磁盘之前</strong>,我们把内存页称之为脏页</td>
+</tr>
+<tr>
+<td>CKPT</td>
+<td>Check Point 检查点,就是将<strong>脏页刷写到磁盘的动作</strong></td>
+</tr>
+<tr>
+<td>TXID</td>
+<td>事务号,InnoDB会为每一个事务生成一个事务号,伴随着整个事务</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3 id="_2-2-事务日志——-redo-重做日志" tabindex="-1"><a class="header-anchor" href="#_2-2-事务日志——-redo-重做日志" aria-hidden="true">#</a> 2.2 事务日志—— Redo 重做日志</h3>
+<br>
+<h4 id="_2-2-1-重做日志的作用" tabindex="-1"><a class="header-anchor" href="#_2-2-1-重做日志的作用" aria-hidden="true">#</a> 2.2.1 <strong>重做日志的作用:</strong></h4>
+<p>保证事务的 &quot;D&quot; 持久性 , A 原子性和C 一致性也有一定得作用</p>
+<p><strong>（1） 记录了内存数据页的变化</strong></p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section5-3-1.png" alt="rodo1" tabindex="0" loading="lazy"><figcaption>rodo1</figcaption></figure>
+<br>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section5-3-2.png" alt="rodo2" tabindex="0" loading="lazy"><figcaption>rodo2</figcaption></figure>
+<br>
+<br>
+<br>
+<p><strong>一次 update语句 的事务处理过程：</strong></p>
+<br>
+<ul>
+<li>首先把数据从硬盘调到内存中  （ 因为默认使用<strong>innodb</strong>存储引擎有段区页的概念 ，不能只向内存调用修改的1行数据，而是把16kb的数据页调到内存中。）    带着原本A=1数据 ，在执行 update语句后 在内存中改成了被 A=2  。</li>
+<li>按照正常思路数据修改完就要从内存写回到硬盘，但是MySQL 觉着这样操作过于低效就研发了 redo日志 ，执行 update 语句的变化的同时记录 redo日志 。（redo 负责记录内存中数据页发生的变化）记录 A从1变成 2的过程日志。</li>
+<li>commit 命令 事务提交完成时把 redo 日志写入到磁盘中，并在内存占用到达一定阈值后刷写内存中的数据到硬盘。</li>
+</ul>
+<br>
+<br>
+<p><strong>把日志提交到磁盘</strong></p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section5-3-3.png" alt="rodo1" tabindex="0" loading="lazy"><figcaption>rodo1</figcaption></figure>
+<br>
+<p><strong>(2) 提供快速的持久化功能(WAL)</strong></p>
+<br>
+<p>日志优先写机制，可以间接的保证已经提交过的事务不会在丢失。根据日志构造或重做出来（前滚）。</p>
+<br>
+<div class="hint-container tip">
+<p class="hint-container-title">Redo 的工作理念</p>
+<p><strong>Redo log 最核心的功能</strong> 就是保证数据持久化时性能更高、更快速，只需要把 Redo log 写入磁盘就能保证事务不丢失。</p>
+<p><strong>前滚操作</strong>：服务器断电时内存数据丢失 ，会把硬盘数据重新调入到内存根据redo log重做一遍还原之前的内存中的数据</p>
+<p><strong>触发阈值</strong>：比如内存使用率达到75% 数据写入磁盘</p>
+</div>
+<br>
+<p><strong>Redo log 缺陷</strong>：断电后数据库下次启动时如何知道 Redo log 是否是新的？</p>
+<br>
+<p><strong>A=1 ----&gt; A=2 101——&gt; 102</strong></p>
+<p>在数据页 、redo日志、 内存数据 、redo buffer 均有LSN号码。例如：数据原始LSN号为101 ，带到内存中变化后LSN号码就变成102。  redo buffer 也是102  redo log 中LSN号也是102 。</p>
+<br>
+<br>
+<p><strong>(3) CSR过程中实现前滚的操作</strong></p>
+<p>磁盘数据页和 redo日志 LSN 号要一致数据库服务才能启动，原始LSN号为101 ，带到内存中变化后LSN号码就变成102。  redo buffer 也是102  redo log 中LSN号也是102 。</p>
+<br>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section5-3-4.png" alt="CSR1" tabindex="0" loading="lazy"><figcaption>CSR1</figcaption></figure>
+<br>
+<p><strong>前滚操作：</strong></p>
+ <br>
+<ol>
+<li>重启发现 redo log LSN号比 数据 LSN号  不一样  ， redo 的 LSN 号较新</li>
+<li>这时原始数据 和 redo日志被加载到内存通过日志记录变化构造脏页</li>
+<li>InnoDB 存储引擎立即触发 CKPT 立即把内存中的数据写入到磁盘</li>
+<li>此时 两个LSN号就一样了可以正常启动</li>
+</ol>
+<p><strong>在启动时必须保证 redo日志文件和数据文件 LSN号 必须一致, 如果不一致就会触发 CSR最终保证一致。</strong></p>
+<br>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/section5-3-5.png" alt="前滚操作示意图" tabindex="0" loading="lazy"><figcaption>前滚操作示意图</figcaption></figure>
+<br>
+<br>
+<h4 id="_2-2-2-redo-日志位置" tabindex="-1"><a class="header-anchor" href="#_2-2-2-redo-日志位置" aria-hidden="true">#</a> 2.2.2 Redo 日志位置</h4>
+<br>
+<p><strong>Redo的日志文件名</strong>：iblogfile0 iblogfile1... 可以设置多个文件轮询记录</p>
+<p><strong>Redo buffer</strong>: 数据页的变化信息+数据页当时的LSN号</p>
+<br>
+<br>
+<h4 id="_2-2-3-redo的刷写策略" tabindex="-1"><a class="header-anchor" href="#_2-2-3-redo的刷写策略" aria-hidden="true">#</a> 2.2.3 Redo的刷写策略</h4>
+<br>
+<p>commit 提交事务后刷新当前事务的 redo buffer到磁盘</p>
+<p>还会顺便将一部分 redo buffer中没有提交的事务日志也刷新到磁盘</p>
+<p>MySQL 在启动时,必须保证redo日志文件和数据文件LSN必须一致, 如果不一致就会触发CSR,最终保证一致</p>
+<br>
+<br>
+<p><strong>情况一：</strong></p>
+<p>我们做了一个完整的事务过程 begin; update; commit。</p>
+<br>
+<ol>
+<li>在begin开始一个事务后 ,会立即分配一个TXID=tx_01</li>
+<li>update时,会将需要修改的数据页(dp_01,LSN=101),加载到data buffer中</li>
+<li>DBWR线程,会进行dp_01数据页修改更新,并更新LSN=102</li>
+<li>LOGBWR日志写线程,会将dp_01数据页的变化+LSN+TXID存储到redobuffer</li>
+<li>执行 commit时,LGWR日志写线程会将redobuffer信息写入redolog日志文件中,基于WAL原则,</li>
+<li>在日志完全写入磁盘后,commit命令才执行成功,(会将此日志打上commit标记)</li>
+<li>假如此时宕机,内存脏页没有来得及写入磁盘,内存数据全部丢失</li>
+<li>MySQL再次重启时,必须要redolog和磁盘数据页的LSN是一致的.但是,此时dp_01,TXID=tx_01磁盘是LSN=101,dp_01,TXID=tx_01,redolog中LSN=102</li>
+<li>MySQL此时无法正常启动,MySQL触发CSR.在内存追平LSN号,触发ckpt,将内存数据页更新到磁盘,从而保证磁盘数据页和redolog LSN一值.这时MySQL正长启动</li>
+</ol>
+<br>
+<p><strong>以上的工作过程,我们把它称之为基于 REDO 的&quot;前滚操作&quot;</strong></p>
+<br>
+<br>
+<h3 id="_2-3-undo-日志说明" tabindex="-1"><a class="header-anchor" href="#_2-3-undo-日志说明" aria-hidden="true">#</a> 2.3 Undo 日志说明</h3>
+<br>
+<p>Undo 回滚日志主要作用于<strong>事务在未提交时断电的情况</strong>。</p>
+<br>
+<h4 id="_2-3-1-undo-日志作用" tabindex="-1"><a class="header-anchor" href="#_2-3-1-undo-日志作用" aria-hidden="true">#</a> <strong>2.3.1 Undo 日志作用</strong></h4>
+<p>在 ACID特性中,主要保证A 原子性 的特性,同时对C一致性 I  隔离性 也有一定功效</p>
+<br>
+<p><strong>(1) 记录了数据修改之前的状态    在数据调用到内存中的同时。</strong><br>
+<strong>(2) rollback 将内存的数据修改恢复到修改之前。</strong></p>
+<br>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/section5-3-6.png" alt="回滚操作示意图" tabindex="0" loading="lazy"><figcaption>回滚操作示意图</figcaption></figure>
+<p><strong>(3) 在CSR中实现未提交数据的回滚操作</strong></p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/section5-3-7.png" alt="回滚操作示意图2" tabindex="0" loading="lazy"><figcaption>回滚操作示意图2</figcaption></figure>
+<p><strong>(4) 实现一致性快照,配合隔离级别保证多版本并发控制 MVCC ,实现读和写的操作不会互相阻塞。</strong></p>
+<br>
+<br>
+<h4 id="_2-3-2-回滚操作过程" tabindex="-1"><a class="header-anchor" href="#_2-3-2-回滚操作过程" aria-hidden="true">#</a> 2.3.2 回滚操作过程</h4>
+<p>硬盘数据调用到内存 同时 记录记录了数据修改之前的状态到undo log a=1 txid=t1 ，数据在内存中发生改变后记录到redo buffer。</p>
+<br>
+<p><strong>这时有两种情况</strong>：</p>
+<p><strong>第一种情况：</strong></p>
+<p>内存中发生了更改但是未提交 Redo log 还未写到硬盘就断电了</p>
+<p>此时，Redo log 的LSN号 为101 txid=t0</p>
+<p>数据库重启扫描到 Undo 日志LSN号却为 t1，这时直接丢掉 Undo 日志进行回滚，事务还原到未做更改之前。</p>
+<br>
+<p><strong>第二种情况</strong>：</p>
+<p>Redo log  被其他事务顺带写入磁盘中，此时 LSN号变为102 TXID=T1  但是事务标记未提交状态。</p>
+<p>数据库服务重启会对比 ibd文件和 redo 文件 构建脏页 进行前滚操作</p>
+<p>由于事务标记处于未提交状态 ，触发CSR 第二阶段</p>
+<p>Redo T1的事务编号找到 undo log 加载之前的状态，回滚恢复到事务未提交之前的状态 ，最终保证所有的LSN号都一样</p>
+<p>并丢失当前的变更。</p>
+<h3 id="_2-4-锁" tabindex="-1"><a class="header-anchor" href="#_2-4-锁" aria-hidden="true">#</a> 2.4 锁</h3>
+<br>
+<p>实现了事务之间的隔离功能, InnoDB存储引擎中实现的是行级锁。</p>
+<p>这里以厕所举例，InnoDB就相当于你去厕所只锁你蹲坑的那个门，而老版本 <strong>MyISAM</strong> 就相当于你去厕所把厕所大门给锁上了。</p>
+ <br>
+<p><strong>row-level lock</strong> 行级锁定，默认超时时间为50秒达到时间回滚事务，作用是控制同一行数据的操作等待事务提交后才能修改默认超时时间50秒。</p>
+ <br>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/section5-3-8.png" alt="锁" tabindex="0" loading="lazy"><figcaption>锁</figcaption></figure>
+ <br>
+<ul>
+<li><strong>GAP</strong>      间隙锁</li>
+<li><strong>Next-lock</strong> 下一级锁 锁定范围 防止幻读情况 隔离性</li>
+</ul>
+ <br>
+<h3 id="_2-5-隔离级别" tabindex="-1"><a class="header-anchor" href="#_2-5-隔离级别" aria-hidden="true">#</a> 2.5 隔离级别</h3>
+ <br>
+<h4 id="_2-5-1-四种隔离级别" tabindex="-1"><a class="header-anchor" href="#_2-5-1-四种隔离级别" aria-hidden="true">#</a> 2.5.1 四种隔离级别</h4>
+ <br>
+<p><strong>（1）RU  : 读未提交,可脏读,一般部议叙出现</strong></p>
+<p>没提交就被看见结果了 可脏读</p>
+ <br>
+<p><strong>RC  : 读已提交,可能出现幻读,可以防止脏读.</strong></p>
+<p>每次读取的都是最新的数据，让人迷惑到底哪个结果是正确的  在金融类业务中是不允许的 幻读 ，银行在截止统计时间内的事务的结果不能是来回变动的。需要准确度极高</p>
+<p>例如：统计时间点截止23：59：59秒这个点进行统计 查询需要持续10分钟 ，在这查询的10分钟内 不能在查询过程中出现新的变化导致数值变化。</p>
+ <br>
+<p><strong>RR  : 可重复读</strong></p>
+<p>功能是防止&quot;幻读&quot;现象 ,利用的是undo的快照技术+GAP(间隙锁)+NextLock(下键锁)  使用  MVCC   ---&gt;   undo 快照</p>
+<p>使用  MVCC   ---&gt;   undo 快照  读数据的时候 mysql窗口 打开的那一刻的数据，不管其他窗口改多少次也不会变，保证不会出现在截止时间点之后的数据</p>
+ <br>
+<p><strong>SR  :</strong> 可串行化,可以防止死锁,但是并发事务性能较差</p>
+ <br>
+<p><strong>补充</strong>: 在RC级别下,可以减轻GAP+NextLock锁的问题,但是会出现幻读现象,一般在为了读一致性会在正常select后添加for update语句.但是,请记住执行完一定要commit 否则容易出现所等待比较严重.</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">select</span> @<span class="token variable">@tx_isolation</span><span class="token punctuation">;</span> <span class="token comment">--查当前隔离级别</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div> <br>
+<p><strong>更改隔离级别：</strong></p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token comment">#客户端配置</span>
+<span class="token assign-left variable">transaction_isolation</span><span class="token operator">=</span>read-uncommitted
+<span class="token assign-left variable">transaction_isolation</span><span class="token operator">=</span>read-committed
+<span class="token assign-left variable">transaction_isolation</span><span class="token operator">=</span>REPEATABLE-READ
+<span class="token assign-left variable">transaction_isolation</span><span class="token operator">=</span>Serializable
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section5-3-9.png" alt="隔离级别" tabindex="0" loading="lazy"><figcaption>隔离级别</figcaption></figure>
+<p><strong>小结</strong>：</p>
+<ul>
+<li>RU 会出现脏读 ,</li>
+<li>RC 会出现不可重复读每次读结果不一样 ,也会出现幻读.</li>
+<li>RR 通过MVCC基础解决了不可重复读,但是有可能会出现幻读现象，可以通过 锁GAP和NEXT-lock 进行避免</li>
+<li>在RR模式下,GAP和Next-lock进行避免幻读现象,必须索引支持</li>
+</ul>
+ <br>
+<p><strong>如何避免出现幻读 ?</strong></p>
+<p>RR级别 + 锁</p>
+<p>例如：在数据插入时限制大于2的范围锁定不允许插入 （GAP锁和Next-lock锁 不会锁定数据行  只会锁定那一列的索引键值）</p>
+<p>锁定5-8 的范围称之为 GAP锁又叫间隙锁。</p>
+<p>锁定 2-最大值的范围称之为  Next-lock   8 以后 9 10 ......  的数据都不能插入，称为下一级锁。</p>
+ <br>
+<p><strong>建立索引</strong></p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section5-3-9.png" alt="锁级别" tabindex="0" loading="lazy"><figcaption>锁级别</figcaption></figure>
+ <br>
+<p><strong>正在更新数据</strong></p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section5-3-10.png" alt="锁级别2" tabindex="0" loading="lazy"><figcaption>锁级别2</figcaption></figure>
+ <br>
+<p><strong>这时另一终端插入数据，进行锁等待，只能在 第二个终端提交后才能插入</strong></p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section5-3-11.png" alt="锁级别3" tabindex="0" loading="lazy"><figcaption>锁级别3</figcaption></figure>
+</div></template>
+
+

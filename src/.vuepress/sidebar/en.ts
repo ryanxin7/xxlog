@@ -49,4 +49,40 @@ export const enSidebar = sidebar({
 	  children: "structure",
     },
   ],
+        "/elk/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
+          "/linux/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
+          "/mysql/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
+          "/nginx/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],  
 });

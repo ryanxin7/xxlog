@@ -1,0 +1,584 @@
+<template><div><h1 id="dql-查询语句与元数据" tabindex="-1"><a class="header-anchor" href="#dql-查询语句与元数据" aria-hidden="true">#</a> DQL 查询语句与元数据</h1>
+<h2 id="_1-dql-介绍" tabindex="-1"><a class="header-anchor" href="#_1-dql-介绍" aria-hidden="true">#</a> <strong>1. DQL 介绍</strong></h2>
+<br>
+<p>主要对应操作：</p>
+<ul>
+<li><strong>select 语句</strong></li>
+<li><strong>show 元数据属性</strong></li>
+</ul>
+ <br>
+<h2 id="_2-select-语句的应用" tabindex="-1"><a class="header-anchor" href="#_2-select-语句的应用" aria-hidden="true">#</a> 2. Select 语句的应用</h2>
+<br>
+<h3 id="_2-1-select-单独使用的情况" tabindex="-1"><a class="header-anchor" href="#_2-1-select-单独使用的情况" aria-hidden="true">#</a> 2.1 select 单独使用的情况</h3>
+<br>
+<p><strong>查看系统参数</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>mysql<span class="token operator">></span> <span class="token keyword">select</span> @<span class="token variable">@basedir</span><span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> @<span class="token variable">@port</span><span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> @<span class="token variable">@innodb_flush_log_at_trx_commit</span><span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'innodb%'</span><span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token keyword">database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+<br>
+<h3 id="_2-2-select查询语句通用语法-单表操作" tabindex="-1"><a class="header-anchor" href="#_2-2-select查询语句通用语法-单表操作" aria-hidden="true">#</a> 2.2 select查询语句通用语法 (单表操作)</h3>
+ <br>
+<p><strong>查询语句 顺序不能打乱</strong></p>
+<ol>
+<li>select 列</li>
+<li>from 表</li>
+<li>where 条件</li>
+<li>group by 条件</li>
+<li>having  条件</li>
+<li>order by 条件</li>
+<li>limit</li>
+</ol>
+<br>
+<br>
+<h3 id="_2-3-学习环境所用的数据库文件" tabindex="-1"><a class="header-anchor" href="#_2-3-学习环境所用的数据库文件" aria-hidden="true">#</a> 2.3 学习环境所用的数据库文件</h3>
+ <br>
+<ul>
+<li>world   数据库</li>
+<li>city          城市表</li>
+<li>country     国家表</li>
+<li>countrylanguage 国家的语言</li>
+</ul>
+<br>
+<p><strong>city 表的结构</strong></p>
+<br>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>mysql<span class="token operator">></span> <span class="token keyword">desc</span> city<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------+----------+------+-----+---------+----------------+</span>
+<span class="token operator">|</span> Field    <span class="token operator">|</span> <span class="token keyword">Type</span>   <span class="token operator">|</span> <span class="token boolean">Null</span> <span class="token operator">|</span> <span class="token keyword">Key</span> <span class="token operator">|</span> <span class="token keyword">Default</span> <span class="token operator">|</span> Extra     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------+----------+------+-----+---------+----------------+</span>
+<span class="token operator">|</span> ID     <span class="token operator">|</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token keyword">NO</span>  <span class="token operator">|</span> PRI <span class="token operator">|</span> <span class="token boolean">NULL</span>  <span class="token operator">|</span> <span class="token keyword">auto_increment</span> <span class="token operator">|</span>
+<span class="token operator">|</span> Name    <span class="token operator">|</span> <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">35</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token keyword">NO</span>  <span class="token operator">|</span>   <span class="token operator">|</span>     <span class="token operator">|</span>        <span class="token operator">|</span>
+<span class="token operator">|</span> CountryCode <span class="token operator">|</span> <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token keyword">NO</span>  <span class="token operator">|</span> MUL <span class="token operator">|</span>     <span class="token operator">|</span>        <span class="token operator">|</span>
+<span class="token operator">|</span> District  <span class="token operator">|</span> <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token keyword">NO</span>  <span class="token operator">|</span>   <span class="token operator">|</span>     <span class="token operator">|</span>        <span class="token operator">|</span>
+<span class="token operator">|</span> Population <span class="token operator">|</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token keyword">NO</span>  <span class="token operator">|</span>   <span class="token operator">|</span> <span class="token number">0</span>    <span class="token operator">|</span>        <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------+----------+------+-----+---------+----------------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
+<br>
+<p><strong>相关列名字</strong></p>
+<br>
+<ul>
+<li>ID         : 城市序号(1-...)</li>
+<li>name        : 城市名字</li>
+<li>countrycode    : 国家代码,例如:CHN,USA</li>
+<li>district  :         区域  中国 省 美国 洲</li>
+<li>population :    人口数</li>
+</ul>
+<br>
+<br>
+<div class="hint-container tip">
+<p class="hint-container-title">工作中如何熟悉数据库业务?</p>
+<ul>
+<li>
+<p>快速和研发人员打好关系</p>
+</li>
+<li>
+<p>找到领导要ER图</p>
+</li>
+<li>
+<p>查看建表语句<code v-pre>DESC ,show create table</code></p>
+</li>
+<li>
+<p>查询表的全部数据前五行数据 <code v-pre>select * from city limit 5;</code></p>
+</li>
+</ul>
+</div>
+<br>
+<br>
+<h3 id="_2-4-select-配合-from-子句使用" tabindex="-1"><a class="header-anchor" href="#_2-4-select-配合-from-子句使用" aria-hidden="true">#</a> 2.4 SELECT <strong>配合</strong> <strong>FROM</strong> 子句使用</h3>
+<br>
+<p><strong>语法：</strong> <strong>select 条件列 from 表</strong></p>
+<p>例子:</p>
+<ol>
+<li><strong>查询表中所有的信息(生产中几乎是没有这种需求的)</strong></li>
+</ol>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">USE</span> world <span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> id<span class="token punctuation">,</span>NAME <span class="token punctuation">,</span>countrycode <span class="token punctuation">,</span>district<span class="token punctuation">,</span>population  <span class="token keyword">FROM</span> city<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>或者:</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span>  <span class="token keyword">FROM</span> city<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div> <br>
+<br>
+<ol start="2">
+<li><strong>查询表中 name 和population 列的值</strong></li>
+</ol>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> NAME <span class="token punctuation">,</span>population  <span class="token keyword">FROM</span> city<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div> <br>
+<br>
+<h3 id="_2-5-select-配合-where-子句使用" tabindex="-1"><a class="header-anchor" href="#_2-5-select-配合-where-子句使用" aria-hidden="true">#</a> 2.5 SELECT <strong>配合</strong> WHERE 子句使用</h3>
+<br>
+<p><strong>语法：</strong> <strong>select 条件列 from 表 where 过滤条件</strong></p>
+ <br>
+<p><strong>使用情况一：where等值条件查询类似 grep 过滤具体字符串</strong></p>
+<p><strong>例子:</strong></p>
+<p><strong>1.查询中国所有的城市名和人口数</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+ <br>
+<p><strong>使用情况二： where 配合比较判断查询(&gt; &lt; &gt;= &lt;=)</strong></p>
+<p><strong>例子:</strong></p>
+<ol>
+<li><strong>世界上小于100人的城市名和人口数</strong></li>
+</ol>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> population<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+ <br>
+<p><strong>使用情况三：  where 配合 逻辑连接符 (and or)   与或非</strong></p>
+<p><strong>例子:</strong></p>
+<p><strong>1.</strong> <strong>查询中国人口数量大于1000w的城市名和人口</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span> <span class="token operator">AND</span> population<span class="token operator">></span><span class="token number">8000000</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+<p><strong>2.</strong> <strong>查询中国或美国的城市名和人口数</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span> <span class="token operator">OR</span> countrycode<span class="token operator">=</span><span class="token string">'USA'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>3.</strong> <strong>查询人口数量在500w到600w之间的城市名和人口数</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> population<span class="token operator">></span><span class="token number">5000000</span> <span class="token operator">AND</span> population<span class="token operator">&lt;</span><span class="token number">6000000</span><span class="token punctuation">;</span> 
+或者:
+<span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> population <span class="token operator">BETWEEN</span> <span class="token number">5000000</span> <span class="token operator">AND</span> <span class="token number">6000000</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+ <br>
+<p><strong>使用情况三：where 配合 like子句 模糊查询</strong></p>
+<p><strong>例子:</strong></p>
+<p><strong>1. 查询一下contrycode中带有CH开头,城市信息</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode <span class="token operator">LIKE</span> <span class="token string">'CH%'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><br><br></p>
+<p><strong>注意:不要出现类似于 %CH%,前后都有百分号的语句,因为不走索引,性能极差<br></strong></p>
+<p><strong>如果业务中有大量需求,我们用&quot;ES&quot;来替代</strong></p>
+ <br>
+<p><strong>使用情况四：where 配合 in语句</strong></p>
+<p><strong>例子:</strong></p>
+<p><strong>1. 查询中国或美国的城市信息</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span> <span class="token operator">OR</span> countrycode<span class="token operator">=</span><span class="token string">'USA'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>或者:</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token string">'CHN'</span> <span class="token punctuation">,</span><span class="token string">'USA'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><br>
+<br>
+<h3 id="_2-6-select-配合-group-by-聚合参数应用" tabindex="-1"><a class="header-anchor" href="#_2-6-select-配合-group-by-聚合参数应用" aria-hidden="true">#</a> <strong>2.6 SELECT 配合 GROUP BY + 聚合参数应用</strong></h3>
+<br>
+<p><strong>2.6.1 常用聚合函数介绍</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token function">MAX</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">AVG</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">SUM</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> GROUP_CONCAT<span class="token punctuation">(</span> <span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><br>
+<p><strong>2.6.2 GROUP BY  生产中使用较多</strong></p>
+<p><strong>将某列中有共同条件的数据行,分成一组,然后在进行聚合函数操作.类似AWK中的数组</strong></p>
+<br>
+<p>例子:</p>
+<p><strong>1. 统计每个国家,城市的个数</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> countrycode <span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">FROM</span> city
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> countrycode<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-1.png" alt="统计每个国家,城市的个数" tabindex="0" loading="lazy"><figcaption>统计每个国家,城市的个数</figcaption></figure>
+<br>
+<br>
+<p><strong>2. 统计每个国家的总人口数.</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> countrycode<span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">FROM</span> city 
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> countrycode<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-2.png" alt="统计每个国家的总人口数" tabindex="0" loading="lazy"><figcaption>统计每个国家的总人口数</figcaption></figure>
+<br>
+<br>
+<p><strong>3. 统计每个国家省的个数</strong></p>
+<br>
+<p><strong>DISTINCT 去重 把重复省名字去重</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> countrycode<span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> district<span class="token punctuation">)</span>   <span class="token keyword">FROM</span> city
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> countrycode<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-3.png" alt="DISTINCT 去重" tabindex="0" loading="lazy"><figcaption>DISTINCT 去重</figcaption></figure>
+<br>
+<br>
+<p><strong>4.</strong> <strong>统计中国 每个省的总人口数</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> district<span class="token punctuation">,</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span>   <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> district <span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
+<br>
+<p><strong>5.</strong> <strong>统计中国 每个省城市的个数</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> district<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>NAME<span class="token punctuation">)</span>   <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> district <span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+<br>
+<p><strong>6.</strong> <strong>统计中国 每个省城市的名字列表</strong></p>
+<p>语法：<strong>GROUP_CONCAT()</strong></p>
+<p>如：guangdong  guangzhou,shenzhen,foshan.... 不统计  把列转成一行显示</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> district<span class="token punctuation">,</span> GROUP_CONCAT<span class="token punctuation">(</span>NAME<span class="token punctuation">)</span>   <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> district <span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-4.png" alt="把列转成一行显示" tabindex="0" loading="lazy"><figcaption>把列转成一行显示</figcaption></figure>
+ <br>
+<br>
+<p><strong>7.</strong> <strong>小扩展</strong></p>
+<p><strong>把结果拼成一行</strong> <br></p>
+<p><strong>格式：</strong> anhui : hefei,huaian ....<br>
+concat 拼接</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span>district<span class="token punctuation">,</span><span class="token string">":"</span> <span class="token punctuation">,</span>GROUP_CONCAT<span class="token punctuation">(</span>NAME<span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> district <span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-5.png" alt="把结果拼成一行" tabindex="0" loading="lazy"><figcaption>把结果拼成一行</figcaption></figure>
+ <br>
+<br>
+<h3 id="_2-7-select-配合having应用" tabindex="-1"><a class="header-anchor" href="#_2-7-select-配合having应用" aria-hidden="true">#</a> <strong>2.7 SELECT 配合HAVING应用</strong></h3>
+<p><strong>例子：</strong></p>
+<ol>
+<li><strong>统计所有国家的总人口数量，将总人口数量大于1亿的过滤出来</strong></li>
+</ol>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-6.png" alt="把结果拼成一行" tabindex="0" loading="lazy"><figcaption>把结果拼成一行</figcaption></figure>
+<p>SUM函数操作 在Group by 之后操作，所以不能使用where</p>
+<p>所以只能在Group by 做完分组聚合 后再做条件查询、判断、过滤时需要使用 HAVING 子句（HAVING不走索引的对性能有影响）</p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-7.png" alt="把结果拼成一行" tabindex="0" loading="lazy"><figcaption>把结果拼成一行</figcaption></figure>
+<br>
+<br>
+<h3 id="_2-8-select-配合-order-by-子句" tabindex="-1"><a class="header-anchor" href="#_2-8-select-配合-order-by-子句" aria-hidden="true">#</a> 2.8 SELECT 配合 ORDER BY 子句</h3>
+ <br>
+<p><strong>例子:</strong></p>
+<p><strong>1.</strong> <strong>统计所有国家的总人口数量,将总人口数大于5000w的过滤出来,并且按照从大到小顺序排列</strong></p>
+<p><code v-pre>GROUP BY</code> 执行完 <code v-pre>SUM ORDER BY SUM</code> 才能执行</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> countrycode<span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">FROM</span> city
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> countrycode
+<span class="token keyword">HAVING</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">50000000</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">DESC</span> <span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+ <br>
+<h3 id="_2-9-select-配合-limit-子句" tabindex="-1"><a class="header-anchor" href="#_2-9-select-配合-limit-子句" aria-hidden="true">#</a> 2.9 SELECT 配合 LIMIT 子句</h3>
+ <br>
+<p><strong>例子:</strong></p>
+<p><strong>1.</strong> 统计所有国家的总人口数量</p>
+<p><strong>将总人口数大于5000w的过滤出来</strong></p>
+<p><strong>并且按照从大到小顺序排列只显示前三名</strong> <strong>（分页显示）</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> countrycode<span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">FROM</span> city
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> countrycode
+<span class="token keyword">HAVING</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">50000000</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">DESC</span> 
+<span class="token keyword">LIMIT</span> <span class="token number">3</span> <span class="token keyword">OFFSET</span> <span class="token number">0</span><span class="token punctuation">;</span>
+ 
+<span class="token comment">--显示4-6行</span>
+ 
+<span class="token keyword">SELECT</span> countrycode<span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">FROM</span> city
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> countrycode
+<span class="token keyword">HAVING</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">50000000</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">DESC</span> 
+<span class="token keyword">LIMIT</span> <span class="token number">3</span> <span class="token keyword">OFFSET</span> <span class="token number">3</span> 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>LIMIT M,N   :跳过M行,显示一共N行</strong></p>
+<p><strong>LIMIT Y OFFSET X:跳过X行,显示一共Y行</strong></p>
+ <br>
+ <br>
+<h3 id="_2-10-练习题" tabindex="-1"><a class="header-anchor" href="#_2-10-练习题" aria-hidden="true">#</a> <strong>2.10 练习题</strong></h3>
+ <br>
+<p><strong>1.统计中国每个省的总人口数，只打印总人口数小于100w的</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span>  district <span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> district
+<span class="token keyword">HAVING</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token number">1000000</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-8.png" alt="LX1" tabindex="0" loading="lazy"><figcaption>LX1</figcaption></figure>
+ <br>
+ <br>
+<p><strong>2.</strong> <strong>查看中国所有的城市，并按人口数进行排序(从大到小)</strong></p>
+<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>SELECT * FROM city WHERE countrycode='CHN' 
+ORDER BY population DESC;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-9.png" alt="LX1" tabindex="0" loading="lazy"><figcaption>LX1</figcaption></figure>
+ <br>
+<p><strong>3.</strong> <strong>统计中国各个省的总人口数量，按照总人口从大到小排序</strong></p>
+  <br>
+<div class="language-SQL line-numbers-mode" data-ext="SQL"><pre v-pre class="language-SQL"><code>SELECT  district ,SUM(population) FROM city 
+WHERE countrycode='CHN'
+GROUP BY district
+ORDER BY SUM(population) DESC ;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+<p><strong>4.</strong> <strong>统计中国,每个省的总人口,找出总人口大于500w的,</strong></p>
+<p>并按总人口从大到小排序,只显示前三名</p>
+  <br>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span>  district <span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">FROM</span> city 
+<span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> district
+<span class="token keyword">HAVING</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">5000000</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">SUM</span><span class="token punctuation">(</span>population<span class="token punctuation">)</span> <span class="token keyword">DESC</span> 
+<span class="token keyword">LIMIT</span> <span class="token number">3</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+ <br>
+<h3 id="_2-11-小结-子句执行逻辑" tabindex="-1"><a class="header-anchor" href="#_2-11-小结-子句执行逻辑" aria-hidden="true">#</a> <strong>2.11</strong> <strong>小结 子句执行逻辑</strong></h3>
+  <br>
+<div class="language-SQL line-numbers-mode" data-ext="SQL"><pre v-pre class="language-SQL"><code>select 列， from t1 
+select disctrict , count(name) from  city   先调用表
+where countrycode='CHN'  根据where条件过滤 CHN的国家
+group by district      数组数省份出现次数
+having count(name) &gt;10 对结果集进行过滤
+order by count(name) desc  对以上结果进行排序
+limit 3; 只显示排名靠前的三位
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+ <br>
+<p>中国前三个 拥有超过十个城市的省份</p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-10.png" alt="中国前三个 拥有超过十个城市的省份" tabindex="0" loading="lazy"><figcaption>中国前三个 拥有超过十个城市的省份</figcaption></figure>
+ <br>
+ <br>
+<h3 id="_2-12-union-和-union-all-sql改写" tabindex="-1"><a class="header-anchor" href="#_2-12-union-和-union-all-sql改写" aria-hidden="true">#</a> <strong>2.12 union 和 union all  SQL改写</strong></h3>
+<p><strong>作用: 多个结果集合并查询的功能</strong></p>
+<p><strong>多个语句结果进行拼接</strong></p>
+  <br>
+<p>需求: 查询中国或者美国的城市信息</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> city <span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span> <span class="token operator">OR</span> countrycode<span class="token operator">=</span><span class="token string">'USA'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div>  <br>
+<p>改写为: 性能比改写前性能高</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> city <span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'CHN'</span>
+<span class="token keyword">UNION</span> <span class="token keyword">ALL</span> 
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> city <span class="token keyword">WHERE</span> countrycode<span class="token operator">=</span><span class="token string">'USA'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+ <br>
+<p><strong>面试题: union 和 union all 的区别</strong> <strong>?</strong></p>
+<ul>
+<li>union all  不做去重复</li>
+<li>union       会做去重操作</li>
+</ul>
+ <br>
+ <br>
+<h2 id="_3-多表连接查询-内连接" tabindex="-1"><a class="header-anchor" href="#_3-多表连接查询-内连接" aria-hidden="true">#</a> 3.多表连接查询(内连接)</h2>
+ <br>
+<h3 id="_3-1-作用引入" tabindex="-1"><a class="header-anchor" href="#_3-1-作用引入" aria-hidden="true">#</a> 3.1 作用引入</h3>
+<p>单表数据不能满足查询需求时</p>
+ <br>
+<p><strong>例子 查询世界上小于100人的城市,所在的国家名,国土面积，城市名,人口数</strong></p>
+<p>需要查询 city:</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> countrycode<span class="token punctuation">,</span>NAME<span class="token punctuation">,</span>population <span class="token keyword">FROM</span> city <span class="token keyword">WHERE</span> population<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">;</span> <span class="token comment">--city表中只能查到国家名、人口数、国家代号</span>
+PCN   Adamstown  <span class="token number">42</span> 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>需要关联查询 country：
+<code v-pre>DESC country;</code>  查看表结构</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>需要关联查询 country
+<span class="token keyword">DESC</span> country<span class="token punctuation">;</span> 查看表结构
+第二张表：
+ 
+CODE 
+NAME 国家名字
+SurfaceArea 国土面积
+ 
+<span class="token keyword">SELECT</span> NAME <span class="token punctuation">,</span>SurfaceArea <span class="token keyword">FROM</span> country <span class="token keyword">WHERE</span> CODE<span class="token operator">=</span><span class="token string">'PCN'</span><span class="token punctuation">;</span> country表中查询
+ 
+Pitcairn
+<span class="token number">49.00</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+ <br>
+<h3 id="_3-2-多表连接基本语法要求" tabindex="-1"><a class="header-anchor" href="#_3-2-多表连接基本语法要求" aria-hidden="true">#</a> 3.2 多表连接基本语法要求</h3>
+ <br> 
+<ol>
+<li>
+<p>最核心的是找到多张表之间的关联条件列</p>
+</li>
+<li>
+<p>列书写时，必须是：表名字.列</p>
+</li>
+<li>
+<p>所有涉及到的查询列，都放在selec后</p>
+</li>
+<li>
+<p>将所有的过滤，分组，排序等条件按顺序写在on的后面</p>
+</li>
+<li>
+<p>JOIN B ON A.X=B.Y  A和B的关联</p>
+<p>JOIN C ON B.m=C.n B和C 的关联</p>
+</li>
+</ol>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> 
+country<span class="token punctuation">.</span>name <span class="token punctuation">,</span>
+country<span class="token punctuation">.</span>SurfaceArea<span class="token punctuation">,</span>
+city<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+city<span class="token punctuation">.</span>Population
+<span class="token keyword">FROM</span> city
+<span class="token keyword">JOIN</span> country
+<span class="token keyword">ON</span> city<span class="token punctuation">.</span>CountryCode <span class="token operator">=</span> country<span class="token punctuation">.</span>code <span class="token comment">--关联列</span>
+<span class="token keyword">WHERE</span> city<span class="token punctuation">.</span>population<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>  <br>
+ <br>
+<h3 id="_3-3-多表连接查询例题-学生管理系统" tabindex="-1"><a class="header-anchor" href="#_3-3-多表连接查询例题-学生管理系统" aria-hidden="true">#</a> 3.3  多表连接查询例题 （学生管理系统）</h3>
+ <br>
+<p>数据库结构如下：</p>
+<div class="language-txt line-numbers-mode" data-ext="txt"><pre v-pre class="language-txt"><code>student ：学生表
+===============
+sno：  学号
+sname：学生姓名
+sage： 学生年龄
+ssex： 学生性别
+ 
+teacher ：教师表
+================
+tno： 教师编号
+tname：教师名字
+ 
+course ：课程表
+===============
+cno： 课程编号
+cname：课程名字
+tno： 教师编号
+ 
+score ：成绩表
+==============
+sno： 学号
+cno： 课程编号
+score：成绩
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+<p>数据库 ER 关系图：</p>
+<figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-11.png" alt="数据库 ER 关系图" tabindex="0" loading="lazy"><figcaption>数据库 ER 关系图</figcaption></figure>
+ <br>
+<h3 id="_3-4-多表连接举例说明" tabindex="-1"><a class="header-anchor" href="#_3-4-多表连接举例说明" aria-hidden="true">#</a> 3.4 多表连接举例说明</h3>
+  <br>
+<p><strong>1. 统计zhang3,学习了几门课</strong></p>
+<p><strong>先把涉及到的表列出来</strong></p>
+<ul>
+<li>
+<p><strong>student</strong></p>
+</li>
+<li>
+<p><strong>course</strong></p>
+ <br>
+</li>
+</ul>
+<p><strong>由于sc里面有课程编号所有只需要用到两张表就行了</strong></p>
+<p>​    <br></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> student<span class="token punctuation">.</span>sname<span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span>sc<span class="token punctuation">.</span>cno<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> student <span class="token keyword">JOIN</span> sc       <span class="token comment">--连接sc表进行查询</span>
+<span class="token keyword">ON</span> student<span class="token punctuation">.</span>sno<span class="token operator">=</span>sc<span class="token punctuation">.</span>sno
+<span class="token keyword">WHERE</span> student<span class="token punctuation">.</span>sname<span class="token operator">=</span><span class="token string">'zhang3'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>​    <br></p>
+<p>​    <br></p>
+<p><strong>2. 查询zhang3,学习的课程名称有哪些?</strong></p>
+<p><strong>把涉及到的表列出来</strong></p>
+<ul>
+<li><strong>student</strong></li>
+<li><strong>sc</strong></li>
+<li><strong>course</strong></li>
+</ul>
+ <br>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> student<span class="token punctuation">.</span>sname<span class="token punctuation">,</span>GROUP_CONCAT<span class="token punctuation">(</span>course<span class="token punctuation">.</span>cname<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> student
+<span class="token keyword">JOIN</span> sc
+<span class="token keyword">ON</span> student<span class="token punctuation">.</span>sno<span class="token operator">=</span>sc<span class="token punctuation">.</span>sno 
+<span class="token keyword">JOIN</span> course
+<span class="token keyword">ON</span> sc<span class="token punctuation">.</span>cno<span class="token operator">=</span>course<span class="token punctuation">.</span>cno
+<span class="token keyword">WHERE</span> student<span class="token punctuation">.</span>sname<span class="token operator">=</span><span class="token string">'zhang3'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> student<span class="token punctuation">.</span>sname<span class="token punctuation">;</span> <span class="token comment">--课程数组</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-12.png" alt="查询zhang3,学习的课程名称有哪些?" tabindex="0" loading="lazy"><figcaption>查询zhang3,学习的课程名称有哪些?</figcaption></figure>
+<p>结果使用一行输出 使用 <code v-pre>GROUP_CONCAT</code></p>
+ <br>
+<p><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-13.png" alt="使用 " loading="lazy">
+<br></p>
+<p>3.<strong>查询 xin 老师教的学生名和个数</strong>.</p>
+<ul>
+<li>teacher</li>
+<li>corse</li>
+<li>sc</li>
+<li>student</li>
+</ul>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> teacher<span class="token punctuation">.</span>tname<span class="token punctuation">,</span>GROUP_CONCAT<span class="token punctuation">(</span>student<span class="token punctuation">.</span>sname<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span>student<span class="token punctuation">.</span>sname<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> teacher 
+<span class="token keyword">JOIN</span> course 
+<span class="token keyword">ON</span> teacher<span class="token punctuation">.</span>tno<span class="token operator">=</span>course<span class="token punctuation">.</span>tno
+<span class="token keyword">JOIN</span> sc
+<span class="token keyword">ON</span> course<span class="token punctuation">.</span>cno<span class="token operator">=</span>sc<span class="token punctuation">.</span>cno
+<span class="token keyword">JOIN</span> student
+<span class="token keyword">ON</span> sc<span class="token punctuation">.</span>sno<span class="token operator">=</span>student<span class="token punctuation">.</span>sno
+<span class="token keyword">WHERE</span> teacher<span class="token punctuation">.</span>tname<span class="token operator">=</span><span class="token string">'xin'</span> <span class="token comment">--条件</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> teacher<span class="token punctuation">.</span>tname<span class="token punctuation">;</span> <span class="token comment">--老师数组</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+ <br>
+<p><strong>5.</strong> <strong>每位老师所教课程的平均分,并按平均分排序</strong></p>
+ <br>
+<ul>
+<li><strong>teacker</strong></li>
+<li><strong>course</strong></li>
+<li><strong>sc</strong></li>
+</ul>
+ <br>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">select</span> teacher<span class="token punctuation">.</span>tname<span class="token punctuation">,</span>course<span class="token punctuation">.</span>cname，<span class="token function">AVG</span><span class="token punctuation">(</span>sc<span class="token punctuation">.</span>score<span class="token punctuation">)</span>
+<span class="token keyword">from</span> teacker
+<span class="token keyword">join</span> course 
+<span class="token keyword">on</span> teacher<span class="token punctuation">.</span>tno<span class="token operator">=</span>course<span class="token punctuation">.</span>tno
+<span class="token keyword">JOIN</span> sc
+<span class="token keyword">ON</span> course<span class="token punctuation">.</span>con<span class="token operator">=</span>sc<span class="token punctuation">.</span>con
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> teacher<span class="token punctuation">.</span>tname<span class="token punctuation">,</span>course<span class="token punctuation">.</span>cname <span class="token comment">--把老师进行分组 ，在把课程进行分组 </span>
+<span class="token comment">--如果不分那么 一个老师如果教两门课的成绩就会混在一起</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">AVG</span><span class="token punctuation">(</span>sc<span class="token punctuation">.</span>score<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> teacher<span class="token punctuation">.</span>tname<span class="token punctuation">,</span>course<span class="token punctuation">.</span>cname<span class="token punctuation">,</span><span class="token function">AVG</span><span class="token punctuation">(</span>sc<span class="token punctuation">.</span>score<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> teacher 
+<span class="token keyword">JOIN</span> course
+<span class="token keyword">ON</span> teacher<span class="token punctuation">.</span>tno<span class="token operator">=</span>course<span class="token punctuation">.</span>tno
+<span class="token keyword">JOIN</span> sc
+<span class="token keyword">ON</span> course<span class="token punctuation">.</span>cno<span class="token operator">=</span>sc<span class="token punctuation">.</span>cno
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> teacher<span class="token punctuation">.</span>tname<span class="token punctuation">,</span>course<span class="token punctuation">.</span>cname
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">AVG</span><span class="token punctuation">(</span>sc<span class="token punctuation">.</span>score<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+ <br>
+<p><strong>6.查询oldguo所教的不及格的学生姓名</strong></p>
+  <br>
+<ul>
+<li>
+<p><strong>teacher</strong></p>
+</li>
+<li>
+<p><strong>sc</strong></p>
+</li>
+<li>
+<p><strong>student</strong></p>
+<br>
+</li>
+</ul>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> teacher<span class="token punctuation">.</span>tname<span class="token punctuation">,</span>student<span class="token punctuation">.</span>sname<span class="token punctuation">,</span>sc<span class="token punctuation">.</span>score
+<span class="token keyword">FROM</span> teacher
+<span class="token keyword">JOIN</span> course
+<span class="token keyword">ON</span> teacher<span class="token punctuation">.</span>tno<span class="token operator">=</span>course<span class="token punctuation">.</span>tno
+<span class="token keyword">JOIN</span> sc
+<span class="token keyword">ON</span> course<span class="token punctuation">.</span>cno<span class="token operator">=</span>sc<span class="token punctuation">.</span>cno
+<span class="token keyword">JOIN</span> student
+<span class="token keyword">ON</span> sc<span class="token punctuation">.</span>sno<span class="token operator">=</span>student<span class="token punctuation">.</span>sno
+<span class="token keyword">WHERE</span> teacher<span class="token punctuation">.</span>tname<span class="token operator">=</span><span class="token string">'xin'</span> <span class="token operator">AND</span> sc<span class="token punctuation">.</span>score<span class="token operator">&lt;</span><span class="token number">60</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+ <br>
+<p><strong>7.查询所有老师所教学生不及格的信息(扩展)</strong></p>
+ <br>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> teacher<span class="token punctuation">.</span>tname<span class="token punctuation">,</span>GROUP_CONCAT<span class="token punctuation">(</span>CONCAT<span class="token punctuation">(</span>student<span class="token punctuation">.</span>sname<span class="token punctuation">,</span><span class="token string">":"</span><span class="token punctuation">,</span>sc<span class="token punctuation">.</span>score<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token keyword">FROM</span> teacher
+<span class="token keyword">JOIN</span> course
+<span class="token keyword">ON</span> teacher<span class="token punctuation">.</span>tno<span class="token operator">=</span>course<span class="token punctuation">.</span>tno
+<span class="token keyword">JOIN</span> sc
+<span class="token keyword">ON</span> course<span class="token punctuation">.</span>cno<span class="token operator">=</span>sc<span class="token punctuation">.</span>cno
+<span class="token keyword">JOIN</span> student
+<span class="token keyword">ON</span> sc<span class="token punctuation">.</span>sno<span class="token operator">=</span>student<span class="token punctuation">.</span>sno
+<span class="token keyword">WHERE</span> sc<span class="token punctuation">.</span>score<span class="token operator">&lt;</span><span class="token number">60</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> teacher<span class="token punctuation">.</span>tno <span class="token comment">--按老师编号分组</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div> <br>
+ <br>
+<p><strong>8.别名应用</strong></p>
+  <br>
+<p><strong>表别名</strong> <strong>:</strong> <strong>给表起个别名省略了表长名字语句更好读</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> t<span class="token punctuation">.</span>tname<span class="token punctuation">,</span>GROUP_CONCAT<span class="token punctuation">(</span>CONCAT<span class="token punctuation">(</span>st<span class="token punctuation">.</span>sname<span class="token punctuation">,</span><span class="token string">":"</span><span class="token punctuation">,</span>sc<span class="token punctuation">.</span>score<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token keyword">FROM</span> teacher <span class="token keyword">as</span> t
+<span class="token keyword">JOIN</span> course <span class="token keyword">as</span> c
+<span class="token keyword">ON</span> t<span class="token punctuation">.</span>tno<span class="token operator">=</span>c<span class="token punctuation">.</span>tno
+<span class="token keyword">JOIN</span> sc 
+<span class="token keyword">ON</span> c<span class="token punctuation">.</span>cno<span class="token operator">=</span>sc<span class="token punctuation">.</span>cno
+<span class="token keyword">JOIN</span> student <span class="token keyword">as</span> st
+<span class="token keyword">ON</span> sc<span class="token punctuation">.</span>sno<span class="token operator">=</span>st<span class="token punctuation">.</span>sno
+<span class="token keyword">WHERE</span> sc<span class="token punctuation">.</span>score<span class="token operator">&lt;</span><span class="token number">60</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> t<span class="token punctuation">.</span>tno
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>   <br>
+<p><strong>表别名是全局调用的</strong></p>
+<p><strong>列别名:</strong></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> t<span class="token punctuation">.</span>tname <span class="token keyword">as</span> 讲师名 <span class="token punctuation">,</span>GROUP_CONCAT<span class="token punctuation">(</span>CONCAT<span class="token punctuation">(</span>st<span class="token punctuation">.</span>sname<span class="token punctuation">,</span><span class="token string">":"</span><span class="token punctuation">,</span>sc<span class="token punctuation">.</span>score<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> 不及格的
+<span class="token keyword">FROM</span> teacher <span class="token keyword">as</span> t
+<span class="token keyword">JOIN</span> course <span class="token keyword">as</span> c
+<span class="token keyword">ON</span> t<span class="token punctuation">.</span>tno<span class="token operator">=</span>c<span class="token punctuation">.</span>tno
+<span class="token keyword">JOIN</span> sc 
+<span class="token keyword">ON</span> c<span class="token punctuation">.</span>cno<span class="token operator">=</span>sc<span class="token punctuation">.</span>cno
+<span class="token keyword">JOIN</span> student <span class="token keyword">as</span> st
+<span class="token keyword">ON</span> sc<span class="token punctuation">.</span>sno<span class="token operator">=</span>st<span class="token punctuation">.</span>sno
+<span class="token keyword">WHERE</span> sc<span class="token punctuation">.</span>score<span class="token operator">&lt;</span><span class="token number">60</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> t<span class="token punctuation">.</span>tno
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://xin997.oss-cn-beijing.aliyuncs.com/xinblogs/webimg-DBA/Section3-3-14.png" alt="列别名" tabindex="0" loading="lazy"><figcaption>列别名</figcaption></figure>
+   <br>
+<p>列别名可以被 having 和 order by 调用</p>
+<p><strong>表别名是全局调用的</strong></p>
+</div></template>
+
+
