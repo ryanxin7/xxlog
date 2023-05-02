@@ -29,6 +29,7 @@ export default hopeTheme({
   },
 
   iconAssets: "//at.alicdn.com/t/c/font_3912379_hn9q3qj34w6.css",
+  //iconAssets: "//cdn1.ryanxin.live/xxlog/font_3912379_hn9q3qj34w6.css".
 
   logo: "/logo.svg",
 
