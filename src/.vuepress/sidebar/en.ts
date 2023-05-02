@@ -84,5 +84,23 @@ export const enSidebar = sidebar({
       prefix: "log/",
 	  children: "structure",
     },
-  ],  
+  ],
+          "/zookeeper/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
+          "/prometheus/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "HAproxy 笔记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
 });

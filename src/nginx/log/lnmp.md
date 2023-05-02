@@ -2,11 +2,11 @@
 title: LNMP网站架构实战
 intro: 基础知识
 featured_image: ss8.jpg
-tags:
+tag:
   - 课程实战
   - LNMP
   - Linux 服务
-categories: linux
+category: linux
 date: 2019-11-21 23:45:01
 ---
 # LNMP网站架构实战

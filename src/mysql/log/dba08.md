@@ -1,10 +1,10 @@
 ---
 title: 高可用架构方案
-tags: 
+tag: 
     - DBA
         - RDBMS
         - 高可用
-categories: 
+category: 
 - DBA
 date: 2020-7-21 2:13:01
 ---

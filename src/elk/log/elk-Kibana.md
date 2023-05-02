@@ -1,10 +1,10 @@
 ---
 title: ELK-Kibana
-tags: 
+tag: 
     - Ubuntu
     - 运维实战
     - 日志收集
-categories: 
+category: 
    - ElasticStack
 date: 2021-10-5 21:11:31
 #sticky: 2

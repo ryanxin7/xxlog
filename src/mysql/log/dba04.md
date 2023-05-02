@@ -2,10 +2,10 @@
 title: 第三章回顾 补充元数据查询部分
 ##intro:  集群架构环境统一规划说明
 ##featured_image: ss5.jpg
-tags: 
+tag: 
     - DBA
     - RDBMS
-categories: 
+category: 
  - DBA
 date: 2020-7-15 3:13:01
 ---
@@ -280,9 +280,9 @@ WHERE ENGINE='innodb';
 
 - **统计world下的city表占用空间大小**
 
-$$
+```
 公式：表的数据量=平均行长度*行数+索引长度
-$$
+```
 
 
 

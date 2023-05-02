@@ -2,10 +2,10 @@
 title: 存储引擎介绍与企业案例
 ##intro:  集群架构环境统一规划说明
 ##featured_image: ss5.jpg
-tags: 
+tag: 
     - DBA
     - RDBMS
-categories: 
+category: 
  - DBA
 date: 2020-7-15 2:13:01
 ---

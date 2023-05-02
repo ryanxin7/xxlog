@@ -1,10 +1,10 @@
 ---
 title: ELK-Logstash
-tags: 
+tag: 
     - Ubuntu
     - 运维实战
     - 日志收集
-categories: 
+category: 
    - ElasticStack
 date: 2021-10-3 21:15:34
 #sticky: 2

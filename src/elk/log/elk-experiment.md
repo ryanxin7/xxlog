@@ -1,10 +1,10 @@
 ---
 title: ELK-experiment
-tags: 
+tag: 
     - Ubuntu
     - 运维实战
     - 日志收集
-categories: 
+category: 
    - ElasticStack
 date: 2021-10-6 20:11:56
 #updated：2020-10-7 21:12:02

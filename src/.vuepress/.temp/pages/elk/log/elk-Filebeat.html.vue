@@ -80,7 +80,7 @@ dpkg <span class="token parameter variable">-i</span> filebeat-7.14.0-amd64.deb
 <span class="token number">178</span><span class="token punctuation">:</span> hosts<span class="token punctuation">:</span> [<span class="token string">"localhost:9200"</span>]
 <span class="token number">204</span><span class="token punctuation">:</span>processors<span class="token punctuation">:</span>
 <span class="token number">205</span><span class="token punctuation">:</span> <span class="token operator">-</span> add_host_metadata<span class="token punctuation">:</span>
-<span class="token number">206</span><span class="token punctuation">:</span> <span class="token function">when</span>.<span class="token operator">not</span>.contains.tags<span class="token punctuation">:</span> forwarded
+<span class="token number">206</span><span class="token punctuation">:</span> <span class="token function">when</span>.<span class="token operator">not</span>.contains.tag<span class="token punctuation">:</span> forwarded
 <span class="token number">207</span><span class="token punctuation">:</span> <span class="token operator">-</span> add_cloud_metadata<span class="token punctuation">:</span> ~
 <span class="token number">208</span><span class="token punctuation">:</span> <span class="token operator">-</span> add_docker_metadata<span class="token punctuation">:</span> ~
 <span class="token number">209</span><span class="token punctuation">:</span> <span class="token operator">-</span> add_kubernetes_metadata<span class="token punctuation">:</span> ~

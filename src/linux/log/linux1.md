@@ -4,7 +4,7 @@ intro: 基础知识
 #featured_image: ss8.jpg
 tag:
   - Linux 学习之旅
-categories: linux
+category: linux
 date: 2019-11-20 23:45:01
 ---
 # Linux 基础

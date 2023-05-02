@@ -4,11 +4,11 @@
 </blockquote>
 <p>Ceph FS在公司中使用常场景相对比较多，主要用于动静分离，多服务数据共享例如Nginx 。</p>
 <p>Ceph被多个服务同时挂载，写入数据时能实时同步，类似NFS。</p>
-<figure><img src="https://cdn.nlark.com/yuque/0/2022/png/33538388/1669602704359-0c6e3198-b50f-40e2-89dd-d5174582a165.png#averageHue=%23f5fdfc&amp;clientId=u69e86e53-ab14-4&amp;from=paste&amp;height=371&amp;id=ua7122bfa&amp;originHeight=371&amp;originWidth=852&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=174643&amp;status=done&amp;style=none&amp;taskId=uaed3187c-1260-4c48-9456-5e56536adc1&amp;title=&amp;width=852" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure><img src="http://cdn1.ryanxin.live/xxlog/1669602704359-0c6e3198-b50f-40e2-89dd-d5174582a165.png" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
 <p><strong>客户端通过ceph协议挂载</strong><br />Linux内核版本&gt;2.6.34 就内置Cpeh模块无需安装</p>
 <p><strong>MDS存储池用于存储Ceph FS上存储的文件相关的元数据</strong><br />Ceph FS需要运行Meta Data Services(MDS)服务，其守护进程为<strong>ceph-mds</strong>, ceph-mds进程管理与cephFS上存储的文件相关的元数据，并协调对ceph存储集群的访问。</p>
 <p><strong>mate data pool</strong>：用于存储Ceph FS上存储的文件相关的元数据，pool名称可以随意指定。<br />**ceph data pool **：用来保存客户端上传到Ceph的数据。</p>
-<figure><img src="https://cdn.nlark.com/yuque/0/2022/png/33538388/1669603166367-c946e2e0-1a32-43b3-b0df-124d5d008899.png#averageHue=%23c6cfc5&amp;clientId=u69e86e53-ab14-4&amp;from=paste&amp;height=325&amp;id=ue0d22e83&amp;originHeight=325&amp;originWidth=617&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=105706&amp;status=done&amp;style=none&amp;taskId=ub86d4409-a277-4e81-b6c0-6d78c2c4e2a&amp;title=&amp;width=617" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure><img src="http://cdn1.ryanxin.live/xxlog/1669603166367-c946e2e0-1a32-43b3-b0df-124d5d008899.png" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
 <h2 id="_3-1-部署mds服务" tabindex="-1"><a class="header-anchor" href="#_3-1-部署mds服务" aria-hidden="true">#</a> 3.1 部署MDS服务</h2>
 <p>在指定的ceph-mds服务器,部署ceph-mds服务，可以和其它服务器混用(如ceph-mon.<br />ceph-mgr)</p>
 <p><strong>Ubuntu:</strong></p>
@@ -109,7 +109,7 @@ mycephfs:1 <span class="token punctuation">{</span><span class="token number">0<
 root@ceph-client3-ubuntu1 <span class="token number">804</span>:-<span class="token comment"># mount -t ceph 172.31.6.101:6789:/ /mnt</span>
 <span class="token parameter variable">-o</span> <span class="token assign-left variable">name</span><span class="token operator">=</span>admin,secret<span class="token operator">=</span>AQCrVhZhof2zKxAATltgtgAdDteHSAGFEyE/mw<span class="token operator">==</span>
 
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>查看挂载情况<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/33538388/1669605911936-e6a7f84e-56d9-4da9-ad29-24d706599e3f.png#averageHue=%23737575&amp;clientId=u69e86e53-ab14-4&amp;from=paste&amp;height=136&amp;id=uc7fd7e4d&amp;originHeight=136&amp;originWidth=551&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=77350&amp;status=done&amp;style=none&amp;taskId=u43f2c89f-ccb3-4399-9c2b-75a2cdc4d68&amp;title=&amp;width=551" alt="image.png" loading="lazy"></p>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>查看挂载情况<br /><img src="http://cdn1.ryanxin.live/xxlog/1669605911936-e6a7f84e-56d9-4da9-ad29-24d706599e3f.png" alt="image.png" loading="lazy"></p>
 <p>在任何一个节点变更数据，会立即在其他客户端同步显示，非常适合多节点的web服务。</p>
 <h3 id="模拟web多节点服务场景下-数据同步效果" tabindex="-1"><a class="header-anchor" href="#模拟web多节点服务场景下-数据同步效果" aria-hidden="true">#</a> 模拟web多节点服务场景下，数据同步效果</h3>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token comment">#安装nginx</span>
@@ -150,9 +150,9 @@ apt-key <span class="token function">add</span> -
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>CentOS  安装16版本之前的客户端</p>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">wget</span> https://mirrors.tuna.tsinghua.edu.cn/ceph/rpm-15.2.15/el7/x86_64/ceph-common-15.2.15-0.el7.x86_64.rpm
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_16版本的cephfs状态" tabindex="-1"><a class="header-anchor" href="#_16版本的cephfs状态" aria-hidden="true">#</a> 16版本的CephFS状态</h3>
-<figure><img src="https://cdn.nlark.com/yuque/0/2022/png/33538388/1669605042090-f48f24ec-d38f-46c7-bf50-d120690729ec.png#averageHue=%23171619&amp;clientId=u69e86e53-ab14-4&amp;from=paste&amp;height=155&amp;id=u821b44ab&amp;originHeight=155&amp;originWidth=707&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=97443&amp;status=done&amp;style=none&amp;taskId=u30c2f1cd-d6ef-45a7-93dc-ddf76b6c6b4&amp;title=&amp;width=707" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure><img src="http://cdn1.ryanxin.live/xxlog/1669605042090-f48f24ec-d38f-46c7-bf50-d120690729ec.png" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
 <h3 id="_13版本的cephfs状态" tabindex="-1"><a class="header-anchor" href="#_13版本的cephfs状态" aria-hidden="true">#</a> 13版本的CephFS状态</h3>
-<figure><img src="https://cdn.nlark.com/yuque/0/2022/png/33538388/1669605075412-881c1d1a-cb39-4b96-b065-85fffd037559.png#averageHue=%23193f1a&amp;clientId=u69e86e53-ab14-4&amp;from=paste&amp;height=324&amp;id=u741341d0&amp;originHeight=324&amp;originWidth=703&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=160542&amp;status=done&amp;style=none&amp;taskId=u165beecd-6c29-416e-b13b-d8f44828754&amp;title=&amp;width=703" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure><img src="http://cdn1.ryanxin.live/xxlog/1669605075412-881c1d1a-cb39-4b96-b065-85fffd037559.png" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
 <p>压测工具：<br />Jmeter</p>
 <h2 id="_3-6-命令总结" tabindex="-1"><a class="header-anchor" href="#_3-6-命令总结" aria-hidden="true">#</a> 3.6 命令总结</h2>
 <p>列出存储池并显示id</p>

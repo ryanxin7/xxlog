@@ -1,10 +1,10 @@
 ---
 title: Nginx基础-Http协议
-tags: 
+tag: 
     - 集群架构
     - Nginx
 
-categories: 
+category: 
    - Nginx
 date: 2019-9-14 11:56:11
 ---

@@ -2,11 +2,11 @@
 title: Rsync 数据镜像备份工具
 intro: 基础知识
 featured_image: ss8.jpg
-tags:
+tag:
   - 课程实战
   - Rsync
   - Linux 服务
-categories: linux
+category: linux
 date: 2019-11-19 23:45:01
 ---
 # Rsync 数据镜像备份工具

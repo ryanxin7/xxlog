@@ -1,9 +1,9 @@
 <template><div><h2 id="keepalived-高可用服务部署" tabindex="-1"><a class="header-anchor" href="#keepalived-高可用服务部署" aria-hidden="true">#</a> Keepalived 高可用服务部署</h2>
 <br>
 Keepalived 软件最早是配合 LVS 负载均衡软件而设计的，
-    用来管理并监控LVS集群系统中各个服务节点的状态，后来又加入了VRRP 协议可以实现高可用的功能。
-<p style="overflow-wrap: break-word;margin-top: 1.5em;margin-bottom: 1.5em;line-height: 2em;"><span style="color: rgb(51, 51, 51); font-family: &quot;pingfang SC&quot;, &quot;helvetica neue&quot;, arial, &quot;hiragino sans gb&quot;, &quot;microsoft yahei ui&quot;, &quot;microsoft yahei&quot;, simsun, sans-serif; white-space: pre-wrap;">  Keepalived软件主要是通过 VRRP 协议实现高可用功能的。VRRP 是Virtual Router Redundancy Protocol（虚拟路由器冗余协议）的缩写，VRRP出现的目的就是为了解决静态路由单点故障问题的，它能够保证当个别节点宕机时，整个网络可以不间断地运行
-  <br>
+用来管理并监控LVS集群系统中各个服务节点的状态，后来又加入了VRRP 协议可以实现高可用的功能。
+<br>
+Keepalived软件主要是通过 VRRP 协议实现高可用功能的。VRRP 是Virtual Router Redundancy Protocol（虚拟路由器冗余协议）的缩写，VRRP出现的目的就是为了解决静态路由单点故障问题的，它能够保证当个别节点宕机时，整个网络可以不间断地运行
 <h2 id="keepalived-软件工作原理" tabindex="-1"><a class="header-anchor" href="#keepalived-软件工作原理" aria-hidden="true">#</a> Keepalived 软件工作原理</h2>
 <br>
         期初 VRRP 的出现是为了解决静态路由的单点故障。
@@ -28,34 +28,34 @@ scp -rp /app/nginx/conf/nginx.conf 192.168.10.30:/app/nginx/conf/
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div> <br>
 <h3 id="安装-keepalived-服务软件" tabindex="-1"><a class="header-anchor" href="#安装-keepalived-服务软件" aria-hidden="true">#</a> 安装 Keepalived 服务软件</h3>
 <p>第一步：安装软件</p>
-<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>yum install -y keepalived
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>yum <span class="token function">install</span> <span class="token parameter variable">-y</span> keepalived
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><br>
 第二步：编写keepalived配置文件
-<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>vim /etc/keepalived/keepalived.conf
-man keepalived.conf   //查看文件说明信息
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">vim</span> /etc/keepalived/keepalived.conf
+<span class="token function">man</span> keepalived.conf   //查看文件说明信息
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>配置文件结构：</p>
-<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>GLOBAL CONFIGURATION  --- 全局配置
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>GLOBAL CONFIGURATION  --- 全局配置
 VRRPD CONFIGURATION   --- vrrp配置
 LVS CONFIGURATION     --- LVS服务相关配置 （可以删掉不用） 
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>kl1主 负载均衡器配置</p>
-<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>global_defs {    //全局配置
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>global_defs <span class="token punctuation">{</span>    //全局配置
 router_id kl1   //定义路由标识信息，相同局域网唯一
-       }
+       <span class="token punctuation">}</span>
        
-vrrp_instance klg1 {  //Vrrp 配置
+vrrp_instance klg1 <span class="token punctuation">{</span>  //Vrrp 配置
 state MASTER    //定义实例中主备状态的角色（MASTER/BACKUP）
 interface eth0  //设置主备服务器虚拟IP地址放置网卡位置
-virtual_router_id 31 //虚拟路由ID标识，不同实例不同，主备相同
-priority 150   //设置抢占优先级，数值越大越优先
-advert_int 1  //主备间通讯时间间隔
-authentication {  //主备间通过认证建立连接
+virtual_router_id <span class="token number">31</span> //虚拟路由ID标识，不同实例不同，主备相同
+priority <span class="token number">150</span>   //设置抢占优先级，数值越大越优先
+advert_int <span class="token number">1</span>  //主备间通讯时间间隔
+authentication <span class="token punctuation">{</span>  //主备间通过认证建立连接
 auth_type PASS
-auth_pass 1111
-}
-virtual_ipaddress {   定义主备服务器之间使用的虚拟IP地址信息
-192.168.10.60/24 dev eth0 label eth0:1
-           }
-}
+auth_pass <span class="token number">1111</span>
+<span class="token punctuation">}</span>
+virtual_ipaddress <span class="token punctuation">{</span>   定义主备服务器之间使用的虚拟IP地址信息
+<span class="token number">192.168</span>.10.60/24 dev eth0 label eth0:1
+           <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 /etc/init.d/keepalived reload  //平滑重启 Keeplived 
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>  <br>

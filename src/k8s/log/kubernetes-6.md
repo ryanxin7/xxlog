@@ -295,7 +295,7 @@ spec:
 ```
 
 
-查看pod挂载情况<br />![查看pod挂载情况](https://cdn.nlark.com/yuque/0/2023/png/33538388/1674891101243-0f2488ce-778a-4dda-87b4-90b3c1b1cf9a.png#averageHue=%23171618&clientId=ufb5cd280-a723-4&from=paste&height=390&id=u8bae82ea&name=image.png&originHeight=390&originWidth=1239&originalType=binary&ratio=1&rotation=0&showTitle=false&size=351754&status=done&style=none&taskId=uc4c9485d-da5a-4879-961e-5ec6b0f6ae9&title=&width=1239)
+查看pod挂载情况<br />![查看pod挂载情况](http://cdn1.ryanxin.live/xxlog/1674891101243-0f2488ce-778a-4dda-87b4-90b3c1b1cf9a.png)
 
 
 

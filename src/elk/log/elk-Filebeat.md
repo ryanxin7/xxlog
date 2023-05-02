@@ -1,10 +1,10 @@
 ---
 title: ELK-beats
-tags: 
+tag: 
     - Ubuntu
     - 运维实战
     - 日志收集
-categories: 
+category: 
    - ElasticStack
 date: 2021-10-6 21:13:24
 #sticky: 2
@@ -127,7 +127,7 @@ dpkg -i filebeat-7.14.0-amd64.deb
 178: hosts: ["localhost:9200"]
 204:processors:
 205: - add_host_metadata:
-206: when.not.contains.tags: forwarded
+206: when.not.contains.tag: forwarded
 207: - add_cloud_metadata: ~
 208: - add_docker_metadata: ~
 209: - add_kubernetes_metadata: ~

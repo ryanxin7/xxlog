@@ -1,9 +1,9 @@
 ---
 title: 使用Nginx构建文件仓库
-tags: 
+tag: 
     - Nginx
     - 运维实战
-categories: 
+category: 
    - 运维技术栈
 date: 2020-6-1 11:11:22
 ---

@@ -1,10 +1,10 @@
 ---
 title: Nginx 访问限制
-tags: 
+tag: 
     - 集群架构
     - Nginx
 
-categories: 
+category: 
    - Nginx
 date: 2019-9-17 13:56:11
 ---

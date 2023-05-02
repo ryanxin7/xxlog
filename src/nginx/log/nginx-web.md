@@ -1,10 +1,10 @@
 ---
 title: Nginx Web快速入门
-tags: 
+tag: 
     - 集群架构
     - Nginx
 
-categories: 
+category: 
    - Nginx
 date: 2019-9-15 16:56:11
 ---

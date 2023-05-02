@@ -2,20 +2,22 @@
 title: Keepalived 高可用服务部署
 intro: 通过 VRRP 协议实现高可用功能
 featured_image: ss8.jpg
-tags:
+tag:
   - Linux 学习之旅
   - 高可用
   - Linux 服务
-categories: linux
+category: linux
 date: 2019-11-20 23:45:01
 ---
 ## Keepalived 高可用服务部署
 
 <br>
 Keepalived 软件最早是配合 LVS 负载均衡软件而设计的，
-    用来管理并监控LVS集群系统中各个服务节点的状态，后来又加入了VRRP 协议可以实现高可用的功能。
-<p style="overflow-wrap: break-word;margin-top: 1.5em;margin-bottom: 1.5em;line-height: 2em;"><span style="color: rgb(51, 51, 51); font-family: &quot;pingfang SC&quot;, &quot;helvetica neue&quot;, arial, &quot;hiragino sans gb&quot;, &quot;microsoft yahei ui&quot;, &quot;microsoft yahei&quot;, simsun, sans-serif; white-space: pre-wrap;">  Keepalived软件主要是通过 VRRP 协议实现高可用功能的。VRRP 是Virtual Router Redundancy Protocol（虚拟路由器冗余协议）的缩写，VRRP出现的目的就是为了解决静态路由单点故障问题的，它能够保证当个别节点宕机时，整个网络可以不间断地运行
-  <br>
+用来管理并监控LVS集群系统中各个服务节点的状态，后来又加入了VRRP 协议可以实现高可用的功能。
+
+<br>
+Keepalived软件主要是通过 VRRP 协议实现高可用功能的。VRRP 是Virtual Router Redundancy Protocol（虚拟路由器冗余协议）的缩写，VRRP出现的目的就是为了解决静态路由单点故障问题的，它能够保证当个别节点宕机时，整个网络可以不间断地运行
+
 
 
 ##  Keepalived 软件工作原理
@@ -34,7 +36,6 @@ Keepalived 软件最早是配合 LVS 负载均衡软件而设计的，
 
 
 ## Keepalived 高可用服务部署
-
 
   第一步：确认反向代理服务是否工作正常 
   在kl1和kl02服务器上测试web服务器是否可以正常
@@ -65,25 +66,25 @@ Keepalived 软件最早是配合 LVS 负载均衡软件而设计的，
 ### 安装 Keepalived 服务软件
 
   第一步：安装软件
-  ```
+  ```bash
  yum install -y keepalived
   ```
 <br>
 第二步：编写keepalived配置文件
 
-```
+```bash
 vim /etc/keepalived/keepalived.conf
 man keepalived.conf   //查看文件说明信息
 ```
 配置文件结构：
-```
+```bash
 GLOBAL CONFIGURATION  --- 全局配置
 VRRPD CONFIGURATION   --- vrrp配置
 LVS CONFIGURATION     --- LVS服务相关配置 （可以删掉不用） 
 ```
 
 kl1主 负载均衡器配置
-```
+```sh
 global_defs {    //全局配置
 router_id kl1   //定义路由标识信息，相同局域网唯一
        }

@@ -1,11 +1,11 @@
 ---
 title: 等保2.0项目-日志收集实践
-tags: 
+tag: 
     - Ubuntu
     - 运维实战
     - 日志收集
     - 等保2.0
-categories: 
+category: 
  - ElasticStack
 date: 2021-10-19 15:13:02
 #sticky: 2

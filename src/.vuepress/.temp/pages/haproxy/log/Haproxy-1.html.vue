@@ -4,7 +4,7 @@
 <h3 id="_3-1-源码包安装" tabindex="-1"><a class="header-anchor" href="#_3-1-源码包安装" aria-hidden="true">#</a> 3.1 源码包安装</h3>
 <p>官方提供了Ubuntu和Debian的包，没有Centos的包<br /><img src="http://cdn1.ryanxin.live/1675997727329-efbe55ed-cb1e-4446-b7d2-40fd13d1031b.png" alt="" loading="lazy"></p>
 <hr>
-<figure><img src="https://cdn.nlark.com/yuque/0/2023/png/33538388/1675997822880-a7a98a7a-9d66-4040-902e-4575f17bcaf5.png#averageHue=%23dedddc&amp;clientId=u5305db92-c2f2-4&amp;from=paste&amp;height=717&amp;id=u17b5b1fb&amp;name=image.png&amp;originHeight=717&amp;originWidth=1001&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=94764&amp;status=done&amp;style=none&amp;taskId=u6a352590-2238-493b-a951-644948b1a6e&amp;title=&amp;width=1001" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure><img src="http://cdn1.ryanxin.live/xxlog/1675997822880-a7a98a7a-9d66-4040-902e-4575f17bcaf5.png" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
 <p><a name="lXWmr"></a></p>
 <h4 id="ubuntu-安装" tabindex="-1"><a class="header-anchor" href="#ubuntu-安装" aria-hidden="true">#</a> ubuntu 安装</h4>
 <div class="language-yaml line-numbers-mode" data-ext="yml"><pre v-pre class="language-yaml"><code>apt<span class="token punctuation">-</span>get install <span class="token punctuation">-</span><span class="token punctuation">-</span>no<span class="token punctuation">-</span>install<span class="token punctuation">-</span>recommends software<span class="token punctuation">-</span>properties<span class="token punctuation">-</span>common 

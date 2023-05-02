@@ -30,7 +30,7 @@
 <h3 id="_3-deployment方式部署" tabindex="-1"><a class="header-anchor" href="#_3-deployment方式部署" aria-hidden="true">#</a> 3. Deployment方式部署</h3>
 <p>选定好版本，下载对应的部署文件</p>
 <figure><img src="http://cdn1.ryanxin.live/1675833096495-64fbd3a8-e6ab-4eeb-9c19-063d0909ac07.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">wget</span> https://github.com/kubernetes/ingress-nginx/archive/refs/tags/controller-v1.3.1.tar.gz
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">wget</span> https://github.com/kubernetes/ingress-nginx/archive/refs/tag/controller-v1.3.1.tar.gz
 <span class="token function">tar</span> xvf controller-v1.3.1.tar.gz
 <span class="token builtin class-name">cd</span> ingress-nginx-controller-v1.3.1/deploy/static/provider/baremetal/
 <span class="token comment">#修改当前目录下的deploy.yaml，将镜像修改未国内镜像源</span>

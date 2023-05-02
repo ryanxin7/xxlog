@@ -2,11 +2,11 @@
 title: MHA 高可用部署
 ##intro:  集群架构环境统一规划说明
 ##featured_image: ss5.jpg
-tags: 
+tag: 
     - DBA
     - RDBMS
     - MHA
-categories: 
+category: 
  - DBA
 date: 2020-7-22 2:13:01
 ---

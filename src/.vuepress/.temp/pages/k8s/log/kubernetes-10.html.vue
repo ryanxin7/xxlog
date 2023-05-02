@@ -217,7 +217,7 @@ php-fpm7.4 <span class="token parameter variable">--nodaemonize</span>
 engine <span class="token operator">=</span> On
 
 <span class="token punctuation">;</span> This directive determines whether or not PHP will recognize code between
-<span class="token punctuation">;</span> <span class="token operator">&lt;</span>? and ?<span class="token operator">></span> tags as PHP <span class="token builtin class-name">source</span> <span class="token function">which</span> should be processed as such. It is
+<span class="token punctuation">;</span> <span class="token operator">&lt;</span>? and ?<span class="token operator">></span> tag as PHP <span class="token builtin class-name">source</span> <span class="token function">which</span> should be processed as such. It is
 <span class="token punctuation">;</span> generally recommended that <span class="token operator">&lt;</span>?php and ?<span class="token operator">></span> should be used and that this feature
 <span class="token punctuation">;</span> should be disabled, as enabling it may result <span class="token keyword">in</span> issues when generating XML
 <span class="token punctuation">;</span> documents, however this remains supported <span class="token keyword">for</span> backward compatibility reasons.
@@ -273,13 +273,13 @@ output_buffering <span class="token operator">=</span> <span class="token number
 <span class="token punctuation">;</span>output_handler <span class="token operator">=</span>
 
 <span class="token punctuation">;</span> URL rewriter <span class="token keyword">function</span> rewrites URL on the fly by using
-<span class="token punctuation">;</span> output buffer. You can <span class="token builtin class-name">set</span> target tags by this configuration.
+<span class="token punctuation">;</span> output buffer. You can <span class="token builtin class-name">set</span> target tag by this configuration.
 <span class="token punctuation">;</span> <span class="token string">"form"</span> tag is special tag. It will <span class="token function">add</span> hidden input tag to pass values.
-<span class="token punctuation">;</span> Refer to session.trans_sid_tags <span class="token keyword">for</span> usage.
+<span class="token punctuation">;</span> Refer to session.trans_sid_tag <span class="token keyword">for</span> usage.
 <span class="token punctuation">;</span> Default Value: <span class="token string">"form="</span>
 <span class="token punctuation">;</span> Development Value: <span class="token string">"form="</span>
 <span class="token punctuation">;</span> Production Value: <span class="token string">"form="</span>
-<span class="token punctuation">;</span>url_rewriter.tags
+<span class="token punctuation">;</span>url_rewriter.tag
 
 <span class="token punctuation">;</span> URL rewriter will not rewrite absolute URL nor form by default. To <span class="token builtin class-name">enable</span>
 <span class="token punctuation">;</span> absolute URL rewrite, allowed hosts must be defined at RUNTIME.
@@ -1509,7 +1509,7 @@ session.use_trans_sid = 0
 ; Production Value: 26
 session.sid_length = 26
 
-; The URL rewriter will look for URLs in a defined set of HTML tags.
+; The URL rewriter will look for URLs in a defined set of HTML tag.
 ; &lt;form> is special; if you include them here, the rewriter will
 ; add a hidden &lt;input> field with the info which is otherwise appended
 ; to URLs. &lt;form> tag'</span>s action attribute URL will not be modified
@@ -1518,14 +1518,14 @@ session.sid_length = 26
 <span class="token punctuation">;</span> Default Value: <span class="token string">"a=href,area=href,frame=src,form="</span>
 <span class="token punctuation">;</span> Development Value: <span class="token string">"a=href,area=href,frame=src,form="</span>
 <span class="token punctuation">;</span> Production Value: <span class="token string">"a=href,area=href,frame=src,form="</span>
-<span class="token punctuation">;</span> http://php.net/url-rewriter.tags
-session.trans_sid_tags <span class="token operator">=</span> <span class="token string">"a=href,area=href,frame=src,form="</span>
+<span class="token punctuation">;</span> http://php.net/url-rewriter.tag
+session.trans_sid_tag <span class="token operator">=</span> <span class="token string">"a=href,area=href,frame=src,form="</span>
 
 <span class="token punctuation">;</span> URL rewriter does not rewrite absolute URLs by default.
 <span class="token punctuation">;</span> To <span class="token builtin class-name">enable</span> rewrites <span class="token keyword">for</span> absolute paths, target hosts must be specified
 <span class="token punctuation">;</span> at RUNTIME. i.e. use ini_set<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">;</span> <span class="token operator">&lt;</span>form<span class="token operator">></span> tags is special. PHP will check action attribute<span class="token string">'s URL regardless
-; of session.trans_sid_tags setting.
+<span class="token punctuation">;</span> <span class="token operator">&lt;</span>form<span class="token operator">></span> tag is special. PHP will check action attribute<span class="token string">'s URL regardless
+; of session.trans_sid_tag setting.
 ; If no host is defined, HTTP_HOST will be used for allowed host.
 ; Example value: php.net,www.php.net,wiki.php.net
 ; Use "," for multiple hosts. No spaces are allowed.

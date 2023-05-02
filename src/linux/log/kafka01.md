@@ -1,10 +1,10 @@
 ---
 title: Kafka 集群实战与原理分析线上问题优化
-tags: 
+tag: 
     - Kafka
     - Zookeeper
 
-categories: 
+category: 
    - 中间件
 date: 2021-12-4 21:12:31
 ---

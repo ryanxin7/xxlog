@@ -253,7 +253,7 @@ php-fpm7.4 --nodaemonize
 engine = On
 
 ; This directive determines whether or not PHP will recognize code between
-; <? and ?> tags as PHP source which should be processed as such. It is
+; <? and ?> tag as PHP source which should be processed as such. It is
 ; generally recommended that <?php and ?> should be used and that this feature
 ; should be disabled, as enabling it may result in issues when generating XML
 ; documents, however this remains supported for backward compatibility reasons.
@@ -309,13 +309,13 @@ output_buffering = 4096
 ;output_handler =
 
 ; URL rewriter function rewrites URL on the fly by using
-; output buffer. You can set target tags by this configuration.
+; output buffer. You can set target tag by this configuration.
 ; "form" tag is special tag. It will add hidden input tag to pass values.
-; Refer to session.trans_sid_tags for usage.
+; Refer to session.trans_sid_tag for usage.
 ; Default Value: "form="
 ; Development Value: "form="
 ; Production Value: "form="
-;url_rewriter.tags
+;url_rewriter.tag
 
 ; URL rewriter will not rewrite absolute URL nor form by default. To enable
 ; absolute URL rewrite, allowed hosts must be defined at RUNTIME.
@@ -1545,7 +1545,7 @@ session.use_trans_sid = 0
 ; Production Value: 26
 session.sid_length = 26
 
-; The URL rewriter will look for URLs in a defined set of HTML tags.
+; The URL rewriter will look for URLs in a defined set of HTML tag.
 ; <form> is special; if you include them here, the rewriter will
 ; add a hidden <input> field with the info which is otherwise appended
 ; to URLs. <form> tag's action attribute URL will not be modified
@@ -1554,14 +1554,14 @@ session.sid_length = 26
 ; Default Value: "a=href,area=href,frame=src,form="
 ; Development Value: "a=href,area=href,frame=src,form="
 ; Production Value: "a=href,area=href,frame=src,form="
-; http://php.net/url-rewriter.tags
-session.trans_sid_tags = "a=href,area=href,frame=src,form="
+; http://php.net/url-rewriter.tag
+session.trans_sid_tag = "a=href,area=href,frame=src,form="
 
 ; URL rewriter does not rewrite absolute URLs by default.
 ; To enable rewrites for absolute paths, target hosts must be specified
 ; at RUNTIME. i.e. use ini_set()
-; <form> tags is special. PHP will check action attribute's URL regardless
-; of session.trans_sid_tags setting.
+; <form> tag is special. PHP will check action attribute's URL regardless
+; of session.trans_sid_tag setting.
 ; If no host is defined, HTTP_HOST will be used for allowed host.
 ; Example value: php.net,www.php.net,wiki.php.net
 ; Use "," for multiple hosts. No spaces are allowed.

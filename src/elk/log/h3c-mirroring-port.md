@@ -1,10 +1,10 @@
 ---
 title: 核心交换机数据引流
-tags: 
+tag: 
     - 运维实战
     - h3c
 
-categories: 
+category: 
    - 运维技术栈
 date: 2021-9-29 19:24:11
 ---

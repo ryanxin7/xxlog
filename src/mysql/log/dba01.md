@@ -2,10 +2,10 @@
 title: 数据库版本介绍与安装
 ##intro:  集群架构环境统一规划说明
 ##featured_image: ss5.jpg
-tags: 
+tag: 
     - DBA
     - RDBMS
-categories: 
+category: 
  - DBA
 date: 2020-7-11 22:43:01
 #sticky: 2
@@ -230,7 +230,7 @@ mysql Ver 14.14 Distrib 5.7.26, for linux-glibc2.12 (x86_64) using EditLine wrap
 
 <br>
 
-{% note success %}
+
 **5.7 版本说明**
 
 **--initialize 参数：** **做了什么？**
@@ -240,7 +240,7 @@ mysql Ver 14.14 Distrib 5.7.26, for linux-glibc2.12 (x86_64) using EditLine wrap
 **密码过期时间：180天**
 
 **给root@localhost用户设置临时密码**
-{% endnote %}
+
 
 
 

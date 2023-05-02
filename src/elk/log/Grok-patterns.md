@@ -1,10 +1,10 @@
 ---
 title: 日志处理-Grok正则捕获
-tags: 
+tag: 
     - Ubuntu
     - 运维实战
     - 日志收集
-categories: 
+category: 
  - ElasticStack
 date: 2021-10-21 15:13:02
 #sticky: 2

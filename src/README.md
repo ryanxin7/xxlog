@@ -51,7 +51,7 @@ features:
   - title: Tomcat
     icon: TOMCAT
     details: Apache 旗下的一个免费开源的轻量级Web 应用服务。
-    link: /statuspage/
+    link: /update.html
 
   - title: Mysql
     icon: MySQL
@@ -61,12 +61,17 @@ features:
   - title: Prometheus
     icon: prometheusprometheusjiankongfuwu
     details: 一个开源的服务监控系统。
-    link: icon-prometheusprometheusjiankongfuwu
+    link: /update.html
 
   - title: Linux 基础
     icon: linux
     details: 该模块主要介绍一些关于 Linux 运维过程中的问题。
     link: /linux/
+
+  - title: Zookeeper
+    icon: zookeeper
+    details: 该模块主要介绍一些关于 Linux 运维过程中的问题。
+    link: /zookeeper/
 
   - title: 应试英语技巧课
     icon: yingyu

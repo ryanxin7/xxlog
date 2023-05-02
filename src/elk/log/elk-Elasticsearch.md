@@ -1,10 +1,10 @@
 ---
 title: ELK-Elasticsearch
-tags: 
+tag: 
     - Ubuntu
     - 运维实战
     - 日志收集
-categories: 
+category: 
  - ElasticStack
 date: 2021-10-2 21:13:01
 sticky: 2

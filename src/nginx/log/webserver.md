@@ -2,11 +2,11 @@
 title: HTTP 协议与网站原理介绍
 intro: 基础知识
 featured_image: ss8.jpg
-tags:
+tag:
   - 网络协议
   - Http
   - Linux 服务
-categories: linux
+category: linux
 date: 2019-11-22 21:45:01
 ---
 

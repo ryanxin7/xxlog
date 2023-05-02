@@ -127,12 +127,11 @@ mysql Ver <span class="token number">14.14</span> Distrib <span class="token num
 <span class="token punctuation">[</span>root@m01 ~<span class="token punctuation">]</span><span class="token comment"># chown -R mysql.mysql /data</span>
 <span class="token punctuation">[</span>root@m01 ~<span class="token punctuation">]</span><span class="token comment"># mysqld --initialize --user=mysql --basedir=/application/mysql --datadir=/data/mysql/data </span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
-<p>{% note success %}
-<strong>5.7 版本说明</strong></p>
+<p><strong>5.7 版本说明</strong></p>
 <p><strong>--initialize 参数：</strong> <strong>做了什么？</strong></p>
 <p><strong>对于密码复杂度进行定制：12位，4种</strong></p>
 <p><strong>密码过期时间：180天</strong></p>
-<p %="" endnote="" %=""><strong>给root@localhost用户设置临时密码</strong></p>
+<p><strong>给root@localhost用户设置临时密码</strong></p>
 <br>
 <br>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>报错:mysqld: error <span class="token keyword">while</span> loading shared libraries: libaio.so.1: cannot <span class="token function">open</span> shared object file: No such <span class="token function">file</span> or directory

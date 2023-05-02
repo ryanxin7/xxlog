@@ -79,7 +79,7 @@ Pod资源Ingress控制器的各Pod分别以单一实例的方式运行在集群�
 
 
 ```bash
-wget https://github.com/kubernetes/ingress-nginx/archive/refs/tags/controller-v1.3.1.tar.gz
+wget https://github.com/kubernetes/ingress-nginx/archive/refs/tag/controller-v1.3.1.tar.gz
 tar xvf controller-v1.3.1.tar.gz
 cd ingress-nginx-controller-v1.3.1/deploy/static/provider/baremetal/
 #修改当前目录下的deploy.yaml，将镜像修改未国内镜像源

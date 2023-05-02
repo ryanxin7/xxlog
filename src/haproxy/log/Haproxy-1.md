@@ -22,7 +22,7 @@ breadcrumb: false
 
 ---
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/33538388/1675997822880-a7a98a7a-9d66-4040-902e-4575f17bcaf5.png#averageHue=%23dedddc&clientId=u5305db92-c2f2-4&from=paste&height=717&id=u17b5b1fb&name=image.png&originHeight=717&originWidth=1001&originalType=binary&ratio=1&rotation=0&showTitle=false&size=94764&status=done&style=none&taskId=u6a352590-2238-493b-a951-644948b1a6e&title=&width=1001)
+![image.png](http://cdn1.ryanxin.live/xxlog/1675997822880-a7a98a7a-9d66-4040-902e-4575f17bcaf5.png)
 
 <a name="lXWmr"></a>
 #### ubuntu 安装

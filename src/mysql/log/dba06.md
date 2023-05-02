@@ -1,9 +1,9 @@
 ---
 title: 常用日志文件类型介绍
-tags: 
+tag: 
     - DBA
     - RDBMS
-categories: 
+category: 
  - DBA
 date: 2020-7-18 2:13:01
 ---
