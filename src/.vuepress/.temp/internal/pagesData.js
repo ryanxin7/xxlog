@@ -7,10 +7,10 @@ export const pagesData = {
   "v-74bc627b": () => import(/* webpackChunkName: "v-74bc627b" */"D:/xxlog/src/.vuepress/.temp/pages/about/index.html.js").then(({ data }) => data),
   // path: /ceph/
   "v-1465b23c": () => import(/* webpackChunkName: "v-1465b23c" */"D:/xxlog/src/.vuepress/.temp/pages/ceph/index.html.js").then(({ data }) => data),
-  // path: /haproxy/
-  "v-4a0dc89a": () => import(/* webpackChunkName: "v-4a0dc89a" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/index.html.js").then(({ data }) => data),
   // path: /elk/
   "v-74465a84": () => import(/* webpackChunkName: "v-74465a84" */"D:/xxlog/src/.vuepress/.temp/pages/elk/index.html.js").then(({ data }) => data),
+  // path: /haproxy/
+  "v-4a0dc89a": () => import(/* webpackChunkName: "v-4a0dc89a" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/index.html.js").then(({ data }) => data),
   // path: /redis/
   "v-dc384366": () => import(/* webpackChunkName: "v-dc384366" */"D:/xxlog/src/.vuepress/.temp/pages/redis/index.html.js").then(({ data }) => data),
   // path: /statuspage/
@@ -41,16 +41,6 @@ export const pagesData = {
   "v-62950d28": () => import(/* webpackChunkName: "v-62950d28" */"D:/xxlog/src/.vuepress/.temp/pages/ceph/log/8. 对象存储网关RGW.html.js").then(({ data }) => data),
   // path: /ceph/log/9.%20ceph-crush%E8%BF%9B%E9%98%B6.html
   "v-070e3d0e": () => import(/* webpackChunkName: "v-070e3d0e" */"D:/xxlog/src/.vuepress/.temp/pages/ceph/log/9. ceph-crush进阶.html.js").then(({ data }) => data),
-  // path: /haproxy/log/Haproxy-1.html
-  "v-1715ae3e": () => import(/* webpackChunkName: "v-1715ae3e" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/Haproxy-1.html.js").then(({ data }) => data),
-  // path: /haproxy/log/Haproxy-2.html
-  "v-18ca86dd": () => import(/* webpackChunkName: "v-18ca86dd" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/Haproxy-2.html.js").then(({ data }) => data),
-  // path: /haproxy/log/Haproxy-3.html
-  "v-1a7f5f7c": () => import(/* webpackChunkName: "v-1a7f5f7c" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/Haproxy-3.html.js").then(({ data }) => data),
-  // path: /haproxy/log/Haproxy-4.html
-  "v-1c34381b": () => import(/* webpackChunkName: "v-1c34381b" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/Haproxy-4.html.js").then(({ data }) => data),
-  // path: /haproxy/log/
-  "v-3d00cf9e": () => import(/* webpackChunkName: "v-3d00cf9e" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/index.html.js").then(({ data }) => data),
   // path: /elk/log/elk-Elasticsearch.html
   "v-699a12d4": () => import(/* webpackChunkName: "v-699a12d4" */"D:/xxlog/src/.vuepress/.temp/pages/elk/log/elk-Elasticsearch.html.js").then(({ data }) => data),
   // path: /elk/log/elk-experiment.html
@@ -67,36 +57,6 @@ export const pagesData = {
   "v-691c70df": () => import(/* webpackChunkName: "v-691c70df" */"D:/xxlog/src/.vuepress/.temp/pages/elk/log/Grok-patterns.html.js").then(({ data }) => data),
   // path: /elk/log/h3c-mirroring-port.html
   "v-0489d04a": () => import(/* webpackChunkName: "v-0489d04a" */"D:/xxlog/src/.vuepress/.temp/pages/elk/log/h3c-mirroring-port.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-1.html
-  "v-55c04c62": () => import(/* webpackChunkName: "v-55c04c62" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-1.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-10.html
-  "v-627c4440": () => import(/* webpackChunkName: "v-627c4440" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-10.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-11.html
-  "v-64311cdf": () => import(/* webpackChunkName: "v-64311cdf" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-11.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-12.html
-  "v-65e5f57e": () => import(/* webpackChunkName: "v-65e5f57e" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-12.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-13.html
-  "v-679ace1d": () => import(/* webpackChunkName: "v-679ace1d" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-13.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-14.html
-  "v-694fa6bc": () => import(/* webpackChunkName: "v-694fa6bc" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-14.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-2.html
-  "v-57752501": () => import(/* webpackChunkName: "v-57752501" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-2.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-3.html
-  "v-5929fda0": () => import(/* webpackChunkName: "v-5929fda0" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-3.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-4.html
-  "v-5aded63f": () => import(/* webpackChunkName: "v-5aded63f" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-4.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-5.html
-  "v-5c93aede": () => import(/* webpackChunkName: "v-5c93aede" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-5.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-6.html
-  "v-5e48877d": () => import(/* webpackChunkName: "v-5e48877d" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-6.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-7.html
-  "v-5ffd601c": () => import(/* webpackChunkName: "v-5ffd601c" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-7.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-8.html
-  "v-61b238bb": () => import(/* webpackChunkName: "v-61b238bb" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-8.html.js").then(({ data }) => data),
-  // path: /k8s/log/kubernetes-9.html
-  "v-6367115a": () => import(/* webpackChunkName: "v-6367115a" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-9.html.js").then(({ data }) => data),
-  // path: /k8s/log/
-  "v-c9abf226": () => import(/* webpackChunkName: "v-c9abf226" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/index.html.js").then(({ data }) => data),
   // path: /linux/log/kafka01.html
   "v-310cc71e": () => import(/* webpackChunkName: "v-310cc71e" */"D:/xxlog/src/.vuepress/.temp/pages/linux/log/kafka01.html.js").then(({ data }) => data),
   // path: /linux/log/Keepalived.html
@@ -117,6 +77,16 @@ export const pagesData = {
   "v-04e26ad5": () => import(/* webpackChunkName: "v-04e26ad5" */"D:/xxlog/src/.vuepress/.temp/pages/linux/log/lnmp.html.js").then(({ data }) => data),
   // path: /linux/log/nfs.html
   "v-16a8325d": () => import(/* webpackChunkName: "v-16a8325d" */"D:/xxlog/src/.vuepress/.temp/pages/linux/log/nfs.html.js").then(({ data }) => data),
+  // path: /haproxy/log/Haproxy-1.html
+  "v-1715ae3e": () => import(/* webpackChunkName: "v-1715ae3e" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/Haproxy-1.html.js").then(({ data }) => data),
+  // path: /haproxy/log/Haproxy-2.html
+  "v-18ca86dd": () => import(/* webpackChunkName: "v-18ca86dd" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/Haproxy-2.html.js").then(({ data }) => data),
+  // path: /haproxy/log/Haproxy-3.html
+  "v-1a7f5f7c": () => import(/* webpackChunkName: "v-1a7f5f7c" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/Haproxy-3.html.js").then(({ data }) => data),
+  // path: /haproxy/log/Haproxy-4.html
+  "v-1c34381b": () => import(/* webpackChunkName: "v-1c34381b" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/Haproxy-4.html.js").then(({ data }) => data),
+  // path: /haproxy/log/
+  "v-3d00cf9e": () => import(/* webpackChunkName: "v-3d00cf9e" */"D:/xxlog/src/.vuepress/.temp/pages/haproxy/log/index.html.js").then(({ data }) => data),
   // path: /mysql/log/dba01.html
   "v-a14eb8b4": () => import(/* webpackChunkName: "v-a14eb8b4" */"D:/xxlog/src/.vuepress/.temp/pages/mysql/log/dba01.html.js").then(({ data }) => data),
   // path: /mysql/log/dba02.html
@@ -155,6 +125,36 @@ export const pagesData = {
   "v-896ae002": () => import(/* webpackChunkName: "v-896ae002" */"D:/xxlog/src/.vuepress/.temp/pages/mysql/log/dba08.html.js").then(({ data }) => data),
   // path: /mysql/log/dba09.html
   "v-86012ec4": () => import(/* webpackChunkName: "v-86012ec4" */"D:/xxlog/src/.vuepress/.temp/pages/mysql/log/dba09.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-1.html
+  "v-55c04c62": () => import(/* webpackChunkName: "v-55c04c62" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-1.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-10.html
+  "v-627c4440": () => import(/* webpackChunkName: "v-627c4440" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-10.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-11.html
+  "v-64311cdf": () => import(/* webpackChunkName: "v-64311cdf" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-11.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-12.html
+  "v-65e5f57e": () => import(/* webpackChunkName: "v-65e5f57e" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-12.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-13.html
+  "v-679ace1d": () => import(/* webpackChunkName: "v-679ace1d" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-13.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-14.html
+  "v-694fa6bc": () => import(/* webpackChunkName: "v-694fa6bc" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-14.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-2.html
+  "v-57752501": () => import(/* webpackChunkName: "v-57752501" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-2.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-3.html
+  "v-5929fda0": () => import(/* webpackChunkName: "v-5929fda0" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-3.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-4.html
+  "v-5aded63f": () => import(/* webpackChunkName: "v-5aded63f" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-4.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-5.html
+  "v-5c93aede": () => import(/* webpackChunkName: "v-5c93aede" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-5.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-6.html
+  "v-5e48877d": () => import(/* webpackChunkName: "v-5e48877d" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-6.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-7.html
+  "v-5ffd601c": () => import(/* webpackChunkName: "v-5ffd601c" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-7.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-8.html
+  "v-61b238bb": () => import(/* webpackChunkName: "v-61b238bb" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-8.html.js").then(({ data }) => data),
+  // path: /k8s/log/kubernetes-9.html
+  "v-6367115a": () => import(/* webpackChunkName: "v-6367115a" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/kubernetes-9.html.js").then(({ data }) => data),
+  // path: /k8s/log/
+  "v-c9abf226": () => import(/* webpackChunkName: "v-c9abf226" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/log/index.html.js").then(({ data }) => data),
   // path: /nginx/log/lnmp.html
   "v-58c502fb": () => import(/* webpackChunkName: "v-58c502fb" */"D:/xxlog/src/.vuepress/.temp/pages/nginx/log/lnmp.html.js").then(({ data }) => data),
   // path: /nginx/log/nginx-basics.html
@@ -239,8 +239,6 @@ export const pagesData = {
   "v-29bcf9a7": () => import(/* webpackChunkName: "v-29bcf9a7" */"D:/xxlog/src/.vuepress/.temp/pages/ceph/log/index.html.js").then(({ data }) => data),
   // path: /elk/log/
   "v-45ff8422": () => import(/* webpackChunkName: "v-45ff8422" */"D:/xxlog/src/.vuepress/.temp/pages/elk/log/index.html.js").then(({ data }) => data),
-  // path: /k8s/
-  "v-74485282": () => import(/* webpackChunkName: "v-74485282" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/index.html.js").then(({ data }) => data),
   // path: /linux/log/
   "v-4eac8d5f": () => import(/* webpackChunkName: "v-4eac8d5f" */"D:/xxlog/src/.vuepress/.temp/pages/linux/log/index.html.js").then(({ data }) => data),
   // path: /linux/
@@ -249,6 +247,8 @@ export const pagesData = {
   "v-b2e08b1e": () => import(/* webpackChunkName: "v-b2e08b1e" */"D:/xxlog/src/.vuepress/.temp/pages/mysql/log/index.html.js").then(({ data }) => data),
   // path: /mysql/
   "v-eb072ff4": () => import(/* webpackChunkName: "v-eb072ff4" */"D:/xxlog/src/.vuepress/.temp/pages/mysql/index.html.js").then(({ data }) => data),
+  // path: /k8s/
+  "v-74485282": () => import(/* webpackChunkName: "v-74485282" */"D:/xxlog/src/.vuepress/.temp/pages/k8s/index.html.js").then(({ data }) => data),
   // path: /nginx/log/
   "v-d5f5db0e": () => import(/* webpackChunkName: "v-d5f5db0e" */"D:/xxlog/src/.vuepress/.temp/pages/nginx/log/index.html.js").then(({ data }) => data),
   // path: /nginx/
@@ -271,62 +271,58 @@ export const pagesData = {
   "v-219da821": () => import(/* webpackChunkName: "v-219da821" */"D:/xxlog/src/.vuepress/.temp/pages/tag/分布式存储/index.html.js").then(({ data }) => data),
   // path: /category/elasticstack/
   "v-0e39bca4": () => import(/* webpackChunkName: "v-0e39bca4" */"D:/xxlog/src/.vuepress/.temp/pages/category/elasticstack/index.html.js").then(({ data }) => data),
-  // path: /tag/haproxy/
-  "v-dd55f3f0": () => import(/* webpackChunkName: "v-dd55f3f0" */"D:/xxlog/src/.vuepress/.temp/pages/tag/haproxy/index.html.js").then(({ data }) => data),
-  // path: /category/guide/
-  "v-ac0c2a6a": () => import(/* webpackChunkName: "v-ac0c2a6a" */"D:/xxlog/src/.vuepress/.temp/pages/category/guide/index.html.js").then(({ data }) => data),
   // path: /tag/ubuntu/
   "v-61be27cc": () => import(/* webpackChunkName: "v-61be27cc" */"D:/xxlog/src/.vuepress/.temp/pages/tag/ubuntu/index.html.js").then(({ data }) => data),
-  // path: /category/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/
-  "v-1cf46e7c": () => import(/* webpackChunkName: "v-1cf46e7c" */"D:/xxlog/src/.vuepress/.temp/pages/category/持续集成/index.html.js").then(({ data }) => data),
+  // path: /category/guide/
+  "v-ac0c2a6a": () => import(/* webpackChunkName: "v-ac0c2a6a" */"D:/xxlog/src/.vuepress/.temp/pages/category/guide/index.html.js").then(({ data }) => data),
   // path: /tag/%E8%BF%90%E7%BB%B4%E5%AE%9E%E6%88%98/
   "v-63528cab": () => import(/* webpackChunkName: "v-63528cab" */"D:/xxlog/src/.vuepress/.temp/pages/tag/运维实战/index.html.js").then(({ data }) => data),
-  // path: /category/zookeeper/
-  "v-7eba6c7b": () => import(/* webpackChunkName: "v-7eba6c7b" */"D:/xxlog/src/.vuepress/.temp/pages/category/zookeeper/index.html.js").then(({ data }) => data),
+  // path: /category/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/
+  "v-1cf46e7c": () => import(/* webpackChunkName: "v-1cf46e7c" */"D:/xxlog/src/.vuepress/.temp/pages/category/持续集成/index.html.js").then(({ data }) => data),
   // path: /tag/%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86/
   "v-96d226c2": () => import(/* webpackChunkName: "v-96d226c2" */"D:/xxlog/src/.vuepress/.temp/pages/tag/日志收集/index.html.js").then(({ data }) => data),
+  // path: /category/zookeeper/
+  "v-7eba6c7b": () => import(/* webpackChunkName: "v-7eba6c7b" */"D:/xxlog/src/.vuepress/.temp/pages/category/zookeeper/index.html.js").then(({ data }) => data),
+  // path: /tag/haproxy/
+  "v-dd55f3f0": () => import(/* webpackChunkName: "v-dd55f3f0" */"D:/xxlog/src/.vuepress/.temp/pages/tag/haproxy/index.html.js").then(({ data }) => data),
   // path: /category/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF%E6%A0%88/
   "v-f195b4ec": () => import(/* webpackChunkName: "v-f195b4ec" */"D:/xxlog/src/.vuepress/.temp/pages/category/运维技术栈/index.html.js").then(({ data }) => data),
   // path: /tag/disable/
   "v-c5a9e2d6": () => import(/* webpackChunkName: "v-c5a9e2d6" */"D:/xxlog/src/.vuepress/.temp/pages/tag/disable/index.html.js").then(({ data }) => data),
-  // path: /category/k8s/
-  "v-65f0f021": () => import(/* webpackChunkName: "v-65f0f021" */"D:/xxlog/src/.vuepress/.temp/pages/category/k8s/index.html.js").then(({ data }) => data),
-  // path: /tag/git/
-  "v-b310d42a": () => import(/* webpackChunkName: "v-b310d42a" */"D:/xxlog/src/.vuepress/.temp/pages/tag/git/index.html.js").then(({ data }) => data),
-  // path: /category/etcd/
-  "v-57f397c7": () => import(/* webpackChunkName: "v-57f397c7" */"D:/xxlog/src/.vuepress/.temp/pages/category/etcd/index.html.js").then(({ data }) => data),
-  // path: /tag/%E4%B8%AD%E9%97%B4%E4%BB%B6/
-  "v-7876eec1": () => import(/* webpackChunkName: "v-7876eec1" */"D:/xxlog/src/.vuepress/.temp/pages/tag/中间件/index.html.js").then(({ data }) => data),
   // path: /category/%E4%B8%AD%E9%97%B4%E4%BB%B6/
   "v-9d681cea": () => import(/* webpackChunkName: "v-9d681cea" */"D:/xxlog/src/.vuepress/.temp/pages/category/中间件/index.html.js").then(({ data }) => data),
-  // path: /tag/%E7%AD%89%E4%BF%9D2.0/
-  "v-f42cb762": () => import(/* webpackChunkName: "v-f42cb762" */"D:/xxlog/src/.vuepress/.temp/pages/tag/等保2.0/index.html.js").then(({ data }) => data),
+  // path: /tag/git/
+  "v-b310d42a": () => import(/* webpackChunkName: "v-b310d42a" */"D:/xxlog/src/.vuepress/.temp/pages/tag/git/index.html.js").then(({ data }) => data),
   // path: /category/linux/
   "v-9c48d85a": () => import(/* webpackChunkName: "v-9c48d85a" */"D:/xxlog/src/.vuepress/.temp/pages/category/linux/index.html.js").then(({ data }) => data),
-  // path: /tag/h3c/
-  "v-b31184f6": () => import(/* webpackChunkName: "v-b31184f6" */"D:/xxlog/src/.vuepress/.temp/pages/tag/h3c/index.html.js").then(({ data }) => data),
+  // path: /tag/%E4%B8%AD%E9%97%B4%E4%BB%B6/
+  "v-7876eec1": () => import(/* webpackChunkName: "v-7876eec1" */"D:/xxlog/src/.vuepress/.temp/pages/tag/中间件/index.html.js").then(({ data }) => data),
   // path: /category/%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84/
   "v-51b69ff6": () => import(/* webpackChunkName: "v-51b69ff6" */"D:/xxlog/src/.vuepress/.temp/pages/category/集群架构/index.html.js").then(({ data }) => data),
-  // path: /tag/k8s%E8%BF%9B%E9%98%B6%E8%AE%AD%E7%BB%83%E8%90%A5/
-  "v-a8098304": () => import(/* webpackChunkName: "v-a8098304" */"D:/xxlog/src/.vuepress/.temp/pages/tag/k8s进阶训练营/index.html.js").then(({ data }) => data),
+  // path: /tag/%E7%AD%89%E4%BF%9D2.0/
+  "v-f42cb762": () => import(/* webpackChunkName: "v-f42cb762" */"D:/xxlog/src/.vuepress/.temp/pages/tag/等保2.0/index.html.js").then(({ data }) => data),
   // path: /category/dba/
   "v-65ee5d04": () => import(/* webpackChunkName: "v-65ee5d04" */"D:/xxlog/src/.vuepress/.temp/pages/category/dba/index.html.js").then(({ data }) => data),
-  // path: /tag/k8s-%E8%AE%AD%E7%BB%83%E8%90%A5/
-  "v-3834646c": () => import(/* webpackChunkName: "v-3834646c" */"D:/xxlog/src/.vuepress/.temp/pages/tag/k8s-训练营/index.html.js").then(({ data }) => data),
-  // path: /category/nginx/
-  "v-95b29426": () => import(/* webpackChunkName: "v-95b29426" */"D:/xxlog/src/.vuepress/.temp/pages/category/nginx/index.html.js").then(({ data }) => data),
+  // path: /tag/h3c/
+  "v-b31184f6": () => import(/* webpackChunkName: "v-b31184f6" */"D:/xxlog/src/.vuepress/.temp/pages/tag/h3c/index.html.js").then(({ data }) => data),
+  // path: /category/k8s/
+  "v-65f0f021": () => import(/* webpackChunkName: "v-65f0f021" */"D:/xxlog/src/.vuepress/.temp/pages/category/k8s/index.html.js").then(({ data }) => data),
   // path: /tag/kafka/
   "v-257204d2": () => import(/* webpackChunkName: "v-257204d2" */"D:/xxlog/src/.vuepress/.temp/pages/tag/kafka/index.html.js").then(({ data }) => data),
-  // path: /category/redis/
-  "v-8848dfa8": () => import(/* webpackChunkName: "v-8848dfa8" */"D:/xxlog/src/.vuepress/.temp/pages/category/redis/index.html.js").then(({ data }) => data),
+  // path: /category/etcd/
+  "v-57f397c7": () => import(/* webpackChunkName: "v-57f397c7" */"D:/xxlog/src/.vuepress/.temp/pages/category/etcd/index.html.js").then(({ data }) => data),
   // path: /tag/zookeeper/
   "v-2671299e": () => import(/* webpackChunkName: "v-2671299e" */"D:/xxlog/src/.vuepress/.temp/pages/tag/zookeeper/index.html.js").then(({ data }) => data),
-  // path: /category/python/
-  "v-78cbe7bb": () => import(/* webpackChunkName: "v-78cbe7bb" */"D:/xxlog/src/.vuepress/.temp/pages/category/python/index.html.js").then(({ data }) => data),
+  // path: /category/nginx/
+  "v-95b29426": () => import(/* webpackChunkName: "v-95b29426" */"D:/xxlog/src/.vuepress/.temp/pages/category/nginx/index.html.js").then(({ data }) => data),
   // path: /tag/linux-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/
   "v-5168cad6": () => import(/* webpackChunkName: "v-5168cad6" */"D:/xxlog/src/.vuepress/.temp/pages/tag/linux-学习之旅/index.html.js").then(({ data }) => data),
+  // path: /category/redis/
+  "v-8848dfa8": () => import(/* webpackChunkName: "v-8848dfa8" */"D:/xxlog/src/.vuepress/.temp/pages/category/redis/index.html.js").then(({ data }) => data),
   // path: /tag/%E9%AB%98%E5%8F%AF%E7%94%A8/
   "v-62a7ba3f": () => import(/* webpackChunkName: "v-62a7ba3f" */"D:/xxlog/src/.vuepress/.temp/pages/tag/高可用/index.html.js").then(({ data }) => data),
+  // path: /category/python/
+  "v-78cbe7bb": () => import(/* webpackChunkName: "v-78cbe7bb" */"D:/xxlog/src/.vuepress/.temp/pages/category/python/index.html.js").then(({ data }) => data),
   // path: /tag/linux-%E6%9C%8D%E5%8A%A1/
   "v-613fd344": () => import(/* webpackChunkName: "v-613fd344" */"D:/xxlog/src/.vuepress/.temp/pages/tag/linux-服务/index.html.js").then(({ data }) => data),
   // path: /tag/linux%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/
@@ -351,6 +347,10 @@ export const pagesData = {
   "v-326b4600": () => import(/* webpackChunkName: "v-326b4600" */"D:/xxlog/src/.vuepress/.temp/pages/tag/dba---rdbms---高可用/index.html.js").then(({ data }) => data),
   // path: /tag/mha/
   "v-b30b6bd2": () => import(/* webpackChunkName: "v-b30b6bd2" */"D:/xxlog/src/.vuepress/.temp/pages/tag/mha/index.html.js").then(({ data }) => data),
+  // path: /tag/k8s%E8%BF%9B%E9%98%B6%E8%AE%AD%E7%BB%83%E8%90%A5/
+  "v-a8098304": () => import(/* webpackChunkName: "v-a8098304" */"D:/xxlog/src/.vuepress/.temp/pages/tag/k8s进阶训练营/index.html.js").then(({ data }) => data),
+  // path: /tag/k8s-%E8%AE%AD%E7%BB%83%E8%90%A5/
+  "v-3834646c": () => import(/* webpackChunkName: "v-3834646c" */"D:/xxlog/src/.vuepress/.temp/pages/tag/k8s-训练营/index.html.js").then(({ data }) => data),
   // path: /tag/nginx/
   "v-1a8900ba": () => import(/* webpackChunkName: "v-1a8900ba" */"D:/xxlog/src/.vuepress/.temp/pages/tag/nginx/index.html.js").then(({ data }) => data),
   // path: /tag/rsync/

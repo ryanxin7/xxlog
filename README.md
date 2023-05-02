@@ -39,7 +39,7 @@ features:
     link: /elk/
 
   - title: Nginx
-    icon: sitemap
+    icon: nginx.svg
     details: Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。
     link: /statuspage/
 
