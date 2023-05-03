@@ -1,14 +1,1 @@
 export const data = JSON.parse("{\"key\":\"v-74bc627b\",\"path\":\"/about/\",\"title\":\"关于\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"关于\",\"date\":\"2020-07-28T11:27:08.000Z\",\"draft\":false,\"sidebar\":false,\"breadcrumb\":false,\"pageInfo\":false,\"contributors\":false,\"editLink\":false,\"lastUpdated\":false,\"prev\":false,\"next\":false,\"comment\":false,\"description\":\"2020 年毕业后为了“混口饭吃”便开启了运维开发的升级之路，在升级的过程中，我发现我很喜欢“折腾”🤔。 发现了自己对技术的兴趣和热爱，也喜欢不断地尝试新的东西和探索未知的领域。 在这之后，我也遇到了一些问题。由于我经常尝试新的东西，有时候会忘记之前的一些技术细节，导致下次用到时需要重新学习和探索。其次，在我想要向朋友证明自己的实力和能力的时候，但很难找到合适的证据😂。 最后，我也想通过自己的技术水平找到一份好的工作。同时，我也希望能够与其他人交流和分享自己的经验和心得🙈。\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vuepress-theme-hope-docs-demo.netlify.app/about/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Ryan's Notebook\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"关于\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"2020 年毕业后为了“混口饭吃”便开启了运维开发的升级之路，在升级的过程中，我发现我很喜欢“折腾”🤔。 发现了自己对技术的兴趣和热爱，也喜欢不断地尝试新的东西和探索未知的领域。 在这之后，我也遇到了一些问题。由于我经常尝试新的东西，有时候会忘记之前的一些技术细节，导致下次用到时需要重新学习和探索。其次，在我想要向朋友证明自己的实力和能力的时候，但很难找到合适的证据😂。 最后，我也想通过自己的技术水平找到一份好的工作。同时，我也希望能够与其他人交流和分享自己的经验和心得🙈。\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2023-05-02T00:25:35.000Z\"}],[\"meta\",{\"property\":\"article:published_time\",\"content\":\"2020-07-28T11:27:08.000Z\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2023-05-02T00:25:35.000Z\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"关于\\\",\\\"image\\\":[\\\"\\\"],\\\"datePublished\\\":\\\"2020-07-28T11:27:08.000Z\\\",\\\"dateModified\\\":\\\"2023-05-02T00:25:35.000Z\\\",\\\"author\\\":[]}\"]]},\"headers\":[],\"readingTime\":{\"minutes\":1.25,\"words\":374},\"filePathRelative\":\"about/README.md\",\"localizedDate\":\"2020年7月28日\",\"excerpt\":\"<br>\\n<p><strong>2020</strong> 年毕业后为了“混口饭吃”便开启了运维开发的升级之路，在升级的过程中，我发现我很喜欢“<strong>折腾</strong>”🤔。</p>\\n<p>发现了自己对技术的兴趣和热爱，也喜欢不断地尝试新的东西和探索未知的领域。</p>\\n<p>在这之后，我也遇到了一些问题。由于我经常尝试新的东西，有时候会忘记之前的一些技术细节，导致下次用到时需要重新学习和探索。其次，在我想要向朋友证明自己的实力和能力的时候，但很难找到合适的证据😂。</p>\\n<p>最后，我也想通过自己的技术水平找到一份好的工作。同时，我也希望能够与其他人交流和分享自己的经验和心得🙈。</p>\",\"autoDesc\":true,\"git\":{\"createdTime\":1677227810000,\"updatedTime\":1682987135000,\"contributors\":[{\"name\":\"Ryanxin\",\"email\":\"ryanxin@xx9z@outlook.com\",\"commits\":1},{\"name\":\"ryanxin7\",\"email\":\"xinxincn0506@outlook.com\",\"commits\":1}]}}")
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

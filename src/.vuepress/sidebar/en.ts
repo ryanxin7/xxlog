@@ -103,4 +103,13 @@ export const enSidebar = sidebar({
 	  children: "structure",
     },
   ],
+          "/xj/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "小记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
 });

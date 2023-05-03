@@ -85,7 +85,6 @@ export default hopeTheme({
     config: {
       "/demo/": ["1234"],
       "/zh/demo/encrypt.html": ["1234"],
-	  "/xj/": ["xj@123.."],
     },
   },
 

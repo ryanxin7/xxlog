@@ -9,16 +9,16 @@ export const enNavbar = navbar([
   {
     text: "小记📌",
     //icon: "more",
-    //prefix: "/xj/",
+    prefix: "/xj/",
     children: [
       {
-        text: "小记",
-        //icon: "exercise",
-        refix: "/xj/",
-        children: ["/xj/",
+      text: "小记",
+      ////icon: "exercise",
+      //refix: "/xj/",
+      children: ["",
 		],
-		//children: ["", { text: "图片压缩", icon: "more", link: "https://imageresizer.com/" }],
-		
+		////children: ["", { text: "图片压缩", icon: "more", link: "https://imageresizer.com/" }],
+		//
       },
 	  //],
 	  
