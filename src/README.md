@@ -76,7 +76,7 @@ features:
   - title: 应试英语技巧课
     icon: yingyu
     details: 英文考试题型技巧培训课程
-    link: /xw/
+    link: /ExamClasses/
 
   
 

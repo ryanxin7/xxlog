@@ -11,11 +11,11 @@ export const enSidebar = sidebar({
       children: "structure",
     },
   ],
-  "/xw/": [
+  "/ExamClasses/": [
     "",
     {
       icon: "discover",
-      text: "直播课笔记",
+      //text: "直播课笔记",
       prefix: "",
       //link: "yf/",
 	  children: "structure",

@@ -1,20 +1,20 @@
 import {
   mermaidAPI
-} from "./chunk-IFU6PZM3.js";
-import "./chunk-YV43AHMX.js";
+} from "./chunk-AUPQ4PAP.js";
+import "./chunk-UA7A6VCS.js";
 import {
   isDetailedError,
   loadRegisteredDiagrams,
   registerLazyLoadedDiagrams,
   require_dist,
   utils
-} from "./chunk-5G4YUUOS.js";
-import "./chunk-R5262Q2Q.js";
-import "./chunk-7CESJEJ3.js";
+} from "./chunk-L3CNDGPF.js";
+import "./chunk-UD5A6DAI.js";
+import "./chunk-NMR7SKA6.js";
 import {
   log,
-  require_dayjs_min
-} from "./chunk-W3FTNUPT.js";
+  require_moment_min
+} from "./chunk-VGJ52J2T.js";
 import {
   __toESM
 } from "./chunk-OZI5HTJH.js";
@@ -61,7 +61,7 @@ function dedent(templ) {
 var esm_default = dedent;
 
 // node_modules/mermaid/dist/mermaid.core.mjs
-var import_dayjs = __toESM(require_dayjs_min(), 1);
+var import_moment_mini = __toESM(require_moment_min(), 1);
 var import_sanitize_url = __toESM(require_dist(), 1);
 var handleError = (error, errors, parseError) => {
   log.warn(error);
@@ -137,7 +137,7 @@ var runThrowsErrors = async function({ postRenderCallback, querySelector, nodes 
       log.debug("Detected early reinit: ", init2);
     }
     try {
-      const { svg, bindFunctions } = await render(id, txt, element);
+      const { svg, bindFunctions } = await mermaidAPI.render(id, txt, element);
       element.innerHTML = svg;
       if (postRenderCallback) {
         await postRenderCallback(id);
