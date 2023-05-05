@@ -44,7 +44,7 @@ web层：nginx、apache、tomcat等
 也就是说：采集、传输、存储、分析、警告这几部分是非常必要的。
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
 <h3 id="方案梳理" tabindex="-1"><a class="header-anchor" href="#方案梳理" aria-hidden="true">#</a> <strong>方案梳理</strong></h3>
-<p>在这个流程图中涉及到两种场景：<font color='red'>实时分析与离线分析</font>，如果需要使用市面
+<p>在这个流程图中涉及到两种场景：实时分析与离线分析，如果需要使用市面
 上的开源解决方案来实现的话，有两套方案比较有优势：</p>
 <ul>
 <li>方案一：ELK + Kafka + 分布式存储

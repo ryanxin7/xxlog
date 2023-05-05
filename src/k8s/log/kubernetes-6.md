@@ -13,7 +13,7 @@ breadcrumb: false
 ---
 
 
-<a name="nlbOU"></a>
+
 ## rbd结合k8s提供存储卷及动态存储卷使用案例
 
 > **目的：**
@@ -23,7 +23,8 @@ breadcrumb: false
 
 需要在 ceph 创建rbd并且让 k8s node 节点能够通过 ceph 的认证k8s在使用 ceph 作为动态存储卷的时候，需要 **kube-controller-manager **组件能够访问ceph，因此需要在包括k8s master及 node节点在内的每一个node 同步认证文件。
 
-<a name="eTh1Y"></a>
+
+
 ## 1.创建初始化RBD
 ```bash
 #创建新的rbd
@@ -49,7 +50,7 @@ rbd enabled application 'rbd' on pool 'xin-rbd-pool1
 #初始化
 rbdceph@ceph-deploy ~]$ rbd pool init -p xin-rbd-pool1
 ```
-<a name="cyD3t"></a>
+
 ## 2 创建image
 ```bash
 #创建镜像
@@ -75,8 +76,12 @@ inforbd image 'xin-img-img1':
    create timestamp: Wed Jan 611:01:51 2021
 ```
 
-<a name="meygs"></a>
-## 客户端安装ceph-common<br /><br />
+
+
+## 客户端安装ceph-common
+
+
+
 分别在 k8s master 与各 node 节点安装 ceph-common 组件包
 ```bash
 #下载key文件
@@ -113,7 +118,6 @@ root@k8s-node3:~$ apt install ceph-common=13.2.10-1bionic
 
 
 
-<a name="yXbkC"></a>
 ## 创建ceph 用户与授权
 
 ```bash
@@ -163,11 +167,11 @@ root@k8s-node1:~$ ceph --user xinceph-zcc -s
 
 
 
-<a name="yOaKY"></a>
+
 ## 通过 keyring 文件挂载 rbd
 基于 ceph 提供的rbd 实现存储卷的动态提供，**由两种实现方式，一是通过宿主机的 keyring文件挂载rbd**，另外**一个是通过将 keyring 中key 定义为 k8s中的 secret**,然后 pod 通过secret 挂载 rbd。
 
-<a name="LNSLN"></a>
+
 ### 通过 keyring 文件直接挂载-busybox
 ```yaml
 #podyaml文件
@@ -216,12 +220,12 @@ pod/busybox created
 
 ![验证挂载](http://cdn1.ryanxin.live/1674889936820-b1e98d87-5f4b-4363-870d-770e69014658.png)
 
-<a name="M2LZb"></a>
+
+
 ## 通过secret 挂载rbd
 
 将key定义为secret ，然后在挂载至pod，每个k8s node 就不用保存keyring文件了。
 
-<a name="W3DTh"></a>
 ### 创建secret 
 首先创建secret ，secret中主要就是包含ceph中被授权用户的keyring文件中的key,需要将key内容通过 base64编码后即可创建secret。
 
@@ -300,7 +304,7 @@ spec:
 
 
 
-<a name="ZFqiV"></a>
+
 ## ceph 持久化存储
 
 **admin secret** 用于k8s master 节点 连接到ceph 自动创建pv ，并关联pvc提供给pod 使用。<br />uer  secret 用于pod挂载。
@@ -317,7 +321,7 @@ data:
 ```
 
 
-<a name="vsb0A"></a>
+
 ### 创建存储类
 
 ```yaml
@@ -340,7 +344,7 @@ parameters:
 
 
 
-<a name="tDGmn"></a>
+
 ### 创建 secret
 ```bash
 root@k8s-master1:~/ceph-cease$ kubectl apply -f case3-secret-client-shijie.yaml
@@ -348,7 +352,7 @@ root@k8s-master1:~/ceph-cease$ kubectl apply -f case4-secret-client-admin.yaml
 ```
 
 
-<a name="D1dNe"></a>
+
 ### 创建pvc
 关联
 
@@ -434,16 +438,16 @@ ceph df
 ```
 
 
-<a name="cym4r"></a>
+
 ## cephFs
 实现多主机的挂载共享数据 
 
-<a name="KvfKl"></a>
+
 ### 配置cephfs
 步骤如下：<br />[https://www.yuque.com/ryanxx/ga3673/bz0645hbae3emovp](https://www.yuque.com/ryanxx/ga3673/bz0645hbae3emovp)
 
 
-<a name="n6eJq"></a>
+
 ### 创建nginx pod同时挂载cephfs
 ```yaml
 apiVersion: apps/v1

@@ -16,12 +16,11 @@ breadcrumb: false
 
 ## 五、HAProxy调度算法
 
- HAProxy通过固定参数  **balance ** 指明对后端服务器的调度算法，该参数可以配置在listen或backend选项中。  <br /> HAProxy的调度算法分为静态和动态调度算法，但是有些算法可以根据参数在静态和动态算法中相互转换。  
+ HAProxy通过固定参数  **balance ** 指明对后端服务器的调度算法，该参数可以配置在listen或backend选项中。   <br> HAProxy的调度算法分为静态和动态调度算法，但是有些算法可以根据参数在静态和动态算法中相互转换。  
 
  官方文档：[http://cbonte.github.io/haproxy-dconv/2.6/configuration.html#balance](http://cbonte.github.io/haproxy-dconv/2.6/configuration.html#balance)
 
 
-<a name="XL31m"></a>
 
 ### 5.1 静态算法
 
@@ -148,7 +147,7 @@ Backend is using a static LB algorithm and only accepts weights '0%' and '100%'.
 ```
 
 
-<a name="AG2bv"></a>
+
 
 #### 5.1.1 static-rr
 
@@ -168,7 +167,7 @@ listen  web_host
 
 
 
-<a name="PL2FN"></a>
+
 
 #### 5.1.2 first
 
@@ -187,7 +186,7 @@ listen  web_host
 ```
 
 
-<a name="T3wms"></a>
+
 
 ### 5.2 动态算法
 
@@ -196,7 +195,7 @@ listen  web_host
 :::
 
 
-<a name="Gr8Gw"></a>
+
 
 #### 5.2.1 roundrobin
 
@@ -212,8 +211,7 @@ listen web_host
   server web2  10.0.0.27:80 weight 2  check inter 3000 fall 2 rise 5
 ```
 
-
-** 支持动态调整权重：  **
+**支持动态调整权重:**
 
 ```bash
 # echo "get weight web_host/web1" | socat stdio /var/lib/haproxy/haproxy.sock 
@@ -225,7 +223,7 @@ listen web_host
 3 (initial 1)
 ```
 
-<a name="OyctY"></a>
+
 
 #### 5.2.2 leastconn
 
@@ -241,7 +239,7 @@ listen  web_host
   server web2  10.0.0.27:80 weight 1  check inter 3000 fall 2 rise 5
 ```
 
-<a name="OshWG"></a>
+
 
 #### 5.2.3 random
 
@@ -257,23 +255,23 @@ listen  web_host
   server web2  10.0.0.27:80 weight 1  check inter 3000 fall 2 rise 5
 ```
 
-<a name="aVdfq"></a>
+
 
 ### 5.3 其他算法
 
  其它算法即可作为静态算法，又可以通过选项成为动态算法  
 
-<a name="qlZVC"></a>
+
 
 #### 5.3.1 source
 
-源地址hash，**基于用户源地址hash并将请求转发到后端服务器，后续同一个源地址请求将被转发至同一个后端web服务器。**<br />此方式当后端服务器数据量发生变化时，会导致很多用户的请求转发至新的后端服务器，默认为静态方式，但是可以通过hash-type支持的选项更改。<br />这个算法一般是在不插入Cookie的TCP模式下使用，也可给拒绝会话cookie的客户提供最好的会话粘性，适用于session会话保持但不支持cookie和缓存的场景<br />源地址有两种转发客户端请求到后端服务器的服务器选取计算方式，分别是取模法和一致性hash
+源地址hash，**基于用户源地址hash并将请求转发到后端服务器，后续同一个源地址请求将被转发至同一个后端web服务器。** <br>此方式当后端服务器数据量发生变化时，会导致很多用户的请求转发至新的后端服务器，默认为静态方式，但是可以通过hash-type支持的选项更改。 <br>这个算法一般是在不插入Cookie的TCP模式下使用，也可给拒绝会话cookie的客户提供最好的会话粘性，适用于session会话保持但不支持cookie和缓存的场景 <br>源地址有两种转发客户端请求到后端服务器的服务器选取计算方式，分别是取模法和一致性hash
 
-<a name="Tnufu"></a>
+
 
 #### 5.3.2 map-base取模法
 
- map-based：取模法，对source地址进行hash计算，再基于服务器总权重的取模，最终结果决定将此请求转发至对应的后端服务器。<br />此方法是静态的，即不支持在线调整权重，不支持慢启动，可实现对后端服务器均衡调度。<br />**缺点是当服务器的总权重发生变化时，即有服务器上线或下线，都会因总权重发生变化而导致调度结果整体改变**，hash-type 指定的默认值为此算法  。
+ map-based：取模法，对source地址进行hash计算，再基于服务器总权重的取模，最终结果决定将此请求转发至对应的后端服务器。 <br>此方法是静态的，即不支持在线调整权重，不支持慢启动，可实现对后端服务器均衡调度。 <br>**缺点是当服务器的总权重发生变化时，即有服务器上线或下线，都会因总权重发生变化而导致调度结果整体改变**，hash-type 指定的默认值为此算法  。
 
 > 所谓取模运算，就是计算两个数相除之后的余数，**10%7=3, 7%4=3 **
 > map-based算法：基于权重取模，hash(source_ip)%所有后端服务器相加的总权重
@@ -297,7 +295,7 @@ Backend is using a static LB algorithm and only accepts weights '0%' and '100%'.
 0 (initial 1)
 ```
 
-<a name="fSbEt"></a>
+
 
 #### 5.3.3 一致性hash
 
@@ -320,10 +318,10 @@ Backend is using a static LB algorithm and only accepts weights '0%' and '100%'.
 
 hash对象
 
- Hash对象到后端服务器的映射关系：  <br />![](http://cdn1.ryanxin.live/1676269845062-cd498fcb-971f-4446-b3a5-524a0ab84182.png)
+ Hash对象到后端服务器的映射关系：   <br>![](http://cdn1.ryanxin.live/1676269845062-cd498fcb-971f-4446-b3a5-524a0ab84182.png)
 
 
-一致性hash示意图<br />后端服务器在线与离线的调度方式<br />![](http://cdn1.ryanxin.live/1676269866029-afd24654-75c6-4b26-9d9d-5e7a37d18737.png)
+一致性hash示意图 <br>后端服务器在线与离线的调度方式 <br>![](http://cdn1.ryanxin.live/1676269866029-afd24654-75c6-4b26-9d9d-5e7a37d18737.png)
 
 
 一致性hash配置示例
@@ -341,4 +339,3 @@ listen  web_host
 
 
 
-<a name="PyKn5"></a>

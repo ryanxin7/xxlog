@@ -324,7 +324,7 @@ mysql> show grants for wordpress@'10.0.0.%';
 
 <br>
 
-<font color=red>**如何沟通开用户**</font>
+**如何沟通开用户**
 
 - 是否有邮件批复
 - 对哪些库和表做操作
@@ -335,7 +335,7 @@ mysql> show grants for wordpress@'10.0.0.%';
 
 
 
-**<font color=red>开发人员找你要root用户密码？</font>**
+**开发人员找你要root用户密码？**
 
 - 走流程拒绝他
 - 如果是金融类的公司
@@ -346,8 +346,8 @@ mysql> show grants for wordpress@'10.0.0.%';
 
 
 
-- **<font color=red>原则上是不允许任何非DBA人员持有或申请root</font>**
-- <font color=red>**如果有人私下索要root密码，及时举报。**</font>
+- **原则上是不允许任何非DBA人员持有或申请root**
+- **如果有人私下索要root密码，及时举报。**
 
 <br>
 
@@ -579,7 +579,7 @@ mkdir -p /data/330{7,8,9}/data
 
 <br>
 
-**<font color=#E74C3C>实例一配置文件</font>**
+**实例一配置文件**
 
 ```php
 cat > /data/3307/my.cnf <<EOF
@@ -605,7 +605,7 @@ EOF
 
 <br>
 
-**<font color=#3498DB>实例二配置文件</font>**
+**实例二配置文件**
 
 ```php
 cat > /data/3308/my.cnf <<EOF
@@ -631,7 +631,7 @@ EOF
 
 <br>
 
-<font color=#27AE60>**实例三配置文件**</font>
+**实例三配置文件**
 
 ```php
 实例三配置文件 

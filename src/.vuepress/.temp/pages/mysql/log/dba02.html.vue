@@ -223,14 +223,15 @@ mysql<span class="token operator">></span> <span class="token keyword">show</spa
 <br>
 <h4 id="_4-4-5-关于生产中开用户" tabindex="-1"><a class="header-anchor" href="#_4-4-5-关于生产中开用户" aria-hidden="true">#</a> 4.4.5 关于生产中开用户</h4>
 <br>
-<font color=red>**如何沟通开用户**</font><ul>
+<p><strong>如何沟通开用户</strong></p>
+<ul>
 <li>是否有邮件批复</li>
 <li>对哪些库和表做操作</li>
 <li>做什么操作</li>
 <li>从什么地址来登录</li>
 </ul>
 <br>
-<p><strong><font color=red>开发人员找你要root用户密码？</font></strong></p>
+<p><strong>开发人员找你要root用户密码？</strong></p>
 <ul>
 <li>走流程拒绝他</li>
 <li>如果是金融类的公司</li>
@@ -238,9 +239,8 @@ mysql<span class="token operator">></span> <span class="token keyword">show</spa
 <br>
 <br>
 <ul>
-<li><strong><font color=red>原则上是不允许任何非DBA人员持有或申请root</font></strong></li>
-<li>
-<font color=red>**如果有人私下索要root密码，及时举报。**</font></li>
+<li><strong>原则上是不允许任何非DBA人员持有或申请root</strong></li>
+<li><strong>如果有人私下索要root密码，及时举报。</strong></li>
 </ul>
 <br>
 <br>
@@ -374,7 +374,7 @@ mysql <span class="token operator">-</span>uroot <span class="token operator">-<
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><br>
 <p><strong>准备多个配置文件</strong></p>
 <br>
-<p><strong><font color=#E74C3C>实例一配置文件</font></strong></p>
+<p><strong>实例一配置文件</strong></p>
 <div class="language-php line-numbers-mode" data-ext="php"><pre v-pre class="language-php"><code>cat <span class="token operator">></span> <span class="token operator">/</span>data<span class="token operator">/</span><span class="token number">3307</span><span class="token operator">/</span>my<span class="token operator">.</span>cnf <span class="token operator">&lt;&lt;</span><span class="token constant">EOF</span>
 
 <span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
@@ -395,7 +395,7 @@ log_bin<span class="token operator">=</span><span class="token operator">/</span
 
 <span class="token constant">EOF</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
-<p><strong><font color=#3498DB>实例二配置文件</font></strong></p>
+<p><strong>实例二配置文件</strong></p>
 <div class="language-php line-numbers-mode" data-ext="php"><pre v-pre class="language-php"><code>cat <span class="token operator">></span> <span class="token operator">/</span>data<span class="token operator">/</span><span class="token number">3308</span><span class="token operator">/</span>my<span class="token operator">.</span>cnf <span class="token operator">&lt;&lt;</span><span class="token constant">EOF</span>
 
 <span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
@@ -416,7 +416,8 @@ log_bin<span class="token operator">=</span><span class="token operator">/</span
 
 <span class="token constant">EOF</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
-<font color=#27AE60>**实例三配置文件**</font><div class="language-php line-numbers-mode" data-ext="php"><pre v-pre class="language-php"><code>实例三配置文件 
+<p><strong>实例三配置文件</strong></p>
+<div class="language-php line-numbers-mode" data-ext="php"><pre v-pre class="language-php"><code>实例三配置文件 
 
 cat <span class="token operator">></span> <span class="token operator">/</span>data<span class="token operator">/</span><span class="token number">3309</span><span class="token operator">/</span>my<span class="token operator">.</span>cnf <span class="token operator">&lt;&lt;</span><span class="token constant">EOF</span>
 
