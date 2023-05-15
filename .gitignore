@@ -1,3 +1,5 @@
 node_modules
-.gitignore
 src/xj/xx
+src/.vuepress/dist
+src/.vuepress/dist.tar
+src/.vuepress/.temp

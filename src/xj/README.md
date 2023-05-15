@@ -28,4 +28,4 @@ comment: false
 ## 目录
 
 1. [Git 常用命令与问题](/xj/log/git.html)
-
+1. [K8S集群证书到期问题](/xj/log/k8s-certificate-missery.html)
