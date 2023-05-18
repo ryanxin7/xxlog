@@ -202,3 +202,12 @@ rm -rf $WORKSPACE/src/.vuepress/dist
 
 
 ### 4.2 测试自动构建发布
+
+代码更新后自动构建并发布
+
+![](http://cdn1.ryanxin.live/image-20230518170955693.png)
+
+
+
+![](http://cdn1.ryanxin.live/image-20230518171204946.png)
+
