@@ -73,6 +73,11 @@ features:
     details: 该模块主要介绍一些关于 Linux 运维过程中的问题。
     link: /zookeeper/
 
+  - title: CI/CD
+    icon: jenkins
+    details: 持续集成（CI），持续交付（CD）流水线工具。
+    link: /CICD/
+
   - title: 应试英语技巧课
     icon: yingyu
     details: 英文考试题型技巧培训课程

@@ -28,7 +28,7 @@ export default hopeTheme({
     url: "http://ryanxin.live",
   },
 
-  iconAssets: "//at.alicdn.com/t/c/font_3912379_hn9q3qj34w6.css",
+  iconAssets: "//at.alicdn.com/t/c/font_3912379_t4dd9jnd18.css",
   //iconAssets: "//cdn1.ryanxin.live/xxlog/font_3912379_hn9q3qj34w6.css".
 
   logo: "/logo.svg",

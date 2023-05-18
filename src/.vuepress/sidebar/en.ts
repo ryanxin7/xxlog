@@ -112,4 +112,13 @@ export const enSidebar = sidebar({
 	  children: "structure",
     },
   ],
+          "/CICD/": [
+    "",
+    {
+      //icon: "discover",
+      //text: "小记",
+      prefix: "log/",
+	  children: "structure",
+    },
+  ],
 });

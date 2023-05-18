@@ -17,9 +17,7 @@ breadcrumb: false
 
 
 
-###  一、配置java环境并安装Jenkins
-
-
+###  配置java环境
 
 
 
@@ -56,7 +54,7 @@ apt-get install fontconfig
 
 
 
-**配置环境变量**
+### **配置环境变量**
 
 ```bash
 vim /etc/profile.d/jdk-bin-path.sh
@@ -76,16 +74,19 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.371-b11, mixed mode)
 
 
 
+
+
+### 安装Jenkins
+
 **Ubuntu 安装包下载：**
 
 https://mirrors.tuna.tsinghua.edu.cn/jenkins/debian-stable/
 
 ![image-20230516144314123](http://cdn1.ryanxin.live/image-20230516144314123.png)
 
-安装Jenkins
+#### 安装安装依赖
 
 ```bash
-#安装依赖
 apt install net-tools
 dpkg -i jenkins_2.361.4_all.deb
 ```
@@ -96,11 +97,36 @@ dpkg -i jenkins_2.361.4_all.deb
 
 
 
-**获取密码**
+#### **获取密码**
 
 ![image-20230516202608708](http://cdn1.ryanxin.live/xxlog/image-20230516202608708.png)
 
 
+
+#### **设置清华源**
+
+该url是国内的清华大学的镜像地址（建议使用清华大学的镜像服务器，修改后刷新页面即可.
+
+https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+
+```bash
+find / -name *.UpdateCenter.xml
+/var/lib/jenkins/hudson.model.UpdateCenter.xml
+
+
+vim /var/lib/jenkins/hudson.model.UpdateCenter.xml
+<?xml version='1.1' encoding='UTF-8'?>
+<sites>
+  <site>
+    <id>default</id>
+    <url>https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json</url>
+  </site>
+</sites>
+```
+
+
+
+#### 下载插件
 
 ![](http://cdn1.ryanxin.live/xxlog/image-20230516202918543.png)
 
@@ -109,10 +135,6 @@ dpkg -i jenkins_2.361.4_all.deb
 ![image-20230516203952363](http://cdn1.ryanxin.live/xxlog/image-20230516203952363.png)
 
 
-
-
-
-## 二、配置Github Token
 
 
 
