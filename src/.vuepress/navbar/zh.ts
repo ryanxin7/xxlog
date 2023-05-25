@@ -29,6 +29,9 @@ export const enNavbar = navbar([
         children: [ { text: "图片压缩", icon: "more", link: "https://imageresizer.com/" },
 		            { text: "免费图标素材", icon: "more", link: "https://www.flaticon.com/" },
 					{ text: "emojipedia", icon: "more", link: "https://emojipedia.org/" },
+					{ text: "processon", icon: "more", link: "https://www.processon.com/" },
+					{ text: "Epic Games Store 每周免费游戏", icon: "more", link: "https://indienova.com/gamedb/list/121/p/1" },
+					
 		]
 		                  //
 						  //{ text: "图片压缩", icon: "more", link: "https://imageresizer.com/" },
