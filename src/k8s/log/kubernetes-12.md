@@ -23,6 +23,10 @@ breadcrumb: false
  Ingress资源就是基于HTTP虚拟主机或URL路径的流量转发规则（类似于nginx中的虚拟主机定义或location转发规则定义），它把需要暴露给集群外的每个Service对象，映射为Ingress控制器上的一个虚拟主机或某虚拟主机的一个URL路径。
 :::
 
+<br>
+
+
+
 如下图所示：  
 
 ![](http://cdn1.ryanxin.live/1675821066302-e7f2e7a2-7032-4d52-b186-470babac7d1b.png)
@@ -43,14 +47,18 @@ Ingress官方文档：[https://kubernetes.io/zh-cn/docs/concepts/services-networ
 
 目前可选择使用的Ingress控制器有很多，可以参考官方介绍：[https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress-controllers/](https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress-controllers/) ，下面以nginx Ingress控制器为例进行部署。
 
-
 nginx Ingress控制器github地址：[https://github.com/kubernetes/ingress-nginx](https://github.com/kubernetes/ingress-nginx)<br />nginx Ingress控制器官方文档：[https://kubernetes.github.io/ingress-nginx/](https://kubernetes.github.io/ingress-nginx/)
 
 
-** 常用的的Ingress控制器部署方式有两种： ** 
 
+
+
+<br>
+
+**常用的的Ingress控制器部署方式有两种：  ** 
 
 <a name="Cd3df"></a>
+
 ### 1. 以Deployment方式部署Ingress控制器Pod资源  
 通过NodePort或LoadBalancer类型的Service或者通过拥有外部IP地址（externalIP）的Service对象为其接入集群外部的客户端请求流量。<br />这意味着，在生产环境以这种方式部署一个Ingress控制器时，必须在其前端定义一个负载均衡器，这个负载均衡器可以是LoadBalancer类型的Service，也可以是用户自行管理的负载均衡器。
 
@@ -60,6 +68,9 @@ nginx Ingress控制器github地址：[https://github.com/kubernetes/ingress-ngin
 
 
 <a name="PTwIB"></a>
+
+<br>
+
 ### 2.以DaemonSet方式部署Ingress控制器
 Pod资源Ingress控制器的各Pod分别以单一实例的方式运行在集群的所有节点或部分专用节点之上，并配置这些Pod对象以hostPort或hostNetwork的方式在当前节点接入外部流量。在这种方式下，前端还是需要一个负载均衡器，作为客户端流量的统一入口，然后转发给Ingress控制器Pod
 
